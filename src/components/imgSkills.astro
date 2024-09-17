@@ -1,0 +1,17 @@
+---
+interface Props {
+	name: string;
+    height: string;
+}
+
+const { name, height } = Astro.props;
+
+---
+<div class="grid place-content-center">
+    <div class="w-full flex justify-center">
+        <img src={`../../public/img/${name}.png`} alt="EJEMPLO" class={`h-${height}`}>
+        <!-- <img src={`../../public/img/${name}.png`} alt="EJEMPLO" class="h-16"> -->
+
+    </div>
+    <p class="text-center text-md text-slate-800 mt-2">{name}</p>
+</div>

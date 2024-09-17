@@ -1,0 +1,17 @@
+---
+import Theme from '../components/Theme.astro';
+import NavItem from '../components/NavItem.astro';
+---
+
+<nav transition:persist class="flex justify-between px-16 pt-3 items-center">
+    <div>
+        <Theme />
+    </div>
+    <div class="links flex gap-3">
+        <NavItem html="Inicio" href="#inicio"/>
+        <NavItem html="Experiencia" href="#experiencia"/>
+        <NavItem html="Proyectos" href="#proyectos"/>
+        <NavItem html="Habilidades" href="#habilidades"/>
+    </div>
+</nav>
+

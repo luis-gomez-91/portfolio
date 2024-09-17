@@ -1,0 +1,74 @@
+---
+import ImgSkill from './imgSkills.astro'
+import SoftSkill from './SoftSkills.astro'
+---
+
+<section id="habilidades" class="mt-20 w-[512px] xl:w-[1024px] md:w-[768px]">
+    <h1 class="text-2xl text-amber-500 font-bold">&lt;/&gt Habilidades</h1>
+    <div>
+        <h2 class="text-lg text-zinc-400 mt-6"><strong>Habilidades Técnicas.</strong></h2>
+        <div class="w-full grid grid-cols-2 xl:grid-cols-3 gap-5 mt-3">
+
+            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
+                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Backend</h2>
+                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
+                    <ImgSkill name="Python" height="16" />
+                    <ImgSkill name="Django" height="16" />
+                    <ImgSkill name="PHP" height="16" />
+                    <ImgSkill name="Xamp" height="16" />
+                    <ImgSkill name="Mysql" height="16" />
+                    <ImgSkill name="Postgres" height="16" />
+                </div>
+            </div>
+            
+            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
+                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Frontend</h2>
+                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
+                    <ImgSkill name="Html" height="16" />
+                    <ImgSkill name="Css" height="16" />
+                    <ImgSkill name="Javascript" height="16" />
+                    <ImgSkill name="Astro" height="16" />
+                    <ImgSkill name="Boostrap" height="16" />
+                    <ImgSkill name="Tailwind" height="16" />
+                </div>
+            </div>
+
+            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
+                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Herramientas</h2>
+                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
+                    <ImgSkill name="Git" height="16" />
+                    <ImgSkill name="Github" height="16" />
+                    <ImgSkill name="Bash" height="16" />
+                    <ImgSkill name="Ireport" height="16" />
+                </div>
+            </div>
+
+            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
+                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Aprendiendo</h2>
+                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
+                    <ImgSkill name="Laravel" height="16" />
+                    <ImgSkill name="Java" height="16" />
+                    <ImgSkill name="Kotlin" height="16" />
+                    <ImgSkill name="React" height="16" />
+                    <ImgSkill name="Mongodb" height="16" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-9">
+        <h2 class="text-lg text-zinc-400 mb-3"><strong>Habilidades Blandas.</strong></h2>
+        <div class="flex flex-wrap gap-2">
+            <SoftSkill name="Comunicación efectiva" ruta="comunicacion_efectiva.svg" parrafo="Soy capaz de comunicar ideas de forma clara y concisa tanto verbalmente como por escrito." />
+            <SoftSkill name="Trabajo en equipo" ruta="equipo.svg" parrafo='Colaborar de manera efectiva con otros miembros del equipo de desarrollo para alcanzar objetivos comunes.'/>
+            <SoftSkill name="Gestión del tiempo" ruta="gestionTiempo.svg" parrafo='Administrar el tiempo de manera efectiva para cumplir con plazos y metas establecidas.'/>
+            <SoftSkill name="Resolución de problemas" ruta="resolucion_problemas.svg" parrafo='Tengo la capacidad de identificar y abordar problemas de manera creatica y eficiente.'/>
+            <SoftSkill name="Adaptabilidad" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
+            <SoftSkill name="Flexibilidad" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
+            <SoftSkill name="Pensamiento crítico" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
+            <SoftSkill name="Capacidad de aprendizaje" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
+        
+        </div>
+    </div>
+
+
+</section>

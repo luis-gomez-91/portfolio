@@ -1,0 +1,54 @@
+---
+interface Props {
+	name: string;
+    ruta: string;
+    parrafo: string;
+}
+
+const { name, ruta, parrafo } = Astro.props;
+
+---
+
+<!-- <div class="relative h-56 w-full overflow-hidden group">
+    <div class="w-full h-full">
+        <img 
+            src=`/img/${ruta}` 
+            alt="NO" 
+            class="
+                absolute 
+                inset-0 
+                object-cover 
+                object-center
+                w-full 
+                h-full 
+                bg-blend-luminosity 
+                left-0 
+                top-0 
+                bottom-0bg-[url('/img/${ruta}')] 
+                group-hover:scale-110
+                transition-scale duration-1000 ease-in-out"
+        />
+        
+        <div class="absolute h-full w-full">
+            <div class="bg-zinc-900/70 h-full w-full p-9 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <p class="text-zinc-300 text-sm absolute bottom-16">{parrafo}</p>
+            </div>
+        </div>
+    </div>
+    <div class="text-zinc-100 absolute bottom-0 m-auto bg-zinc-900/70 w-full py-2">
+        <p class="text-center">{name}</p>
+    </div>
+</div> -->
+
+<span class="
+            bg-gray-200 
+            text-gray-800 
+            text-sm 
+            font-medium 
+            px-4 
+            py-1
+            rounded-md
+            dark:bg-gray-700
+            dark:text-gray-300">
+    {name}
+</span>
