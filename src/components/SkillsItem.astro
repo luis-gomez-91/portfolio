@@ -9,7 +9,7 @@ const { name, nivel } = Astro.props;
 ---
 <div class="w-full flex gap-2">
     <div class="p-2 bg-onSurface-light dark:bg-onSurface-dark rounded-full aspect-w-1 aspect-h-1 w-11 h-11">
-        <img src={`../../public/img/${name}.png`} alt={name} class="h-full w-full object-contain">
+        <img src={`../../public/static/${name}.png`} alt={name} class="h-full w-full object-contain">
     </div>
     <div class="flex flex-col">
         <p class="m-0 text-secondary-light dark:text-secondary-dark">{name}</p>
