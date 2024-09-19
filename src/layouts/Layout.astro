@@ -30,33 +30,33 @@ const { title } = Astro.props;
 </html>
 
 <script>
-	let isScrolling = false;
-	window.addEventListener('wheel', (event) => {
-		if (isScrolling) return;
+	// let isScrolling = false;
+	// window.addEventListener('wheel', (event) => {
+	// 	if (isScrolling) return;
 
-		const sections = document.querySelectorAll('.seccion');
-		const scrollDirection = event.deltaY > 0 ? 1 : -1;
-		const currentSection = Math.round(window.scrollY / window.innerHeight);
-		let nextSection = currentSection + scrollDirection;
+	// 	const sections = document.querySelectorAll('.seccion');
+	// 	const scrollDirection = event.deltaY > 0 ? 1 : -1;
+	// 	const currentSection = Math.round(window.scrollY / window.innerHeight);
+	// 	let nextSection = currentSection + scrollDirection;
 
-		if (nextSection < 0) nextSection = 0;
-		if (nextSection >= sections.length) nextSection = sections.length - 1;
+	// 	if (nextSection < 0) nextSection = 0;
+	// 	if (nextSection >= sections.length) nextSection = sections.length - 1;
 
-		isScrolling = true;
+	// 	isScrolling = true;
 
-		window.scrollTo({
-			top: nextSection * window.innerHeight,
-			behavior: 'smooth'
-		});
+	// 	window.scrollTo({
+	// 		top: nextSection * window.innerHeight,
+	// 		behavior: 'smooth'
+	// 	});
 
-		// Espera a que termine el desplazamiento
-		const scrollListener = () => {
-			isScrolling = false;
-			window.removeEventListener('scroll', scrollListener);
-		};
+	// 	// Espera a que termine el desplazamiento
+	// 	const scrollListener = () => {
+	// 		isScrolling = false;
+	// 		window.removeEventListener('scroll', scrollListener);
+	// 	};
 
-		window.addEventListener('scroll', scrollListener);
-	});
+	// 	window.addEventListener('scroll', scrollListener);
+	// });
 
 
 	document.addEventListener('DOMContentLoaded', () => {
