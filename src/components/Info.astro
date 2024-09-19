@@ -1,6 +1,7 @@
 ---
 import '../../public/icomoon/style.css'
 import IconItem from './IconItem.astro'
+import Title from './Title.astro'
 ---
 
 <section class="seccion h-screen w-full flex flex-col lg:flex-row items-center justify-center gap-12">
@@ -8,7 +9,7 @@ import IconItem from './IconItem.astro'
         <img src="./static/nerd.webp" alt="img" class="max-w-full w-[300px] lg:w-[350px] h-auto text-center rounded-full">
     </div>
     <div class="text-center flex flex-col gap-3">
-        <h1 class="text-4xl lg:text-5xl text-tertiary-light dark:text-tertiary-dark font-suse font-bold">Luis Gómez Veloz</h1>
+        <Title label="Luis Gómez Veloz"/>
         <p class="text-xl lg:text-2xl text-onSurface-light dark:text-onSurface-dark">Desarrollador Full-Stack</p>
         <div class="flex gap-6 justify-center">
             <button

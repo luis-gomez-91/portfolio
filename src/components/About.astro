@@ -1,9 +1,10 @@
 ---
 import '../../public/icomoon/style.css'
+import Title from './Title.astro'
 ---
 
 <section id="about-me" class="seccion h-screen flex flex-col justify-center items-center fade-in w-full lg:w-[1024px] px-6">
-    <h1 class="text-5xl text-tertiary-light dark:text-tertiary-dark font-bold font-suse">Acerca de mí</h1>
+    <Title label="Acerca de mí"/>
     <div class="flex flex-row w-100 gap-9 items-center mt-16">
         <img src="./static/nerd.webp" alt="foto" class="w-[320px] rounded-3xl hidden lg:block">
         <div class="flex flex-col gap-6 w-full">
@@ -21,7 +22,7 @@ import '../../public/icomoon/style.css'
                     <p class="text-center">Universidad Politécnica Salesiana</p>
                 </div>
             </div>
-            <span>
+            <span class="text-xs md:text-sm">
                 Ingeniero de Sistemas y desarrollador de aplicaciones web y móviles. 
                 Django y Laravel para el desarrollo del back-end, JavaScript, 
                 jQuery, CSS Bootstrap y Tailwind para la creación de interfaces dinámicas y responsivas. <br>
