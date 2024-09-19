@@ -7,36 +7,103 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es" class="dark flex flex-col justify-center items-center">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="../../public/img/logo.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=SUSE:wght@100..800&display=swap');
+		</style>
+
 	</head>
-	<body class="dark:text-zinc-300 pb-9 text-zinc-700">
-		<div class="fixed dark:top-0 z-[-2] h-screen w-screen
-				  dark:bg-neutral-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]
-				  bg-zinc-50 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(11,81,255,0.1),rgba(255,255,255,0))]			">
-		</div>
+	<body class=" pb-9transition duration-500 ease-in-out 
+				font-poppins font-normal
+				text-outline-light dark:text-outline-dark
+				bg-surface-light dark:bg-surface-dark"
+	>
 		<slot />	
 	</body>
 </html>
 
+<script>
+	let isScrolling = false;
+	window.addEventListener('wheel', (event) => {
+		if (isScrolling) return;
+
+		const sections = document.querySelectorAll('.seccion');
+		const scrollDirection = event.deltaY > 0 ? 1 : -1;
+		const currentSection = Math.round(window.scrollY / window.innerHeight);
+		let nextSection = currentSection + scrollDirection;
+
+		if (nextSection < 0) nextSection = 0;
+		if (nextSection >= sections.length) nextSection = sections.length - 1;
+
+		isScrolling = true;
+
+		window.scrollTo({
+			top: nextSection * window.innerHeight,
+			behavior: 'smooth'
+		});
+
+		// Espera a que termine el desplazamiento
+		const scrollListener = () => {
+			isScrolling = false;
+			window.removeEventListener('scroll', scrollListener);
+		};
+
+		window.addEventListener('scroll', scrollListener);
+	});
+
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const detectarTemaOscuro = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+		console.log(detectarTemaOscuro())
+		if (detectarTemaOscuro()) {
+
+			document.querySelector('body').classList.add('dark')
+		}
+
+        const sections = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Scroll to the target section smoothly
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+    });
+</script>
+
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Onest:wght@100..900&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Onest:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
-
-
 	html {
-		font-family: "Onest", sans-serif;
-		/* font-family: "Kode Mono", monospace; */
-		/* font-family: "Source Code Pro", monospace; */
-		/* font-family: "Montserrat", sans-serif; */
+		scroll-behavior: smooth;
+	}
+
+	.fast-scroll {
+		scroll-behavior: smooth;
+		scroll-timing-function: ease-in-out;
+		transition-duration: 0.8s; /* Ajusta esta duración según prefieras */
 	}
 </style>
-

@@ -1,74 +1,118 @@
 ---
-import ImgSkill from './imgSkills.astro'
-import SoftSkill from './SoftSkills.astro'
+import '../../public/icomoon/style.css'
+import IconItem from './IconItem.astro'
+import SkillItem from './SkillsItem.astro'
+
 ---
+<!-- <a href="https://wa.me/0991718739?text=Hola%20Luis,%20he%20visto%20tu%20portafolio%20y%20me%20gustaría%20hablar%20contigo%20sobre%20una%20oportunidad%20de%20trabajo." target="_blank" class="transition-color duration-300 ease-linear text-lg flex items-center gap-2 hover:text-secondary-light hover:dark:text-secondary-dark"><span class="icon-whatsapp"></span>Whatsapp</a> -->
 
-<section id="habilidades" class="mt-20 w-[512px] xl:w-[1024px] md:w-[768px]">
-    <h1 class="text-2xl text-amber-500 font-bold">&lt;/&gt Habilidades</h1>
-    <div>
-        <h2 class="text-lg text-zinc-400 mt-6"><strong>Habilidades Técnicas.</strong></h2>
-        <div class="w-full grid grid-cols-2 xl:grid-cols-3 gap-5 mt-3">
 
-            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
-                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Backend</h2>
-                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
-                    <ImgSkill name="Python" height="16" />
-                    <ImgSkill name="Django" height="16" />
-                    <ImgSkill name="PHP" height="16" />
-                    <ImgSkill name="Xamp" height="16" />
-                    <ImgSkill name="Mysql" height="16" />
-                    <ImgSkill name="Postgres" height="16" />
-                </div>
-            </div>
-            
-            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
-                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Frontend</h2>
-                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
-                    <ImgSkill name="Html" height="16" />
-                    <ImgSkill name="Css" height="16" />
-                    <ImgSkill name="Javascript" height="16" />
-                    <ImgSkill name="Astro" height="16" />
-                    <ImgSkill name="Boostrap" height="16" />
-                    <ImgSkill name="Tailwind" height="16" />
-                </div>
-            </div>
-
-            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
-                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Herramientas</h2>
-                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
-                    <ImgSkill name="Git" height="16" />
-                    <ImgSkill name="Github" height="16" />
-                    <ImgSkill name="Bash" height="16" />
-                    <ImgSkill name="Ireport" height="16" />
-                </div>
-            </div>
-
-            <div class="bg-slate-100 bg-clip-border shadow-3xl rounded-xl">
-                <h2 class="text-center text-xl pt-3 rounded-t-md text-blue-gray-900 font-semibold text-slate-800">Aprendiendo</h2>
-                <div class="grid grid-cols-2 xl:grid-cols-3 gap-5 p-5">
-                    <ImgSkill name="Laravel" height="16" />
-                    <ImgSkill name="Java" height="16" />
-                    <ImgSkill name="Kotlin" height="16" />
-                    <ImgSkill name="React" height="16" />
-                    <ImgSkill name="Mongodb" height="16" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mt-9">
-        <h2 class="text-lg text-zinc-400 mb-3"><strong>Habilidades Blandas.</strong></h2>
-        <div class="flex flex-wrap gap-2">
-            <SoftSkill name="Comunicación efectiva" ruta="comunicacion_efectiva.svg" parrafo="Soy capaz de comunicar ideas de forma clara y concisa tanto verbalmente como por escrito." />
-            <SoftSkill name="Trabajo en equipo" ruta="equipo.svg" parrafo='Colaborar de manera efectiva con otros miembros del equipo de desarrollo para alcanzar objetivos comunes.'/>
-            <SoftSkill name="Gestión del tiempo" ruta="gestionTiempo.svg" parrafo='Administrar el tiempo de manera efectiva para cumplir con plazos y metas establecidas.'/>
-            <SoftSkill name="Resolución de problemas" ruta="resolucion_problemas.svg" parrafo='Tengo la capacidad de identificar y abordar problemas de manera creatica y eficiente.'/>
-            <SoftSkill name="Adaptabilidad" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
-            <SoftSkill name="Flexibilidad" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
-            <SoftSkill name="Pensamiento crítico" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
-            <SoftSkill name="Capacidad de aprendizaje" ruta="adaptabilidad.svg" parrafo='Capaz de adaptarme a nuevos entornos y tecnologías. Estoy dispuesto a aprender nuevas herramientas y técnicas, así como a aceptar y superar desafíos inesperados.'/>
-        
-        </div>
+<section id="skills" class="seccion w-full h-screen flex flex-col justify-center items-center">
+    <div class="flex flex-row justify-around items-center w-full">
+        <h1 class="text-5xl text-tertiary-light dark:text-tertiary-dark font-bold font-suse">Habilidades</h1>
     </div>
 
+    <div class="w-full relative">
+        <a href="javascript:void(0)" 
+            id="scroll-left" 
+            class="transition-color duration-300 ease-linear absolute top-1/2 transform -translate-y-1/2 -left-[30px] 
+                text-primary-light dark:text-secondary-dark
+                bg-[rgba(218,226,249, 0.2)] dark:bg-[rgba(62,71,89,0.2)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                rounded-full w-[60px] h-[60px] z-50 flex items-center justify-center"
+        >
+            <span class="icon-arrow-left text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
+        </a>
+        <a href="javascript:void(0)" 
+            id="scroll-right" 
+            class="transition-color duration-300 ease-linear absolute top-1/2 transform -translate-y-1/2 -right-[30px] 
+                text-primary-light dark:text-secondary-dark
+                bg-[rgba(218,226,249, 0.2)] dark:bg-[rgba(62,71,89,0.2)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                rounded-full w-[60px] h-[60px] z-50 flex items-center justify-center"
+        >
+            <span class="icon-arrow-right text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
+        </a>
+        <div class="w-[24rem] h-full absolute start-[-12px] top-0 z-10 bg-gradient-to-r from-[rgb(249,249,255,0.8)] dark:from-[rgb(17,19,24,0.8)] to-transparent"></div>
+        <div id="scroll-container" class="w-full flex flex-row gap-6 justify-start items-center overflow-x-auto overflow-y-hidden mt-16 scroll-smooth snap-x snap-mandatory scrollbar-hide">
 
+            <div class="min-w-[12rem] max-w-[28rem] min-h-[22rem]"></div>
+            <div class="min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
+                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Backend</h3>
+                <div class="mt-5 grid grid-cols-2 gap-4">
+                    <SkillItem name="Python" nivel="Avanzado" />
+                    <SkillItem name="Django" nivel="Avanzado" />
+                    <SkillItem name="PHP" nivel="Intermedio" />
+                    <SkillItem name="Laravel" nivel="Intermedio" />
+                    <SkillItem name="PostgreSQL" nivel="Avanzado" />
+                    <SkillItem name="MySQL" nivel="Avanzado" />
+                    <SkillItem name="Oracle" nivel="Básico" />
+                </div>
+            </div>
+    
+            <div class="min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
+                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Frontend</h3>
+                <div class="mt-5 grid grid-cols-2 gap-4">
+                    <SkillItem name="Html" nivel="Avanzado" />
+                    <SkillItem name="CSS" nivel="Avanzado" />
+                    <SkillItem name="JavaScript" nivel="Avanzado" />
+                    <SkillItem name="JQuery" nivel="Avanzado" />
+                    <SkillItem name="TypeScript" nivel="Intermedio" />
+                    <SkillItem name="Bootstrap" nivel="Avanzado" />
+                    <SkillItem name="Tailwind" nivel="Avanzado" />
+                    <SkillItem name="Astro" nivel="Intermedio" />
+                </div>
+            </div>
+    
+            <div class="min-w-[24rem] max-w-[40rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
+                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Móvil</h3>
+                <div class="mt-5 grid grid-cols-2 gap-4">
+                    <SkillItem name="Kotlin" nivel="Avanzado" />
+                    <SkillItem name="Kotlin Multiplatform" nivel="Intermedio" />
+                    <SkillItem name="Java" nivel="Básico" />
+                    <SkillItem name="Jetpack Compose" nivel="Avanzado" />
+                </div>
+            </div>
+    
+            <div class="min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
+                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Herramientas</h3>
+                <div class="mt-5 grid grid-cols-2 gap-4">
+                    <SkillItem name="Git" nivel="Avanzado" />
+                    <SkillItem name="GitHub" nivel="Intermedio" />
+                    <SkillItem name="Subversion" nivel="Avanzado" />
+                    <SkillItem name="Bash" nivel="Básico" />
+                    <SkillItem name="Ireport" nivel="Avanzado" />
+                    <SkillItem name="Visual Studio Code" nivel="Avanzado" />
+                    <SkillItem name="Pycharm" nivel="Avanzado" />
+                    <SkillItem name="AndroidStudio" nivel="Avanzado" />
+                </div>
+            </div>
+            <div class="min-w-[12rem] max-w-[28rem] min-h-[22rem]"></div>
+        </div>
+        <div class="w-[24rem] h-full absolute end-[0] top-0 z-100 bg-gradient-to-l from-[rgb(249,249,255,0.8)] dark:from-[rgb(17,19,24,0.8)] to-transparent"></div>
+    </div>
 </section>
+
+<style>
+.scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+</style>
+
+<script>
+    // Obtener el contenedor que tiene el scroll horizontal
+    const scrollContainer = document.getElementById('scroll-container');
+    
+    // Botón para desplazarse hacia la izquierda
+    document.getElementById('scroll-left').addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' }); // Mover a la izquierda
+    });
+    
+    // Botón para desplazarse hacia la derecha
+    document.getElementById('scroll-right').addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' }); // Mover a la derecha
+    });
+</script>

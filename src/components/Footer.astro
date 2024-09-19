@@ -1,15 +1,35 @@
 ---
 import IconItem from './IconItem.astro'
-
+import '../../public/icomoon/style.css'
 ---
 
-<footer class="w-full bg-sky-900/60 dark:bg-sky-300/40 text-zinc-200 mt-9 p-9 flex-col">
-    <div class="flex justify-center">
-        <p>Realizado por: <span class="font-bold">Luis Gómez Veloz</span></p>
+<footer id="contacts" class="seccion h-screen flex flex-col justify-center items-center p-9 relative">
+    <div class="flex flex-row justify-around items-center w-full mb-16">
+        <h1 class="text-5xl text-tertiary-light dark:text-tertiary-dark font-bold font-suse">Contactos</h1>
     </div>
-    <div class="flex gap-3 justify-center mt-3">
+
+    <div class="flex flex-row flex-wrap justify-center gap-9 p-6 rounded-3xl border-solid border-secondary-light dark:border-secondary-dark border-2">
+        <a target="_blank" href="mailto:luis.gomez.veloz@gmail.com" class="transition-color duration-300 ease-linear text-lg flex items-center gap-2 hover:text-secondary-light hover:dark:text-secondary-dark"><span class="icon-mail3"></span>luis.gomez.veloz@gmail.com</a>
+        <a target="_blank" href="https://www.linkedin.com/in/luisgomez1991/" class="transition-color duration-300 ease-linear text-lg flex items-center gap-2 hover:text-secondary-light hover:dark:text-secondary-dark"><span class="icon-linkedin"></span>Linkedin</a>
+        <a target="_blank" href="https://wa.me/+593991718739?text=Hola%20Luis,%20he%20visto%20tu%20portafolio%20y%20me%20gustaría%20hablar%20contigo%20sobre%20una%20oportunidad%20de%20trabajo." class="transition-color duration-300 ease-linear text-lg flex items-center gap-2 hover:text-secondary-light hover:dark:text-secondary-dark"><span class="icon-whatsapp"></span>Whatsapp</a>
+    </div>
+
+    <div class="flex flex-col gap-9 justify-center items-center absolute bottom-6">
+        <div class="flex flex-row flex-wrap justify-center gap-9 text-xl">
+            <a href="#about-me" class="transition-color duration-300 ease-linear pb-2 hover:text-secondary-light hover:dark:text-secondary-dark border-surface-light dark:border-surface-dark hover:border-onSurface-light dark:hover:border-onSurface-dark border-solid border-b-2">Acerca de mí</a>
+            <a href="" class="transition-color duration-300 ease-linear pb-2 hover:text-secondary-light hover:dark:text-secondary-dark border-surface-light dark:border-surface-dark hover:border-onSurface-light dark:hover:border-onSurface-dark border-solid border-b-2 ">Proyectos</a>
+            <a href="#skills" class="transition-color duration-300 ease-linear pb-2 hover:text-secondary-light hover:dark:text-secondary-dark border-surface-light dark:border-surface-dark hover:border-onSurface-light dark:hover:border-onSurface-dark border-solid border-b-2 ">Habilidades</a>
+            <a href="#contacts" class="transition-color duration-300 ease-linear pb-2 hover:text-secondary-light hover:dark:text-secondary-dark border-surface-light dark:border-surface-dark hover:border-onSurface-light dark:hover:border-onSurface-dark border-solid border-b-2 ">Contactos</a>
+        </div>
+        <span class="text-sm">Copyright © 2023 Luis Gómez. Todos los derechos reservados</span>
+    </div>
+    
+
+
+
+    <!-- <div class="flex gap-3 justify-center mt-3">
         <IconItem href='https://www.instagram.com/luisgomez.gye/' clase='icon-instagram' />
         <IconItem href='mailto:luis.gomez.veloz@gmail.com?subject=Contratado.&body=Hola Luis, vi tu hoja de vida...' clase='icon-mail2' />
         <IconItem href='https://web.whatsapp.com/send?phone=+593991718739' clase='icon-whatsapp' />
-    </div>
+    </div> -->
 </footer>

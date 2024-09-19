@@ -1,0 +1,36 @@
+---
+import '../../public/icomoon/style.css'
+import IconItem from './IconItem.astro'
+---
+
+<section id="about-me" class="seccion w-full h-screen flex flex-col justify-center items-center fade-in">
+    <h1 class="text-5xl text-tertiary-light dark:text-tertiary-dark font-bold font-suse">Acerca de mí</h1>
+    <div class="flex flex-row w-100 gap-9 items-center mt-16">
+        <img src="../../public/img/nerd.webp" alt="foto" class="w-[320px] rounded-3xl hidden lg:block">
+        <div class="flex flex-col gap-6 w-full">
+            <div class="flex flex-row gap-6 w-full">
+                <div class="w-1/2 flex flex-col items-center justify-center p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl">
+                    <span class="icon-database text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
+                    <h5 class="text-xl font-bold text-onSurface-light dark:text-onSurface-dark">Experiencia</h5>
+                    <p>+5 años</p>
+                    <p>Desarrollador Full-Stack</p>
+                </div>
+                <div class="w-1/2 flex flex-col items-center justify-center p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl">
+                    <span class="icon-books text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
+                    <h5 class="text-xl font-bold text-onSurface-light dark:text-onSurface-dark">Educación</h5>
+                    <p>Ing. de Sistemas</p>
+                    <p>Universidad Politécnica Salesiana</p>
+                </div>
+            </div>
+            <span>
+                Ingeniero de Sistemas y desarrollador de aplicaciones web y móviles. 
+                Django y Laravel para el desarrollo del back-end, JavaScript, 
+                jQuery, CSS Bootstrap y Tailwind para la creación de interfaces dinámicas y responsivas. <br>
+                Domino tecnologías modernas como Astro para aplicaciones front-end optimizadas y
+                Kotlin para el desarrollo móvil Android.
+                Recientemente, he comenzado a trabajar con Kotlin Multiplatform Mobile (KMM), lo que me permite desarrollar aplicaciones móviles nativas tanto para iOS como para Android.
+        </span>
+        </div>
+        
+    </div>
+</section>

@@ -1,29 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
 import Info from '../components/Info.astro';
+import About from '../components/About.astro';
 import Experience from '../components/Experience.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
 import Footer from '../components/Footer.astro';
 
-
-
-
 ---
 
-<Layout title="Portafolio">
-	<header id="inicio">
-		<Header />
-	</header>
-	<main class="flex flex-col items-center justify-center">
+<Layout title="Portafolio web">
+	<header id="inicio" class="relative flex flex-col items-center justify-center">
+		<Navigation />
 		<Info />
-		<!-- <Me /> -->
-		<Experience />
-		<Projects />
+	</header>
+	<main class="flex flex-col items-center justify-center w-[512px] xl:w-[1024px] md:w-[768px]">
+		<About />
+		<!-- <Experience /> -->
+		<!-- <Projects /> -->
 		<Skills />
 	</main>
 	<Footer />
-	
 </Layout>
 

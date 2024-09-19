@@ -1,0 +1,25 @@
+---
+import Theme from './Theme.astro';
+import NavItem from './NavItem.astro';
+---
+
+<nav transition:persist class="flex justify-end gap-6 px-32 pt-12 items-center w-screen fixed top-3">
+    <div>
+        <Theme />
+    </div>
+    <div>
+        <a href="#" onclick="">
+            <span class="icon-menu text-3xl 
+                        text-secondary-light dark:text-secondary-dark
+                        hover:text-tertiary-light hover:dark:text-tertiary-dark">
+            </span>
+        </a>
+    </div>
+    <!-- <div class="links flex gap-3">
+        <NavItem html="Inicio" href="#inicio"/>
+        <NavItem html="Experiencia" href="#experiencia"/>
+        <NavItem html="Proyectos" href="#proyectos"/>
+        <NavItem html="Habilidades" href="#habilidades"/>
+    </div> -->
+</nav>
+
