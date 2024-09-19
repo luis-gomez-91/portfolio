@@ -4,10 +4,8 @@ import IconItem from './IconItem.astro'
 import SkillItem from './SkillsItem.astro'
 
 ---
-<!-- <a href="https://wa.me/0991718739?text=Hola%20Luis,%20he%20visto%20tu%20portafolio%20y%20me%20gustaría%20hablar%20contigo%20sobre%20una%20oportunidad%20de%20trabajo." target="_blank" class="transition-color duration-300 ease-linear text-lg flex items-center gap-2 hover:text-secondary-light hover:dark:text-secondary-dark"><span class="icon-whatsapp"></span>Whatsapp</a> -->
 
-
-<section id="skills" class="seccion h-screen flex flex-col justify-center items-center w-[512px] xl:w-[1024px] md:w-[768px]">
+<section id="skills" class="seccion h-screen flex flex-col justify-center items-center w-full xl:w-[1024px] md:w-[768px] px-9">
     <div class="flex flex-row justify-around items-center w-full">
         <h1 class="text-5xl text-tertiary-light dark:text-tertiary-dark font-bold font-suse">Habilidades</h1>
     </div>
@@ -37,7 +35,7 @@ import SkillItem from './SkillsItem.astro'
             <div class="hidden xl:flex min-w-[12rem] max-w-[28rem] min-h-[22rem]"></div>
             <div class="min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
                 <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Backend</h3>
-                <div class="mt-5 grid grid-cols-2 gap-4">
+                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <SkillItem name="Python" nivel="Avanzado" />
                     <SkillItem name="Django" nivel="Avanzado" />
                     <SkillItem name="PHP" nivel="Intermedio" />
@@ -50,7 +48,7 @@ import SkillItem from './SkillsItem.astro'
     
             <div class="min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
                 <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Frontend</h3>
-                <div class="mt-5 grid grid-cols-2 gap-4">
+                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <SkillItem name="Html" nivel="Avanzado" />
                     <SkillItem name="CSS" nivel="Avanzado" />
                     <SkillItem name="JavaScript" nivel="Avanzado" />
@@ -64,7 +62,7 @@ import SkillItem from './SkillsItem.astro'
     
             <div class="min-w-[24rem] max-w-[40rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
                 <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Móvil</h3>
-                <div class="mt-5 grid grid-cols-2 gap-4">
+                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <SkillItem name="Kotlin" nivel="Avanzado" />
                     <SkillItem name="Kotlin Multiplatform" nivel="Intermedio" />
                     <SkillItem name="Java" nivel="Básico" />
@@ -74,7 +72,7 @@ import SkillItem from './SkillsItem.astro'
     
             <div class="min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
                 <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Herramientas</h3>
-                <div class="mt-5 grid grid-cols-2 gap-4">
+                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <SkillItem name="Git" nivel="Avanzado" />
                     <SkillItem name="GitHub" nivel="Intermedio" />
                     <SkillItem name="Subversion" nivel="Avanzado" />
