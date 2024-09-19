@@ -4,10 +4,14 @@ import NavItem from './NavItem.astro';
 ---
 
 <nav transition:persist class="flex justify-between xl:justify-end gap-6 px-6 xl:px-32 pt-6 xl:pt-12 items-center w-screen fixed top-3">
-    <div>
+    <div class="w-[52px] h-[52px] flex items-center justify-center
+                bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                p-2 rounded-full">
         <Theme />
     </div>
-    <div>
+    <div class="w-[52px] h-[52px] flex items-center justify-center 
+                bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                p-2 rounded-full">
         <a href="#" onclick="">
             <span class="icon-menu text-3xl 
                         text-secondary-light dark:text-secondary-dark
