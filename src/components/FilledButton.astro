@@ -1,0 +1,23 @@
+---
+interface Props {
+    text: string;
+    icon: string;
+}
+
+const { text, icon } = Astro.props;
+---
+
+<a href="#" class="py-1 px-2 rounded-full min-h-[42px]
+                text-secondaryContainer-light dark:text-secondaryContainer-dark
+                hover:text-surface-light dark:hover:text-surface-dark
+                bg-secondary-light dark:bg-secondary-dark
+                transition-colors duration-300 ease-linear flex items-center justify-center
+                text-sm font-light gap-1">
+    {icon !== "" && (
+        <span class={`${icon}`}></span>
+    )}
+    {text !== "" && (
+        <span class="text-sm">{text}</span>
+    )}
+</a>
+

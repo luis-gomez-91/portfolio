@@ -1,13 +1,108 @@
 ---
-import Card from './ProjectsItem.astro'
+import '../../public/icomoon/style.css'
+import SkillItem from './SkillsItem.astro'
+import Title from './Title.astro'
+import OutlineButton from './OutlineIconButton.astro'
+import FilledButton from './FilledButton.astro'
+
 ---
 
-<section id="proyectos" class="seccion w-100 h-screen">
-    <h1 class="text-2xl text-amber-500 font-bold">&lt;/&gt Proyectos</h1>
-
-    <div class="grid grid-cols-1 mt-3 w-full gap-4 xl:grid-cols-2 md:grid-cols-1">
-        <Card />
-        <Card />
+<section id="projects" class="seccion flex flex-col justify-center items-center w-full 2xl:w-[1536px] px-9 mt-16">
+    <div class="flex flex-col justify-around items-center w-full gap-1">
+        <Title label="Proyectos" dev={false}/>
+        <a href="" class="text-md border-b-2 pb-1 border-surface-light dark:border-surface-dark hover:text-onSurface-light hover:dark:text-onSurface-dark hover:border-onSurface-light hover:dark:border-onSurface-dark transition-all duration-500 ease-in-out">Ver todos los proyectos</a>
     </div>
 
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-6 w-full">
+        
+        <div class="flex flex-col gap-3 justify-between h-full">
+            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
+                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/dos-tragos.png)] bg-center bg-cover rounded-xl"></div>
+                <div class="flex flex-col">
+                    <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">Dos Tragos.</h3>
+                    <span>Desarrollo de una página web estática y responsiva para un emprendimiento de venta de cócteles.</span>
+                </div>
+                <div class="flex flex-row gap-3 justify-end items-center mt-6">
+                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
+                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
+                    <FilledButton text="Ver mas" icon="icon-info text-3xl"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-3 justify-between h-full">
+            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
+                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/app1.png)] bg-top bg-cover rounded-xl"></div>
+                <div class="flex flex-col">
+                    <a href="#" class="text-onSurface-light dark:text-onSurface-dark text-xl">API Sistema contable ITB <span class="icon-share"></span></a>
+                    <span>API que usa el sistema contable para realizar las importaciónes - SGA ITB, SGA ITB Online, Conduce Ecuador, Educacion Continua ITB.</span>
+                </div>
+                <div class="flex flex-row gap-4 justify-end mt-6">
+                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
+                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
+                    <FilledButton text="Ver mas" icon="icon-info text-3xl"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-3 justify-between h-full">
+            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
+                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/dos-tragos.png)] bg-center bg-cover rounded-xl"></div>
+                <div>
+                    <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">Gestión de certificados.</h3>
+                    <span>Este proyecto tiene como objetivo automatizar la generación de certificados para los congresos realizados ITB y UBE.</span>
+                </div>
+                <div class="flex flex-row gap-4 justify-end mt-6">
+                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
+                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
+                    <FilledButton text="Ver mas" icon="icon-plus text-xl"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-3 justify-between h-full">
+            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
+                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/app.png)] bg-center bg-cover rounded-xl"></div>
+                <div>
+                    <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">App móvil ITB</h3>
+                    <span>Este proyecto consiste en el desarrollo de una aplicación móvil multiplataforma, destinada al uso de alumnos y docentes del ITB.</span>
+                </div>
+                <div class="flex flex-row gap-4 justify-end mt-6">
+                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
+                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
+                    <FilledButton text="Ver mas" icon="icon-plus text-xl"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
 </section>
+
+<style>
+.scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+</style>
+
+<script>
+    // Obtener el contenedor que tiene el scroll horizontal
+    const scrollContainer = document.getElementById('scroll-container');
+    
+    // Botón para desplazarse hacia la izquierda
+    document.getElementById('scroll-left').addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' }); // Mover a la izquierda
+    });
+    
+    // Botón para desplazarse hacia la derecha
+    document.getElementById('scroll-right').addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' }); // Mover a la derecha
+    });
+</script>

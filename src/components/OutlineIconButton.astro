@@ -1,0 +1,25 @@
+---
+interface Props {
+    text: string;
+    icon: string;
+    // size: string;
+}
+
+const { text, icon } = Astro.props;
+---
+
+<a href="#" class="p-1 rounded-full bg-transparent min-h-[39px]
+                text-secondary-light dark:text-secondary-dark
+                hover:bg-secondary-light dark:hover:bg-secondary-dark 
+                hover:text-surface-light dark:hover:text-surface-dark
+                outline outline-secondary-light dark:outline-secondary-dark
+                transition-colors duration-300 ease-linear flex items-center justify-center
+                text-sm font-light gap-1">
+    {icon !== "" && (
+        <span class={`${icon}`}></span>
+    )}
+    {text !== "" && (
+        <span class="text-sm">{text}</span>
+    )}
+</a>
+

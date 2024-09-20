@@ -3,27 +3,105 @@ import Theme from './Theme.astro';
 import NavItem from './NavItem.astro';
 ---
 
-<nav transition:persist class="flex justify-between xl:justify-end gap-6 px-6 xl:px-32 pt-6 xl:pt-12 items-center w-screen fixed top-3">
+<nav class="z-50 flex items-center justify-between gap-6 px-6 xl:px-32 pt-6 xl:pt-12 w-full absolute top-3 bg-transparent">
     <div class="w-[52px] h-[52px] flex items-center justify-center
                 bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                 p-2 rounded-full">
         <Theme />
+    </div> 
+
+    <div id="nav-links" class="hidden md:flex flex-col md:flex-row gap-3 transition-all duration-500 ease-in-out">
+        <NavItem html="Inicio" href="/" />
+        <NavItem html="Proyectos" href="/projetcs" />
+        <NavItem html="Acerca de mí" href="/#about-me" />
+        <NavItem html="Habilidades" href="/#skills" />
+        <NavItem html="Contactos" href="/#contacts" />
     </div>
-    <div class="w-[52px] h-[52px] flex items-center justify-center 
+
+    <div class="z-40 block md:hidden relative">
+        <button id="menu-toggle" class="w-[52px] h-[52px] flex items-center justify-center transition-all duration-300 ease-in-out
                 bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                 p-2 rounded-full">
-        <a href="#" onclick="">
             <span class="icon-menu text-3xl 
                         text-secondary-light dark:text-secondary-dark
                         hover:text-tertiary-light hover:dark:text-tertiary-dark">
             </span>
-        </a>
+        </button>
+
+        <div id="menu-links" class="hidden z-30 absolute top-full end-0">
+            <div class="bg-[rgb(218,226,249,0.2)] dark:bg-[rgba(62,71,89,0.2)]
+                        p-1 mt-2 rounded-md flex flex-col justify-end items-end space-y-2 gap-0">
+                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Inicio</a>
+                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Proyectos</a>
+                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Acerca de mí</a>
+                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Habilidades</a>
+                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Contactos</a>
+            </div>
+        </div>
+
     </div>
-    <!-- <div class="links flex gap-3">
-        <NavItem html="Inicio" href="#inicio"/>
-        <NavItem html="Experiencia" href="#experiencia"/>
-        <NavItem html="Proyectos" href="#proyectos"/>
-        <NavItem html="Habilidades" href="#habilidades"/>
-    </div> -->
 </nav>
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('menu-links');
+
+        menuToggle.addEventListener('click', () => {
+        if (navLinks.classList.contains('hidden')) {
+            navLinks.classList.remove('hidden', 'menu-close');
+            navLinks.classList.add('menu-open');
+        } else {
+            navLinks.classList.remove('menu-open');
+            navLinks.classList.add('menu-close');
+            
+            navLinks.addEventListener('animationend', () => {
+                navLinks.classList.add('hidden');
+            }, { once: true });
+        }
+    });
+    });
+</script>
+
+<style>
+    @keyframes menuOpen {
+        0% {
+            transform: scale(0.5) translateY(-50%);
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes menuClose {
+        0% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(0.5) translateY(-50%);
+            opacity: 0;
+        }
+    }
+
+    .menu-open {
+        animation: menuOpen 0.4s forwards ease-out;
+    }
+
+    .menu-close {
+        animation: menuClose 0.4s forwards ease-in;
+    }
+
+</style>

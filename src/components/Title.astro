@@ -1,10 +1,19 @@
 ---
+import type { boolean } from 'astro:schema';
+
 interface Props {
 	label: string;
+	dev: boolean;
 }
 
-const { label } = Astro.props;
+const { label, dev } = Astro.props;
 
 ---
 
-<h1 class="text-4xl lg:text-5xl text-tertiary-light dark:text-tertiary-dark font-suse font-bold">{label}</h1>
+<h1 class="text-4xl lg:text-5xl text-tertiary-light dark:text-tertiary-dark font-suse font-bold flex flex-col items-center gap-3">
+	
+	{label}
+	{dev && (
+		<span class="text-3xl lg:text-4xl text-outline-light dark:text-outline-dark font-thin">&lt;/&gt;</span>
+	)}
+</h1>

@@ -49,7 +49,6 @@ const { title } = Astro.props;
 	// 		behavior: 'smooth'
 	// 	});
 
-	// 	// Espera a que termine el desplazamiento
 	// 	const scrollListener = () => {
 	// 		isScrolling = false;
 	// 		window.removeEventListener('scroll', scrollListener);
@@ -85,7 +84,6 @@ const { title } = Astro.props;
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                // Scroll to the target section smoothly
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
