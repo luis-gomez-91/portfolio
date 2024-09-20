@@ -1,10 +1,9 @@
 ---
 import '../../public/icomoon/style.css'
-import SkillItem from './SkillsItem.astro'
+import ProjectItem from './ProjectItem.astro'
 import Title from './Title.astro'
 import OutlineButton from './OutlineIconButton.astro'
 import FilledButton from './FilledButton.astro'
-
 ---
 
 <section id="projects" class="seccion flex flex-col justify-center items-center w-full 2xl:w-[1536px] px-9 mt-16">
@@ -15,65 +14,35 @@ import FilledButton from './FilledButton.astro'
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-6 w-full">
         
-        <div class="flex flex-col gap-3 justify-between h-full">
-            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
-                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/dos-tragos.png)] bg-center bg-cover rounded-xl"></div>
-                <div class="flex flex-col">
-                    <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">Dos Tragos.</h3>
-                    <span>Desarrollo de una página web estática y responsiva para un emprendimiento de venta de cócteles.</span>
-                </div>
-                <div class="flex flex-row gap-3 justify-end items-center mt-6">
-                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
-                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
-                    <FilledButton text="Ver mas" icon="icon-info text-3xl"/>
-                </div>
-            </div>
-        </div>
+        <ProjectItem 
+            title="Dos Tragos" 
+            description="Desarrollo de una página web estática y responsiva para un emprendimiento de venta de cócteles. Guayaquil - Ecuador." 
+            img="./static/dos-tragos.png"
+            usa_demo={true}
+            usa_github={true}
+            url_demo="https://dos-tragos.vercel.app/"
+            url_github='https://github.com/luis-gomez-91/dos-tragos' />
 
-        <div class="flex flex-col gap-3 justify-between h-full">
-            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
-                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/app1.png)] bg-top bg-cover rounded-xl"></div>
-                <div class="flex flex-col">
-                    <a href="#" class="text-onSurface-light dark:text-onSurface-dark text-xl">API Sistema contable ITB <span class="icon-share"></span></a>
-                    <span>API que usa el sistema contable para realizar las importaciónes - SGA ITB, SGA ITB Online, Conduce Ecuador, Educacion Continua ITB.</span>
-                </div>
-                <div class="flex flex-row gap-4 justify-end mt-6">
-                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
-                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
-                    <FilledButton text="Ver mas" icon="icon-info text-3xl"/>
-                </div>
-            </div>
-        </div>
+        <ProjectItem 
+            title="API Sistema contable ITB" 
+            description="API que usa el sistema contable para realizar las importaciónes - SGA ITB, SGA ITB Online, Conduce Ecuador, Educacion Continua ITB."
+            img="./static/api1.png"
+            usa_demo={true}
+            usa_github={false}
+            url_demo="https://sga.itb.edu.ec/api?a=facturacionNewProcess&fecha=06-09-2024&caja=164"
+            url_github='' />
 
-        <div class="flex flex-col gap-3 justify-between h-full">
-            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
-                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/dos-tragos.png)] bg-center bg-cover rounded-xl"></div>
-                <div>
-                    <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">Gestión de certificados.</h3>
-                    <span>Este proyecto tiene como objetivo automatizar la generación de certificados para los congresos realizados ITB y UBE.</span>
-                </div>
-                <div class="flex flex-row gap-4 justify-end mt-6">
-                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
-                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
-                    <FilledButton text="Ver mas" icon="icon-plus text-xl"/>
-                </div>
-            </div>
-        </div>
+        <ProjectItem 
+            title="App móvil ITB" 
+            description="Este proyecto consiste en el desarrollo de una aplicación móvil multiplataforma, destinada al uso de alumnos y docentes del ITB."
+            img="./static/app.png"
+            usa_demo={false}
+            usa_github={true}
+            url_demo="https://dos-tragos.vercel.app/"
+            url_github='https://github.com/luis-gomez-91/app-ITB-KMM' />
 
-        <div class="flex flex-col gap-3 justify-between h-full">
-            <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
-                <div class="w-full aspect-[3/2] bg-slate-200 bg-[url(./static/app.png)] bg-center bg-cover rounded-xl"></div>
-                <div>
-                    <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">App móvil ITB</h3>
-                    <span>Este proyecto consiste en el desarrollo de una aplicación móvil multiplataforma, destinada al uso de alumnos y docentes del ITB.</span>
-                </div>
-                <div class="flex flex-row gap-4 justify-end mt-6">
-                    <OutlineButton text="Github" icon="icon-github text-3xl"/>
-                    <OutlineButton text="Ver demo" icon="icon-eye text-3xl"/>
-                    <FilledButton text="Ver mas" icon="icon-plus text-xl"/>
-                </div>
-            </div>
-        </div>
+                    <!-- <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">Gestión de certificados.</h3>
+                    <span>Este proyecto tiene como objetivo automatizar la generación de certificados para los congresos realizados ITB y UBE.</span> -->
 
     </div>
 
