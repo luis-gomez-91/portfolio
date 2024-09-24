@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project) => ({
+    params: { id: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props
+const { data } = project
+const { title, description, technologies, images, previewLink, githubLink, slug } = data
+---
+
+<Layout title={`${title} - Proyecto`}>
+	<main class="flex flex-col items-center justify-center mt-36">
+		<h1 
+      transition:name={`${slug}`}
+      class="text-2xl font-extrabold text-onSurface-light dark:text-onSurface-dark
+            hover:text-tertiary-light hover:dark:text-tertiary-dark transition-all duration-300 ease-in-out">
+      {title}
+    </h1>
+	</main>
+</Layout>

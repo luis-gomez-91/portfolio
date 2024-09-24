@@ -2,12 +2,13 @@
 interface Props {
     text: string;
     icon: string;
+    url: string;
 }
 
-const { text, icon } = Astro.props;
+const { text, icon, url } = Astro.props;
 ---
 
-<a href="#" class="py-1 px-2 rounded-full min-h-[40px]
+<a href={url} class="py-1 px-2 rounded-full min-h-[40px]
                 text-secondaryContainer-light dark:text-secondaryContainer-dark
                 hover:text-surface-light dark:hover:text-surface-dark
                 bg-secondary-light dark:bg-secondary-dark

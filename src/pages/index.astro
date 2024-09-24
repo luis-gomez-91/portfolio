@@ -6,19 +6,13 @@ import About from '../components/About.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
 import Footer from '../components/Footer.astro';
-
 ---
 
 <Layout title="Portafolio web">
-	<header id="inicio" class="relative flex flex-col items-center justify-center h-screen">
-		<Navigation />
-		<Info />
-	</header>
 	<main class="flex flex-col items-center justify-center">
+		<Info />
 		<Projects />
 		<About />
 		<Skills />
 	</main>
-	<Footer />
 </Layout>
-
