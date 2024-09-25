@@ -15,7 +15,7 @@ import NavItem from './NavItem.astro';
         <NavItem html="Proyectos" href="/projetcs" />
         <NavItem html="Acerca de mí" href="/#about-me" />
         <NavItem html="Habilidades" href="/#skills" />
-        <NavItem html="Contactos" href="/#contacts" />
+        <NavItem html="Contactos" href="#contacts" />
     </div>
 
     <div class="z-40 block md:hidden relative">
@@ -29,13 +29,13 @@ import NavItem from './NavItem.astro';
         </button>
 
         <div id="menu-links" class="hidden z-30 absolute top-full end-0">
-            <div class="bg-[rgb(218,226,249,0.2)] dark:bg-[rgba(62,71,89,0.2)]
+            <div class="bg-[rgb(218,226,249,0.7)] dark:bg-[rgba(62,71,89,0.7)]
                         p-1 mt-2 rounded-md flex flex-col justify-end items-end space-y-2 gap-0">
-                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Inicio</a>
-                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Proyectos</a>
-                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Acerca de mí</a>
-                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Habilidades</a>
-                <a href="" class="w-full py-1 px-5 text-sm text-outline-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-outline-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Contactos</a>
+                <a href="/" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Inicio</a>
+                <a href="/projects" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Proyectos</a>
+                <a href="/#about-me" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Acerca de mí</a>
+                <a href="/#skills" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Habilidades</a>
+                <a href="#contacts" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Contactos</a>
             </div>
         </div>
 

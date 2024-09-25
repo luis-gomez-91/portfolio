@@ -1,6 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import OutlineButton from '../components/OutlineIconButton.astro'
+import FilledButton from '../components/FilledButton.astro'
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -14,15 +16,92 @@ export async function getStaticPaths() {
 const { project } = Astro.props
 const { data } = project
 const { title, description, technologies, images, previewLink, githubLink, slug } = data
+const { Content } = await render(project)
 ---
 
 <Layout title={`${title} - Proyecto`}>
-	<main class="flex flex-col items-center justify-center mt-36">
-		<h1 
-      transition:name={`${slug}`}
-      class="text-2xl font-extrabold text-onSurface-light dark:text-onSurface-dark
-            hover:text-tertiary-light hover:dark:text-tertiary-dark transition-all duration-300 ease-in-out">
-      {title}
-    </h1>
+	<main class="flex flex-col items-center justify-center mt-36 px-6">
+    <div class="w-full lg:w-[1024px] flex flex-col">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-2">
+
+        <div class="col-span-2 row-span-2">
+          <div class="aspect-[5/4] w-full h-full">
+            <img
+              src="./static/nerd.webp" 
+              alt="Main image" 
+              class="object-cover w-full h-full rounded-lg"
+            />
+          </div>
+        </div>
+      
+        <div class="col-span-1 row-span-1">
+          <div class="aspect-[5/4] w-full h-full">
+            <img 
+              src="./static/nerd.webp" 
+              alt="Small image 1" 
+              class="object-cover w-full h-full rounded-lg"
+            />
+          </div>
+        </div>
+        <div class="col-span-1 row-span-1">
+          <div class="aspect-[5/4] w-full h-full">
+            <img 
+              src="./static/nerd.webp" 
+              alt="Small image 2" 
+              class="object-cover w-full h-full rounded-lg"
+            />
+          </div>
+        </div>
+        <div class="col-span-1 row-span-1">
+          <div class="aspect-[5/4] w-full h-full">
+            <img 
+              src="./static/nerd.webp" 
+              alt="Small image 3" 
+              class="object-cover w-full h-full rounded-lg"
+            />
+          </div>
+        </div>
+        <div class="col-span-1 row-span-1">
+          <div class="aspect-[5/4] w-full h-full">
+            <img 
+              src="./static/nerd.webp" 
+              alt="Small image 4" 
+              class="object-cover w-full h-full rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-col gap-1">
+        <h1 
+          transition:name={`${slug}`}
+          class="text-2xl font-extrabold text-onSurface-light dark:text-onSurface-dark
+                transition-all duration-300 ease-in-out">
+          {title}
+        </h1>
+
+        <div class="flex flex-row flex-wrap gap-1">
+          {technologies.map((technology, index) => (
+            <span class="py-1 px-3 rounded-md text-xs bg-secondaryContainer-light dark:bg-secondaryContainer-dark text-secondary-light dark:text-secondary-dark">{technology}</span>
+          ))}
+        </div>
+        
+        <span class="mt-6">{description}</span>
+
+        <div class="flex flex-row gap-3 justify-start items-center my-3">
+          {previewLink !== "" && (
+              <OutlineButton text="Ver demo" icon="icon-eye text-3xl" url={previewLink} />
+          )}
+          {githubLink !== "" && (
+              <FilledButton text="Github" icon="icon-github text-3xl" url={githubLink} />
+          )}
+        </div>
+        
+        <Content />
+          
+
+      </div>
+      
+    </div>
+    
 	</main>
 </Layout>

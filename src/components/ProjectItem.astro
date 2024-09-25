@@ -18,7 +18,9 @@ const { title, description, img, usa_demo, usa_github, url_demo, url_github } = 
 
 <div class="flex flex-col gap-3 justify-between h-full">
     <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
-        <div class=`w-full aspect-[3/2] bg-slate-200 bg-[url(${img})] bg-center bg-cover rounded-xl`></div>
+        <div class=`w-full aspect-[3/2] rounded-xl`>
+            <img src={img} alt="nnn" class="rounded-xl">
+        </div>
         <div class="flex flex-col">
             <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">{title}</h3>
             <span class="text-xs md:text-sm">{description}</span>
