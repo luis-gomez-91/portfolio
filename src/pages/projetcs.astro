@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 ---
 
-<Layout title="Proyectos">
+<Layout title="Luis Gómez - Proyectos">
 	<main class="flex flex-col items-center justify-center w-screen mt-36 px-6">
         {
             projects.map(project => {
@@ -78,8 +78,9 @@ const projects = await getCollection('projects');
                                 <OutlineButton text="Ver demo" icon="icon-eye text-3xl" url={previewLink} />
                             )}
                             {githubLink !== "" && (
-                                <FilledButton text="Github" icon="icon-github text-3xl" url={githubLink} />
+                                <OutlineButton text="Github" icon="icon-github text-3xl" url={githubLink} />
                             )}
+                            <FilledButton text="Ver mas" icon="icon-info text-3xl" url={`${slug}`} />
                         </div>
                     </div>
                 </div>

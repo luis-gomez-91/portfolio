@@ -2,42 +2,36 @@
 import '../../public/icomoon/style.css'
 import ProjectItem from './ProjectItem.astro'
 import Title from './Title.astro'
+
+import { getCollection } from 'astro:content';
+const projects = await getCollection('projects');
 ---
 
 <section id="projects" class="seccion flex flex-col justify-center items-center w-full 2xl:w-[1536px] px-9 mt-16">
     <div class="flex flex-col justify-around items-center w-full gap-1">
         <Title label="Proyectos" dev={false}/>
-        <a href="" class="text-md border-b-2 pb-1 border-surface-light dark:border-surface-dark hover:text-onSurface-light hover:dark:text-onSurface-dark hover:border-onSurface-light hover:dark:border-onSurface-dark transition-all duration-500 ease-in-out">Ver todos los proyectos</a>
+        <a href="/projetcs" class="text-md border-b-2 pb-1 border-surface-light dark:border-surface-dark hover:text-onSurface-light hover:dark:text-onSurface-dark hover:border-onSurface-light hover:dark:border-onSurface-dark transition-all duration-500 ease-in-out">Ver todos los proyectos</a>
     </div>
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-6 w-full">
         
-        <ProjectItem 
-            title="Dos Tragos" 
-            description="Desarrollo de una página web estática y responsiva para un emprendimiento de venta de cócteles. Guayaquil - Ecuador." 
-            img="./static/dos-tragos.png"
-            usa_demo={true}
-            usa_github={true}
-            url_demo="https://dos-tragos.vercel.app/"
-            url_github='https://github.com/luis-gomez-91/dos-tragos' />
+        {
+            projects.slice(0, 3).map(project => {
+                const { slug, data } = project;
+                const { title, description, technologies, images, previewLink, githubLink } = data;
 
-        <ProjectItem 
-            title="API Sistema contable ITB" 
-            description="API que usa el sistema contable para realizar las importaciónes - SGA ITB, SGA ITB Online, Conduce Ecuador, Educacion Continua ITB."
-            img="./static/api1.png"
-            usa_demo={true}
-            usa_github={false}
-            url_demo="https://sga.itb.edu.ec/api?a=facturacionNewProcess&fecha=06-09-2024&caja=164"
-            url_github='' />
+                return (
+                    <ProjectItem 
+                        title={title} 
+                        description={description}
+                        img={images[0]}
+                        url_demo={previewLink}
+                        url_github={githubLink} />
+                )
+            })
+        }
+        
 
-        <ProjectItem 
-            title="App móvil ITB" 
-            description="Este proyecto consiste en el desarrollo de una aplicación móvil multiplataforma, destinada al uso de alumnos y docentes del ITB."
-            img="./static/app.png"
-            usa_demo={false}
-            usa_github={true}
-            url_demo=""
-            url_github='https://github.com/luis-gomez-91/app-ITB-KMM' />
 
     </div>
 

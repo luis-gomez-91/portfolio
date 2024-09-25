@@ -7,13 +7,12 @@ interface Props {
     title: string;
     description: string;
     img: string;
-    usa_demo: boolean;
-    usa_github: boolean;
     url_demo: string;
     url_github: string;
 }
 
-const { title, description, img, usa_demo, usa_github, url_demo, url_github } = Astro.props;
+
+const { title, description, img, url_demo, url_github } = Astro.props;
 ---
 
 <div class="flex flex-col gap-3 justify-between h-full">
@@ -26,10 +25,10 @@ const { title, description, img, usa_demo, usa_github, url_demo, url_github } = 
             <span class="text-xs md:text-sm">{description}</span>
         </div>
         <div class="flex flex-row gap-3 justify-end items-center mt-6">
-            { usa_github && (
+            { url_github !== "" && (
             <OutlineButton text="Github" icon="icon-github text-3xl" url={url_github}/>
             )}
-            { usa_demo && (
+            { url_demo !== "" && (
                 <OutlineButton text="Ver demo" icon="icon-eye text-3xl" url={url_demo} />
             )}
             <FilledButton text="Ver mas" icon="icon-info text-3xl" url='' />
