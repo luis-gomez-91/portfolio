@@ -1,37 +1,98 @@
 ---
 import '../../public/icomoon/style.css'
-import OutlineButton from './OutlineIconButton.astro'
-import FilledButton from './FilledButton.astro'
 
 interface Props {
+    slug: string;
     title: string;
     description: string;
     img: string;
     url_demo: string;
     url_github: string;
+    technologies?: string[];
 }
 
 
-const { title, description, img, url_demo, url_github } = Astro.props;
+const { slug, title, description, img, url_demo, url_github, technologies = [] } = Astro.props;
 ---
 
-<div class="flex flex-col gap-3 justify-between h-full">
-    <div class="p-6 mt-5 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col gap-4">
-        <div class=`w-full aspect-[3/2] rounded-xl`>
-            <img src={img} alt="nnn" class="rounded-xl">
-        </div>
-        <div class="flex flex-col">
-            <h3 class="text-onSurface-light dark:text-onSurface-dark text-xl">{title}</h3>
-            <span class="text-xs md:text-sm">{description}</span>
-        </div>
-        <div class="flex flex-row gap-3 justify-end items-center mt-6">
-            { url_github !== "" && (
-            <OutlineButton text="Github" icon="icon-github text-3xl" url={url_github}/>
+<div class="group h-full flex flex-col rounded-2xl overflow-hidden
+            bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+            border border-outline-light/20 dark:border-outline-dark/30
+            shadow-sm
+            transition-all duration-300 ease-out">
+    <a href={`/${slug}`} class="block flex-1 flex flex-col min-h-0">
+        <div class="relative w-full aspect-[3/2] overflow-hidden bg-outline-light/10 dark:bg-outline-dark/10">
+            {img ? (
+                <img
+                    src={img}
+                    alt={title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+            ) : (
+                <div class="w-full h-full flex items-center justify-center text-outline-light dark:text-outline-dark">
+                    <span class="icon-image text-4xl"></span>
+                </div>
             )}
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+            <h3 class="text-onSurface-light dark:text-onSurface-dark text-lg md:text-xl font-semibold line-clamp-2">
+                {title}
+            </h3>
+            <p class="mt-2 text-sm text-outline-light dark:text-outline-dark line-clamp-2">
+                {description}
+            </p>
+            {technologies.length > 0 && (
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                    {technologies.slice(0, 4).map((tech) => (
+                        <span class="px-2 py-0.5 rounded-md text-xs bg-secondaryContainer-light dark:bg-secondaryContainer-dark text-secondary-light dark:text-secondary-dark">
+                            {tech}
+                        </span>
+                    ))}
+                </div>
+            )}
+        </div>
+    </a>
+    <div class="flex flex-row flex-wrap gap-2 justify-end items-center px-5 pb-5 pt-4 border-t border-outline-light/10 dark:border-outline-dark/10">
             { url_demo !== "" && (
-                <OutlineButton text="Ver demo" icon="icon-eye text-3xl" url={url_demo} />
+                <a
+                    href={url_demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full
+                           text-secondary-light dark:text-secondary-dark
+                           bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60
+                           hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15
+                           hover:border-secondary-light dark:hover:border-secondary-dark
+                           transition-all duration-200 ease-out"
+                    aria-label="Ver demo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+
+                </a>
             )}
-            <FilledButton text="Ver mas" icon="icon-info text-3xl" url='' />
-        </div>
+            { url_github !== "" && (
+                <a
+                    href={url_github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full
+                           text-secondary-light dark:text-secondary-dark
+                           bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60
+                           hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15
+                           hover:border-secondary-light dark:hover:border-secondary-dark
+                           transition-all duration-200 ease-out"
+                    aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+                </a>
+            )}
+            <a
+                href={`/${slug}`}
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full
+                       text-secondaryContainer-light dark:text-secondaryContainer-dark
+                       bg-secondary-light dark:bg-secondary-dark
+                       hover:bg-secondary-light/90 hover:dark:bg-secondary-dark/90
+                       hover:scale-[1.02] active:scale-[0.98]
+                       transition-all duration-200 ease-out"
+                aria-label="Ver más">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
+            </a>
     </div>
 </div>

@@ -1,64 +1,46 @@
 ---
-import '../../public/icomoon/style.css'
-import ProjectItem from './ProjectItem.astro'
-import Title from './Title.astro'
+import '../../public/icomoon/style.css';
+import ProjectItem from './ProjectItem.astro';
+import Title from './Title.astro';
 
 import { getCollection } from 'astro:content';
-const projects = await getCollection('projects');
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects.filter((project) => project.data.featured);
+const projects = (featuredProjects.length > 0 ? featuredProjects : allProjects).slice(0, 3);
 ---
 
-<section id="projects" class="seccion flex flex-col justify-center items-center w-full 2xl:w-[1536px] px-9 mt-16">
-    <div class="flex flex-col justify-around items-center w-full gap-1">
-        <Title label="Proyectos" dev={false}/>
-        <a href="/projetcs" class="text-md border-b-2 pb-1 border-surface-light dark:border-surface-dark hover:text-onSurface-light hover:dark:text-onSurface-dark hover:border-onSurface-light hover:dark:border-onSurface-dark transition-all duration-500 ease-in-out">Ver todos los proyectos</a>
+<section id="projects" class="seccion flex flex-col justify-center items-center w-full px-6 md:px-9 py-16 md:py-20">
+    <div class="flex flex-col justify-around items-center w-full max-w-5xl gap-1">
+        <Title label="Proyectos destacados" dev={false} />
+        <a
+            href="/projects"
+            class="text-sm md:text-base border-b pb-1 border-surface-light dark:border-surface-dark
+                   hover:text-onSurface-light hover:dark:text-onSurface-dark
+                   hover:border-onSurface-light hover:dark:border-onSurface-dark
+                   transition-all duration-300 ease-in-out">
+            Ver todos los proyectos
+        </a>
     </div>
 
-    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-6 w-full">
-        
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full max-w-6xl">
         {
-            projects.slice(0, 3).map(project => {
+            projects.map((project) => {
                 const { slug, data } = project;
-                const { title, description, technologies, images, previewLink, githubLink } = data;
+                const { title, description, images, previewLink, githubLink, technologies = [] } = data;
 
                 return (
-                    <ProjectItem 
-                        title={title} 
+                    <ProjectItem
+                        slug={slug}
+                        title={title}
                         description={description}
                         img={images[0]}
                         url_demo={previewLink}
-                        url_github={githubLink} />
-                )
+                        url_github={githubLink}
+                        technologies={technologies} />
+                );
             })
         }
-        
-
-
     </div>
-
 </section>
 
-<style>
-.scrollbar-hide {
-    scrollbar-width: none;
-    -ms-overflow-style: none; 
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-</style>
-
-<script>
-    // Obtener el contenedor que tiene el scroll horizontal
-    const scrollContainer = document.getElementById('scroll-container');
-    
-    // Botón para desplazarse hacia la izquierda
-    document.getElementById('scroll-left').addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' }); // Mover a la izquierda
-    });
-    
-    // Botón para desplazarse hacia la derecha
-    document.getElementById('scroll-right').addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' }); // Mover a la derecha
-    });
-</script>

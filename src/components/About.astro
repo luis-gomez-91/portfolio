@@ -3,37 +3,61 @@ import '../../public/icomoon/style.css'
 import Title from './Title.astro'
 ---
 
-<div class="h-screen w-screen flex justify-center items-center">
+<section
+    id="about-me"
+    class="seccion w-full flex justify-center px-6 md:px-9 py-20 md:py-24 fade-in">
+    <div class="w-full max-w-5xl flex flex-col gap-10">
+        <Title label="Acerca de mí" dev={true} />
 
-<section id="about-me" class="seccion h-screen flex flex-col justify-center items-center fade-in w-full lg:w-[1024px] px-6">
-    <Title label="Acerca de mí" dev={true} />
-    <div class="flex flex-row w-100 gap-9 items-center mt-16">
-        <img src="./static/foto3.jpeg" alt="foto" class="w-[320px] rounded-3xl hidden lg:block">
-        <div class="flex flex-col gap-6 w-full">
-            <div class="flex flex-row gap-6 w-full">
-                <div class="w-1/2 flex flex-col text-center items-center p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl">
-                    <span class="icon-database text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
-                    <h5 class="text-xl font-bold text-onSurface-light dark:text-onSurface-dark">Experiencia</h5>
-                    <p>+5 años</p>
-                    <p class="text-sm">Desarrollador Full-Stack</p>
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
+            <div class="shrink-0 overflow-hidden rounded-2xl w-[260px] sm:w-[300px] aspect-square">
+                <img
+                    src="./static/foto3.jpeg"
+                    alt="Foto de perfil"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+
+            <div class="flex flex-col gap-6 w-full min-w-0">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div
+                        class="flex flex-col text-center items-center p-5 rounded-2xl overflow-hidden
+                               bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                               border border-outline-light/20 dark:border-outline-dark/30">
+                        <span class="icon-database text-2xl text-secondary-light dark:text-secondary-dark"></span>
+                        <h5 class="mt-2 text-base font-semibold text-onSurface-light dark:text-onSurface-dark">
+                            Experiencia
+                        </h5>
+                        <p class="mt-1 text-sm font-medium text-onSurface-light dark:text-onSurface-dark">+8 años</p>
+                        <p class="text-xs text-outline-light dark:text-outline-dark">Desarrollador Full‑Stack</p>
+                    </div>
+                    <div
+                        class="flex flex-col text-center items-center justify-center p-5 rounded-2xl overflow-hidden
+                               bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                               border border-outline-light/20 dark:border-outline-dark/30">
+                        <span class="icon-books text-2xl text-secondary-light dark:text-secondary-dark"></span>
+                        <h5 class="mt-2 text-base font-semibold text-onSurface-light dark:text-onSurface-dark">
+                            Educación
+                        </h5>
+                        <p class="mt-1 text-sm font-medium text-onSurface-light dark:text-onSurface-dark">Ing. de Sistemas</p>
+                        <p class="text-xs text-outline-light dark:text-outline-dark">
+                            Universidad Politécnica Salesiana (2019)
+                        </p>
+                    </div>
                 </div>
-                <div class="w-1/2 flex flex-col text-center items-center justify-center p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl">
-                    <span class="icon-books text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
-                    <h5 class="text-xl font-bold text-onSurface-light dark:text-onSurface-dark">Educación</h5>
-                    <p>Ing. de Sistemas</p>
-                    <p class="text-sm">Universidad Politécnica Salesiana (2019)</p>
+
+                <div class="p-5 rounded-2xl overflow-hidden
+                            bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                            border border-outline-light/20 dark:border-outline-dark/30">
+                    <p class="text-sm md:text-base leading-relaxed text-onSurface-light dark:text-onSurface-dark">
+                        Me considero una persona autodidacta y proactiva, lo que me ha permitido tomar la iniciativa y desarrollarme en
+                        diversas áreas de interés. Fuera del ámbito profesional, disfruto actividades como la fotografía, el básquet y la
+                        carpintería, y valoro profundamente el tiempo compartido con mi familia. Mantengo un enfoque constante en el
+                        aprendizaje, la superación de desafíos y la mejora continua, lo que me impulsa a seguir evolucionando tanto a
+                        nivel profesional como personal.
+                    </p>
                 </div>
             </div>
-            <span class="text-xs md:text-sm">
-                Ingeniero de Sistemas y desarrollador de aplicaciones web y móviles. 
-                Django y Laravel para el desarrollo del back-end, JavaScript, 
-                jQuery, CSS Bootstrap y Tailwind para la creación de interfaces dinámicas y responsivas. <br>
-                Domino tecnologías modernas como Astro para aplicaciones front-end optimizadas y
-                Kotlin para el desarrollo móvil Android.
-                Recientemente, he comenzado a trabajar con Kotlin Multiplatform Mobile (KMM), lo que me permite desarrollar aplicaciones móviles nativas tanto para iOS como para Android.
-        </span>
         </div>
-        
     </div>
 </section>
-</div>

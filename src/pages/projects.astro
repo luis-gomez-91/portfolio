@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Title from '../components/Title.astro';
+import ProjectItem from '../components/ProjectItem.astro';
+
+import { getCollection } from 'astro:content';
+const projects = await getCollection('projects');
+---
+
+<Layout title="Luis Gómez - Proyectos">
+	<main class="flex flex-col items-center w-full px-6 md:px-9 pt-28 pb-20">
+		<section class="w-full max-w-6xl flex flex-col items-center gap-8">
+			<Title label="Proyectos" dev={true} />
+
+			<div class="flex flex-wrap justify-center gap-2">
+				<button
+					class="filter-tab filter-tab-active px-4 py-2 rounded-full text-sm font-medium
+					       text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
+					       hover:text-onSurface-light hover:dark:text-onSurface-dark
+					       hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
+					       transition-colors duration-200 cursor-pointer"
+					data-filter="all">
+					Todos
+				</button>
+				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
+				             hover:text-onSurface-light hover:dark:text-onSurface-dark
+				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
+				             transition-colors duration-200 cursor-pointer"
+					data-filter="backend">Backend</button>
+				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
+				             hover:text-onSurface-light hover:dark:text-onSurface-dark
+				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
+				             transition-colors duration-200 cursor-pointer"
+					data-filter="frontend">Frontend</button>
+				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
+				             hover:text-onSurface-light hover:dark:text-onSurface-dark
+				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
+				             transition-colors duration-200 cursor-pointer"
+					data-filter="app">Apps</button>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
+				{
+					projects.map((project) => {
+						const { slug, data } = project;
+						const { title, description, images, previewLink, githubLink, technologies = [], areas } = data;
+
+						return (
+							<article class="project-card" data-areas={areas ? areas.join(' ') : ''}>
+								<ProjectItem
+									slug={slug}
+									title={title}
+									description={description}
+									img={images[0]}
+									url_demo={previewLink ?? ''}
+									url_github={githubLink ?? ''}
+									technologies={technologies} />
+							</article>
+						);
+					})
+				}
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const tabs = document.querySelectorAll('.filter-tab');
+		const cards = document.querySelectorAll('.project-card');
+
+		tabs.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				const filter = tab.getAttribute('data-filter');
+
+				tabs.forEach((t) => t.classList.remove('filter-tab-active'));
+				tab.classList.add('filter-tab-active');
+
+				cards.forEach((card) => {
+					const areas = (card.getAttribute('data-areas') || '').split(' ').filter(Boolean);
+					const show = filter === 'all' || areas.includes(filter);
+					card.classList.toggle('hidden', !show);
+				});
+			});
+		});
+	});
+</script>
+
+<style>
+	.filter-tab-active {
+		background-color: #565f71 !important;
+		color: #dae2f9 !important;
+		border-color: transparent !important;
+	}
+	html.dark .filter-tab-active {
+		background-color: #bec6dc !important;
+		color: #3e4759 !important;
+		border-color: transparent !important;
+	}
+</style>

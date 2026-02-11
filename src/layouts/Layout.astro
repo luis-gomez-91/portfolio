@@ -11,13 +11,30 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="dark flex flex-col justify-center items-center">
+<html lang="es" class="flex flex-col justify-center items-center">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width, initial-scale=2.0, maximum-scale=1.0, user-scalable=no">
-		<link rel="icon" type="image/png" href="./static/logo.png" />
+		<script is:inline>
+			(function(){
+				try {
+					var s = localStorage.getItem('theme');
+					var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					var dark = s === 'dark' || (s !== 'light' && d);
+					document.documentElement.classList.toggle('dark', dark);
+				} catch (e) {
+					document.documentElement.classList.toggle('dark', window.matchMedia('(prefers-color-scheme: dark)').matches);
+				}
+			})();
+		</script>
+		<meta name="description" content="Luis Gómez - Desarrollador Full-Stack. Portafolio con proyectos web, APIs y apps móviles. Django, Laravel, Astro, Kotlin, Kotlin Multiplatform." />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+		<link rel="icon" type="image/png" href="/static/logo.png" />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content="Luis Gómez - Desarrollador Full-Stack. Portafolio con proyectos web, APIs y apps móviles." />
+		<meta property="og:image" content="/static/nerd.webp" />
+		<meta property="og:locale" content="es_ES" />
 		<title>{title}</title>
 		<!-- <ViewTransitions /> -->
 		<style>
@@ -25,7 +42,7 @@ const { title } = Astro.props;
 		</style>
 	</head>
 	<script is:inline src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-	<body class="m-0 p-0 pb-9transition duration-500 ease-in-out 
+	<body class="m-0 p-0 pb-9 transition duration-500 ease-in-out 
 				font-poppins font-normal w-screen
 				text-outline-light dark:text-outline-dark
 				bg-surface-light dark:bg-surface-dark">
@@ -67,12 +84,6 @@ const { title } = Astro.props;
 
 
 	document.addEventListener('DOMContentLoaded', () => {
-		const detectarTemaOscuro = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
-		if (detectarTemaOscuro()) {
-
-			document.querySelector('body').classList.add('dark')
-		}
-
         const sections = document.querySelectorAll('.fade-in');
 
         const observer = new IntersectionObserver(entries => {

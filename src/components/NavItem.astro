@@ -8,13 +8,13 @@ const { html, href } = Astro.props;
 ---
 
 <a 
-    href=`${href}` 
+    href={href}
     class="
-        transition-color duration-300 ease-linear pb-2 text-xl
+        px-3 py-1 rounded-full text-sm font-medium
         text-outline-light dark:text-outline-dark 
         hover:text-onSurface-light dark:hover:text-onSurface-dark
-        hover:border-onSurface-light dark:hover:border-onSurface-dark border-solid border-b-2 
-        border-surface-light dark:border-surface-dark"
+        hover:bg-secondaryContainer-light dark:hover:bg-secondaryContainer-dark
+        transition-colors duration-300 ease-linear"
 >
     {html}
 </a>

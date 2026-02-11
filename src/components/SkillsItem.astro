@@ -1,21 +1,28 @@
 ---
 interface Props {
 	name: string;
-    nivel: String;
+    nivel: string;
 }
 
 const { name, nivel } = Astro.props;
 
+const nivelColor = nivel === 'Avanzado' 
+    ? 'text-onSurface-light dark:text-onSurface-dark' 
+    : nivel === 'Intermedio' 
+        ? 'text-outline-light dark:text-outline-dark' 
+        : 'text-outline-light/80 dark:text-outline-dark/80';
 ---
-<div class="w-full flex gap-2">
-    <div class="p-1 md:p-2 bg-onSurface-light dark:bg-onSurface-dark rounded-full aspect-w-1 aspect-h-1 w-9 md:w-11 h-9 md:h-11">
-        <img src={`./static/${name}.png`} alt={name} class="h-full w-full object-contain">
+
+<div class="flex items-center gap-3 w-full py-2 px-3 rounded-xl
+            bg-surface-light/60 dark:bg-surface-dark/30
+            border border-outline-light/10 dark:border-outline-dark/20">
+    <div class="shrink-0 w-9 h-9 rounded-lg overflow-hidden bg-surfaceContainer-light dark:bg-surfaceContainer-dark flex items-center justify-center">
+        <img src={`/static/technologies/${encodeURIComponent(name)}.png`} alt={name} class="w-6 h-6 object-contain" onerror="this.style.display='none'">
     </div>
-    <div class="flex flex-col">
-        <p class="m-0 text-secondary-light dark:text-secondary-dark text-sm md:text-md">{name}</p>
-        <span class="m-0 text-xs md:text-sm"> {nivel} </span>
+    <div class="flex flex-col min-w-0 flex-1">
+        <p class="m-0 text-sm font-medium text-onSurface-light dark:text-onSurface-dark truncate">{name}</p>
+        <span class={`m-0 text-xs ${nivelColor}`}>{nivel}</span>
     </div>
-    
 </div>
 
     

@@ -5,37 +5,45 @@ import SkillItem from './SkillsItem.astro'
 import Title from './Title.astro'
 ---
 
-<section id="skills" class="seccion h-screen flex flex-col justify-center items-center w-full xl:w-[1280px] px-9">
-    <div class="flex flex-row justify-around items-center w-full">
+<section id="skills" class="seccion flex flex-col justify-center items-center w-full px-6 md:px-9 py-20 md:py-24">
+    <div class="flex flex-row justify-around items-center w-full max-w-5xl">
         <Title label="Habilidades" dev={true}/>
     </div>
 
-    <div class="w-full relative">
-        <a href="javascript:void(0)" 
-            id="scroll-left" 
-            class="transition-color duration-300 ease-linear absolute top-1/2 transform -translate-y-1/2 -left-[30px] 
-                text-primary-light dark:text-secondary-dark 
-                bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
-                rounded-full w-[60px] h-[60px] z-50 hidden xl:flex items-center justify-center"
-        >
-            <span class="icon-arrow-left text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
-        </a>
-        <a href="javascript:void(0)" 
-            id="scroll-right" 
-            class="transition-color duration-300 ease-linear absolute top-1/2 transform -translate-y-1/2 -right-[30px] 
-                text-primary-light dark:text-secondary-dark
-                bg-[rgba(218,226,249, 0.2)] dark:bg-[rgba(62,71,89,0.2)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
-                rounded-full w-[60px] h-[60px] z-50 hidden xl:flex items-center justify-center"
-        >
-            <span class="icon-arrow-right text-3xl text-onSurface-light dark:text-onSurface-dark"></span>
-        </a>
+    <div class="w-full max-w-6xl relative mt-10">
+        <button type="button"
+            id="scroll-left"
+            class="absolute top-1/2 -translate-y-1/2 -left-4 xl:-left-6 z-50 hidden xl:flex items-center justify-center
+                   w-11 h-11 rounded-full
+                   bg-surfaceContainer-light/80 dark:bg-surfaceContainer-dark/60
+                   border border-outline-light/20 dark:border-outline-dark/30
+                   text-onSurface-light dark:text-onSurface-dark
+                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                   transition-colors duration-200 ease-out"
+            aria-label="Anterior">
+            <span class="icon-arrow-left2 text-xl"></span>
+        </button>
+        <button type="button"
+            id="scroll-right"
+            class="absolute top-1/2 -translate-y-1/2 -right-4 xl:-right-6 z-50 hidden xl:flex items-center justify-center
+                   w-11 h-11 rounded-full
+                   bg-surfaceContainer-light/80 dark:bg-surfaceContainer-dark/60
+                   border border-outline-light/20 dark:border-outline-dark/30
+                   text-onSurface-light dark:text-onSurface-dark
+                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                   transition-colors duration-200 ease-out"
+            aria-label="Siguiente">
+            <span class="icon-arrow-right2 text-xl"></span>
+        </button>
         <div class="hidden xl:flex w-[24rem] h-full absolute start-[-12px] top-0 z-10 bg-gradient-to-r from-[rgb(249,249,255,1)] dark:from-[rgb(17,19,24,1)] to-transparent"></div>
         
-        <div id="scroll-container" class="w-full flex flex-row gap-6 justify-start overflow-x-auto overflow-y-hidden mt-16 scroll-smooth snap-x snap-mandatory scrollbar-hide">
-            <div class="hidden xl:flex min-w-[12rem] max-w-[28rem] min-h-[22rem]"></div>
-            <div class="min-w-[16rem] md:min-w-[24rem] max-w-[28rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
-                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Backend</h3>
-                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="scroll-container" class="w-full flex flex-row gap-5 justify-start overflow-x-auto overflow-y-hidden mt-10 scroll-smooth snap-x snap-mandatory scrollbar-hide pb-2">
+            <div class="hidden xl:flex min-w-[12rem] max-w-[28rem] min-h-[20rem]"></div>
+            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
+                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
+                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Desarrollo Backend</h3>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
                     <SkillItem name="Python" nivel="Avanzado" />
                     <SkillItem name="Django" nivel="Avanzado" />
                     <SkillItem name="PHP" nivel="Intermedio" />
@@ -47,9 +55,11 @@ import Title from './Title.astro'
             </div>
             
     
-            <div class="min-w-[16rem] md:min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
-                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Frontend</h3>
-                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
+                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
+                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Desarrollo Frontend</h3>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
                     <SkillItem name="Html" nivel="Avanzado" />
                     <SkillItem name="CSS" nivel="Avanzado" />
                     <SkillItem name="JavaScript" nivel="Avanzado" />
@@ -61,9 +71,11 @@ import Title from './Title.astro'
                 </div>
             </div>
     
-            <div class="min-w-[16rem] md:min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
-                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Desarrollo Móvil</h3>
-                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
+                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
+                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Desarrollo Móvil</h3>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
                     <SkillItem name="Kotlin" nivel="Avanzado" />
                     <SkillItem name="Kotlin Multiplatform" nivel="Intermedio" />
                     <SkillItem name="Java" nivel="Básico" />
@@ -71,9 +83,11 @@ import Title from './Title.astro'
                 </div>
             </div>
     
-            <div class="min-w-[16rem] md:min-w-[24rem] max-w-[28rem] min-h-[22rem] p-6 border-solid border-secondary-light dark:border-secondary-dark border-2 rounded-3xl flex flex-col items-center">
-                <h3 class="text-xl text-onSurface-light dark:text-onSurface-dark">Herramientas</h3>
-                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
+                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
+                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Herramientas</h3>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
                     <SkillItem name="Git" nivel="Avanzado" />
                     <SkillItem name="GitHub" nivel="Intermedio" />
                     <SkillItem name="Subversion" nivel="Avanzado" />
@@ -102,16 +116,13 @@ import Title from './Title.astro'
 </style>
 
 <script>
-    // Obtener el contenedor que tiene el scroll horizontal
-    const scrollContainer = document.getElementById('scroll-container');
-    
-    // Botón para desplazarse hacia la izquierda
-    document.getElementById('scroll-left').addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' }); // Mover a la izquierda
-    });
-    
-    // Botón para desplazarse hacia la derecha
-    document.getElementById('scroll-right').addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' }); // Mover a la derecha
+    document.addEventListener('DOMContentLoaded', () => {
+        const scrollContainer = document.getElementById('scroll-container');
+        const btnLeft = document.getElementById('scroll-left');
+        const btnRight = document.getElementById('scroll-right');
+        if (!scrollContainer || !btnLeft || !btnRight) return;
+
+        btnLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -320, behavior: 'smooth' }));
+        btnRight.addEventListener('click', () => scrollContainer.scrollBy({ left: 320, behavior: 'smooth' }));
     });
 </script>

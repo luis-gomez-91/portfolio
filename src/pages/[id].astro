@@ -1,8 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import OutlineButton from '../components/OutlineIconButton.astro'
-import FilledButton from '../components/FilledButton.astro'
+import '../../public/icomoon/style.css';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -13,95 +12,162 @@ export async function getStaticPaths() {
   }));
 }
 
-const { project } = Astro.props
-const { data } = project
-const { title, description, technologies, images, previewLink, githubLink, slug } = data
-const { Content } = await render(project)
+const { project } = Astro.props;
+const { slug, data } = project;
+const { title, description, technologies, images, previewLink, githubLink, features } = data;
+const { Content } = await render(project);
 ---
 
-<Layout title={`Luis Gómez - Proyecto (${title})`}>
-	<main class="flex flex-col items-center justify-center mt-36 px-6">
-    <div class="w-full lg:w-[1024px] flex flex-col">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-2">
+<Layout title={`Luis Gómez - ${title}`}>
+	<main class="flex flex-col items-center w-full px-6 md:px-9 pt-28 pb-20">
+    <div class="w-full max-w-5xl flex flex-col gap-6">
+      <a href="/projects" class="inline-flex items-center gap-2 text-sm text-outline-light dark:text-outline-dark hover:text-secondary-light hover:dark:text-secondary-dark transition-colors w-fit">
+        <span class="icon-arrow-left2"></span>
+        Volver a Proyectos
+      </a>
 
-        <div class="col-span-2 row-span-2">
-          <div class="aspect-[5/4] w-full h-full">
-            <img
-              src="./static/nerd.webp" 
-              alt="Main image" 
-              class="object-cover w-full h-full rounded-lg"
-            />
+      <article class="flex flex-col gap-6 p-6 md:p-8 rounded-2xl overflow-hidden
+                     bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                     border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
+        {images.length > 0 && (
+          <div class="project-gallery -mx-6 -mt-6 md:-mx-8 md:-mt-8 mb-2" data-images={JSON.stringify(images)} data-title={title}>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-2 p-4 md:p-6 pt-4">
+              <div class="col-span-2 row-span-2">
+                <div class="aspect-[3/2] w-full h-full overflow-hidden rounded-xl">
+                  <img src={images[0]} alt={`${title} - Imagen principal`}
+                    class="gallery-img object-cover w-full h-full cursor-zoom-in transition-transform duration-500 hover:scale-105" data-index="0" />
+                </div>
+              </div>
+              {images.length > 1 && images.slice(1, 5).map((image, index) => (
+                <div class="col-span-1 row-span-1">
+                  <div class="aspect-[3/2] w-full h-full overflow-hidden rounded-xl">
+                    <img src={image} alt={`${title} - Imagen ${index + 2}`}
+                      class="gallery-img object-cover w-full h-full cursor-zoom-in transition-transform duration-500 hover:scale-105" data-index={index + 1} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      
-        <div class="col-span-1 row-span-1">
-          <div class="aspect-[5/4] w-full h-full">
-            <img 
-              src="./static/nerd.webp" 
-              alt="Small image 1" 
-              class="object-cover w-full h-full rounded-lg"
-            />
-          </div>
-        </div>
-        <div class="col-span-1 row-span-1">
-          <div class="aspect-[5/4] w-full h-full">
-            <img 
-              src="./static/nerd.webp" 
-              alt="Small image 2" 
-              class="object-cover w-full h-full rounded-lg"
-            />
-          </div>
-        </div>
-        <div class="col-span-1 row-span-1">
-          <div class="aspect-[5/4] w-full h-full">
-            <img 
-              src="./static/nerd.webp" 
-              alt="Small image 3" 
-              class="object-cover w-full h-full rounded-lg"
-            />
-          </div>
-        </div>
-        <div class="col-span-1 row-span-1">
-          <div class="aspect-[5/4] w-full h-full">
-            <img 
-              src="./static/nerd.webp" 
-              alt="Small image 4" 
-              class="object-cover w-full h-full rounded-lg"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="mt-6 flex flex-col gap-1">
-        <h1 
-          transition:name={`${slug}`}
-          class="text-2xl font-extrabold text-onSurface-light dark:text-onSurface-dark
-                transition-all duration-300 ease-in-out">
-          {title}
-        </h1>
+        )}
 
-        <div class="flex flex-row flex-wrap gap-1">
-          {technologies.map((technology, index) => (
-            <span class="py-1 px-3 rounded-md text-xs bg-secondaryContainer-light dark:bg-secondaryContainer-dark text-secondary-light dark:text-secondary-dark">{technology}</span>
-          ))}
-        </div>
-        
-        <span class="mt-6">{description}</span>
+        <header>
+          <h1 class="text-2xl md:text-3xl font-bold text-onSurface-light dark:text-onSurface-dark">{title}</h1>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            {technologies.map((tech) => (
+              <span class="px-2 py-0.5 rounded-md text-xs bg-secondaryContainer-light dark:bg-secondaryContainer-dark text-secondary-light dark:text-secondary-dark">{tech}</span>
+            ))}
+          </div>
+        </header>
 
-        <div class="flex flex-row gap-3 justify-start items-center my-3">
+        <p class="text-sm md:text-base leading-relaxed text-onSurface-light dark:text-onSurface-dark whitespace-pre-line">{description}</p>
+
+        {features && features.length > 0 && (
+          <div class="pt-4 border-t border-outline-light/10 dark:border-outline-dark/10">
+            <h2 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark mb-3">Características</h2>
+            <ul class="space-y-2">
+              {features.map((feature) => (
+                <li class="flex items-start gap-3 text-sm text-onSurface-light dark:text-onSurface-dark">
+                  <span class="icon-checkmark text-secondary-light dark:text-secondary-dark shrink-0 mt-0.5"></span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div class="flex flex-wrap gap-2 pt-4 border-t border-outline-light/10 dark:border-outline-dark/10">
           {previewLink !== "" && (
-              <OutlineButton text="Ver demo" icon="icon-eye text-3xl" url={previewLink} />
+            <a href={previewLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-10 h-10 rounded-full text-secondary-light dark:text-secondary-dark bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60 hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15 hover:border-secondary-light hover:dark:border-secondary-dark transition-all duration-200" aria-label="Ver demo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            </a>
           )}
           {githubLink !== "" && (
-              <FilledButton text="Github" icon="icon-github text-3xl" url={githubLink} />
+            <a href={githubLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-10 h-10 rounded-full text-secondary-light dark:text-secondary-dark bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60 hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15 hover:border-secondary-light hover:dark:border-secondary-dark transition-all duration-200" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+            </a>
           )}
+          <a href="/projects" class="inline-flex items-center justify-center w-10 h-10 rounded-full text-secondaryContainer-light dark:text-secondaryContainer-dark bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-light/90 hover:dark:bg-secondary-dark/90 transition-all duration-200" aria-label="Ver proyectos">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
+          </a>
         </div>
-        
-        <Content />
-          
 
-      </div>
-      
+        <div class="prose-project pt-6 border-t border-outline-light/10 dark:border-outline-dark/10 text-onSurface-light dark:text-onSurface-dark text-sm md:text-base leading-relaxed">
+          <Content />
+        </div>
+      </article>
     </div>
-    
+
+    {images.length > 0 && (
+      <div id="project-lightbox" class="lightbox hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4">
+        <button id="lightbox-close" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white text-2xl font-bold z-10 transition-colors" aria-label="Cerrar">×</button>
+        <button id="lightbox-prev" class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white text-2xl z-10 transition-colors" aria-label="Anterior">‹</button>
+        <button id="lightbox-next" class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white text-2xl z-10 transition-colors" aria-label="Siguiente">›</button>
+        <div class="max-w-5xl w-full">
+          <img id="lightbox-image" src="" alt="" class="w-full h-auto max-h-[85vh] object-contain rounded-lg" />
+          <p id="lightbox-caption" class="mt-4 text-center text-sm text-white/90"></p>
+        </div>
+      </div>
+    )}
 	</main>
 </Layout>
+
+{images.length > 0 && (
+  <script is:inline>
+    (function(){
+      document.addEventListener('DOMContentLoaded', function(){
+        var gallery = document.querySelector('.project-gallery');
+        if(!gallery) return;
+        var images = JSON.parse(gallery.getAttribute('data-images') || '[]');
+        var title = gallery.getAttribute('data-title') || '';
+        var lightbox = document.getElementById('project-lightbox');
+        var lightboxImg = document.getElementById('lightbox-image');
+        var caption = document.getElementById('lightbox-caption');
+        var btnClose = document.getElementById('lightbox-close');
+        var btnPrev = document.getElementById('lightbox-prev');
+        var btnNext = document.getElementById('lightbox-next');
+        var currentIndex = 0;
+
+        function open(index){
+          if(!images.length) return;
+          currentIndex = (index + images.length) % images.length;
+          lightboxImg.src = images[currentIndex];
+          lightboxImg.alt = title + ' - Imagen ' + (currentIndex + 1);
+          caption.textContent = title + ' (' + (currentIndex + 1) + '/' + images.length + ')';
+          lightbox.classList.remove('hidden');
+          lightbox.offsetHeight;
+          lightbox.classList.add('lightbox-visible');
+          document.body.classList.add('overflow-hidden');
+        }
+        function close(){
+          lightbox.classList.remove('lightbox-visible');
+          lightbox.addEventListener('transitionend', function h(e){
+            if(e.target !== lightbox) return;
+            lightbox.classList.add('hidden');
+            lightbox.removeEventListener('transitionend', h);
+          });
+          document.body.classList.remove('overflow-hidden');
+        }
+        document.querySelectorAll('.gallery-img').forEach(function(img, i){
+          img.addEventListener('click', function(){
+            var idx = parseInt(img.getAttribute('data-index'), 10);
+            open(isNaN(idx) ? i : idx);
+          });
+        });
+        btnClose && btnClose.addEventListener('click', close);
+        lightbox && lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
+        btnPrev && btnPrev.addEventListener('click', function(e){ e.stopPropagation(); open(currentIndex - 1); });
+        btnNext && btnNext.addEventListener('click', function(e){ e.stopPropagation(); open(currentIndex + 1); });
+        document.addEventListener('keydown', function(e){
+          if(lightbox.classList.contains('hidden')) return;
+          if(e.key === 'Escape') close();
+          else if(e.key === 'ArrowLeft'){ e.preventDefault(); open(currentIndex - 1); }
+          else if(e.key === 'ArrowRight'){ e.preventDefault(); open(currentIndex + 1); }
+        });
+      });
+    })();
+  </script>
+  <style is:global>
+    #project-lightbox{ opacity:0; transform:scale(0.97); transition:opacity .25s ease, transform .25s ease; }
+    #project-lightbox.lightbox-visible{ opacity:1; transform:scale(1); }
+  </style>
+)}

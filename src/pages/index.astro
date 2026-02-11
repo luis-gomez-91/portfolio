@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
 import Info from '../components/Info.astro';
 import About from '../components/About.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
-import Footer from '../components/Footer.astro';
+import SoftSkills from '../components/SoftSkills.astro';
 ---
 
 <Layout title="Luis Gómez - Portafolio web">
@@ -14,5 +13,22 @@ import Footer from '../components/Footer.astro';
 		<Projects />
 		<About />
 		<Skills />
+		<section id="soft-skills" class="seccion flex flex-col justify-center items-center w-full xl:w-[1280px] px-9 mt-8 mb-16 fade-in">
+			<div class="flex flex-row flex-wrap justify-center gap-3">
+				<SoftSkills name="Pensamiento analítico y resolución de problemas" ruta="" parrafo="" />
+				<SoftSkills name="Mentalidad de aprendizaje continuo" ruta="" parrafo="" />
+				<SoftSkills name="Capacidad de adaptación" ruta="" parrafo="" />
+				<SoftSkills name="Orientación a mejora continua" ruta="" parrafo="" />
+				<SoftSkills name="Comunicación técnica clara" ruta="" parrafo="" />
+				<SoftSkills name="Pensamiento estructurado" ruta="" parrafo="" />
+				<SoftSkills name="Trabajo colaborativo y liderazgo técnico" ruta="" parrafo="" />
+				<SoftSkills name="Gestión eficiente del tiempo y prioridades" ruta="" parrafo="" />
+				<SoftSkills name="Aprendizaje continuo" ruta="" parrafo="" />
+				<SoftSkills name="Ownership" ruta="" parrafo="" />
+				<SoftSkills name="Orientación a resultados" ruta="" parrafo="" />
+				<SoftSkills name="Atención al detalle" ruta="" parrafo="" />
+				<SoftSkills name="Buenas prácticas" ruta="" parrafo="" />
+			</div>
+		</section>
 	</main>
 </Layout>

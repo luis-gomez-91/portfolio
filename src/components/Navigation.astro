@@ -3,42 +3,115 @@ import Theme from './Theme.astro';
 import NavItem from './NavItem.astro';
 ---
 
-<nav class="z-50 flex items-center justify-between gap-6 px-6 xl:px-32 pt-6 xl:pt-12 w-full absolute top-3 bg-transparent">
-    <div class="w-[52px] h-[52px] flex items-center justify-center
-                bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
-                p-2 rounded-full">
-        <Theme />
-    </div> 
+<nav class="site-nav fixed top-0 inset-x-0 z-50 flex justify-center px-4 md:px-6">
+    <div
+        class="nav-shell mt-3 flex w-full max-w-6xl items-center justify-between gap-4 rounded-2xl
+               bg-surface-light/80 dark:bg-surface-dark/80
+               border border-outline-light/10 dark:border-outline-dark/10
+               shadow-md backdrop-blur px-4 py-2 md:px-6 md:py-3">
 
-    <div id="nav-links" class="hidden md:flex flex-col md:flex-row gap-3 transition-all duration-500 ease-in-out">
-        <NavItem html="Inicio" href="/" />
-        <NavItem html="Proyectos" href="/projetcs" />
-        <NavItem html="Acerca de mí" href="/#about-me" />
-        <NavItem html="Habilidades" href="/#skills" />
-        <NavItem html="Contactos" href="#contacts" />
-    </div>
-
-    <div class="z-40 block md:hidden relative">
-        <button id="menu-toggle" class="w-[52px] h-[52px] flex items-center justify-center transition-all duration-300 ease-in-out
-                bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)] hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
-                p-2 rounded-full">
-            <span class="icon-menu text-3xl 
-                        text-secondary-light dark:text-secondary-dark
-                        hover:text-tertiary-light hover:dark:text-tertiary-dark">
-            </span>
-        </button>
-
-        <div id="menu-links" class="hidden z-30 absolute top-full end-0">
-            <div class="bg-[rgb(218,226,249,0.7)] dark:bg-[rgba(62,71,89,0.7)]
-                        p-1 mt-2 rounded-md flex flex-col justify-end items-end space-y-2 gap-0">
-                <a href="/" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Inicio</a>
-                <a href="/projects" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Proyectos</a>
-                <a href="/#about-me" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Acerca de mí</a>
-                <a href="/#skills" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Habilidades</a>
-                <a href="#contacts" class="w-full py-1 px-5 text-sm text-secondary-light hover:text-onSurface-light hover:dark:text-onSurface-dark dark:text-secondary-dark hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark text-right whitespace-nowrap transition-all duration-300 ease-in-out">Contactos</a>
+        <!-- Marca -->
+        <a href="/" class="flex items-center gap-3">
+            <div
+                class="flex h-10 w-10 items-center justify-center rounded-full
+                       bg-secondaryContainer-light dark:bg-secondaryContainer-dark
+                       text-secondary-light dark:text-secondary-dark font-semibold text-base">
+                LG
             </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-sm font-semibold text-onSurface-light dark:text-onSurface-dark">
+                    Luis Gómez
+                </span>
+                <span class="text-xs text-outline-light dark:text-outline-dark">
+                    Desarrollador Full‑Stack
+                </span>
+            </div>
+        </a>
+
+        <!-- Links desktop -->
+        <div
+            id="nav-links"
+            class="hidden md:flex items-center gap-1 transition-all duration-300 ease-in-out">
+            <NavItem html="Inicio" href="/" />
+            <NavItem html="Proyectos" href="/projects" />
+            <NavItem html="Acerca de mí" href="/#about-me" />
+            <NavItem html="Habilidades" href="/#skills" />
+            <NavItem html="Contactos" href="#contacts" />
         </div>
 
+        <!-- Tema + menú móvil -->
+        <div class="flex items-center gap-2 md:gap-3">
+            <div class="flex w-[40px] h-[40px]
+                       bg-[rgb(218,226,249,0.4)] dark:bg-[rgba(62,71,89,0.4)]
+                       hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                       rounded-full transition-colors duration-200 ease-linear overflow-hidden">
+                <Theme />
+            </div>
+
+            <div class="relative md:hidden">
+                <button
+                    id="menu-toggle"
+                    class="w-[44px] h-[44px] flex items-center justify-center
+                           bg-[rgb(218,226,249,0.7)] dark:bg-[rgba(62,71,89,0.7)]
+                           hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                           rounded-full transition-colors duration-200 ease-linear">
+                    <span
+                        class="icon-menu text-2xl
+                               text-secondary-light dark:text-secondary-dark">
+                    </span>
+                </button>
+
+                <div id="menu-links" class="hidden z-30 absolute top-[120%] right-0 min-w-[220px]">
+                    <div
+                        class="bg-surface-light/95 dark:bg-surface-dark/95
+                               border border-outline-light/10 dark:border-outline-dark/20
+                               shadow-xl rounded-2xl py-2 flex flex-col gap-1">
+                        <a href="/"
+                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                                  hover:text-onSurface-light hover:dark:text-onSurface-dark
+                                  hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                                  text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
+                            Inicio
+                        </a>
+                        <a href="/projects"
+                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                                  hover:text-onSurface-light hover:dark:text-onSurface-dark
+                                  hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                                  text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
+                            Proyectos
+                        </a>
+                        <a href="/#about-me"
+                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                                  hover:text-onSurface-light hover:dark:text-onSurface-dark
+                                  hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                                  text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
+                            Acerca de mí
+                        </a>
+                        <a href="/#skills"
+                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                                  hover:text-onSurface-light hover:dark:text-onSurface-dark
+                                  hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                                  text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
+                            Habilidades
+                        </a>
+                        <a href="/#soft-skills"
+                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                                  hover:text-onSurface-light hover:dark:text-onSurface-dark
+                                  hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                                  text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
+                            Soft skills
+                        </a>
+                        <a href="#contacts"
+                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                                  hover:text-onSurface-light hover:dark:text-onSurface-dark
+                                  hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
+                                  text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
+                            Contactos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -47,19 +120,52 @@ import NavItem from './NavItem.astro';
         const menuToggle = document.getElementById('menu-toggle');
         const navLinks = document.getElementById('menu-links');
 
-        menuToggle.addEventListener('click', () => {
-        if (navLinks.classList.contains('hidden')) {
-            navLinks.classList.remove('hidden', 'menu-close');
-            navLinks.classList.add('menu-open');
-        } else {
-            navLinks.classList.remove('menu-open');
-            navLinks.classList.add('menu-close');
-            
-            navLinks.addEventListener('animationend', () => {
-                navLinks.classList.add('hidden');
-            }, { once: true });
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                if (navLinks.classList.contains('hidden')) {
+                    navLinks.classList.remove('hidden', 'menu-close');
+                    navLinks.classList.add('menu-open');
+                } else {
+                    navLinks.classList.remove('menu-open');
+                    navLinks.classList.add('menu-close');
+
+                    navLinks.addEventListener(
+                        'animationend',
+                        () => {
+                            navLinks.classList.add('hidden');
+                        },
+                        { once: true }
+                    );
+                }
+            });
         }
-    });
+
+        // Efecto al hacer scroll: navbar más pegada al top y ligeramente más compacta
+        const nav = document.querySelector('.site-nav');
+        const shell = document.querySelector('.nav-shell');
+
+        const handleScroll = () => {
+            const scrolled = window.scrollY > 8;
+
+            if (shell) {
+                if (scrolled) {
+                    shell.classList.add('nav-scrolled');
+                } else {
+                    shell.classList.remove('nav-scrolled');
+                }
+            }
+
+            if (nav) {
+                if (scrolled) {
+                    nav.classList.add('site-nav-scrolled');
+                } else {
+                    nav.classList.remove('site-nav-scrolled');
+                }
+            }
+        };
+
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
     });
 </script>
 
@@ -102,6 +208,39 @@ import NavItem from './NavItem.astro';
 
     .menu-close {
         animation: menuClose 0.4s forwards ease-in;
+    }
+
+    /* Transición suave del contenedor del nav al hacer scroll */
+    .site-nav {
+        pointer-events: none;
+    }
+
+    .site-nav .nav-shell {
+        pointer-events: auto;
+        transition:
+            margin-top 0.25s ease,
+            border-radius 0.25s ease,
+            max-width 0.25s ease,
+            background-color 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease,
+            padding 0.25s ease;
+    }
+
+    .nav-shell.nav-scrolled {
+        margin-top: 0;
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.16);
+        background-color: rgba(249, 249, 255, 0.98);
+        border-color: rgba(116, 119, 127, 0.18);
+        padding-block: 0.4rem;
+    }
+
+    html.dark .nav-shell.nav-scrolled {
+        background-color: rgba(17, 19, 24, 0.98);
+        border-color: rgba(142, 144, 153, 0.4);
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
     }
 
 </style>
