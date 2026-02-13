@@ -13,10 +13,11 @@ technologies: [
     "Railway (Despliegue)"
 ]
 areas: ["backend"]
-featured: true
 images: [
 
 ]
 previewLink: "https://arrechoteca-backend-production.up.railway.app/docs"
 githubLink: "https://github.com/luis-gomez-91/arrechoteca-backend"
+featured: false
+
 ---

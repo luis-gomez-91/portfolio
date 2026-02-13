@@ -1,7 +1,7 @@
 ---
-title: "App Multiplataforma - ITB SGA"
+title: "ITB SGA"
 description: "
-  Aplicación oficial para docentes y estudiantes del Instituto Tecnológico Bolivariano de Tecnología (ITB)
+  Aplicación móvil multiplataforma oficial para docentes y estudiantes del Instituto Tecnológico Bolivariano de Tecnología (ITB)
 
   ITB SGA es la aplicación móvil oficial del Sistema de Gestión Académica del Instituto Tecnológico Bolivariano de Tecnología (ITB). Diseñada para estudiantes y docentes, permite gestionar de manera ágil, segura y eficiente toda la información académica desde cualquier lugar.
 "
@@ -18,7 +18,6 @@ technologies: [
 ]
 areas: ["app"]
 images: [
-
 ]
 previewLink: "https://play.google.com/store/apps/details?id=org.itb.sga&hl=es_EC&pli=1"
 githubLink: "https://github.com/luis-gomez-91/app-ITB-KMM"
@@ -38,4 +37,5 @@ features: [
    "Ingresar calificaciones", 
    "Gestionar calificaciones", 
 ]
+featured: false
 ---

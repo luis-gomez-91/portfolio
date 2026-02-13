@@ -45,7 +45,7 @@ const { title } = Astro.props;
 	<body class="m-0 p-0 pb-9 transition duration-500 ease-in-out 
 				font-poppins font-normal w-screen
 				text-outline-light dark:text-outline-dark
-				bg-surface-light dark:bg-surface-dark">
+				bg-surface-light dark:bg-surface-dark bg-gradient-subtle">
 		<header id="inicio" class="relative flex flex-col items-center justify-center">
 			<Navigation />
 		</header>
@@ -122,5 +122,11 @@ const { title } = Astro.props;
 		scroll-timing-function: ease-in-out;
 		transition-duration: 0.8s;
 	}
-	
+
+	.bg-gradient-subtle {
+		background-image: linear-gradient(135deg, #f9f9ff 0%, #f5f6ff 50%, #f8f7fc 100%);
+	}
+	html.dark .bg-gradient-subtle {
+		background-image: linear-gradient(135deg, #111318 0%, #0f1115 50%, #13141a 100%);
+	}
 </style>

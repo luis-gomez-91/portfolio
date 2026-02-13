@@ -6,13 +6,12 @@ description: "
 "
 technologies: ["HTML5", "CSS", "Javascript", "Github Pages (Despliegue)"]
 areas: ["frontend"]
-featured: true
 images: [
-    "/static/projects/ant-admin/1.png", 
-    "/static/projects/ant-admin/2.png", 
-    "/static/projects/ant-admin/3.png", 
-    "/static/projects/ant-admin/4.png", 
+    "/static/projects/ant-admin/1.webp", 
+    "/static/projects/ant-admin/2.webp", 
+    "/static/projects/ant-admin/3.webp",
 ]
 previewLink: "https://luis-gomez-91.github.io/ant-simulator-admin/"
 githubLink: "https://github.com/luis-gomez-91/ant-simulator-admin"
+featured: false
 ---

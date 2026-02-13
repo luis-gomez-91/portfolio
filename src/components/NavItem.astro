@@ -1,16 +1,17 @@
 ---
 interface Props {
 	html: string;
-    href: string;
+	href: string;
+	dataNav?: string;
 }
 
-const { html, href } = Astro.props;
+const { html, href, dataNav } = Astro.props;
 ---
 
 <a 
     href={href}
-    class="
-        px-3 py-1 rounded-full text-sm font-medium
+    data-nav={dataNav ?? undefined}
+    class="nav-link px-3 py-1 rounded-full text-sm font-medium
         text-outline-light dark:text-outline-dark 
         hover:text-onSurface-light dark:hover:text-onSurface-dark
         hover:bg-secondaryContainer-light dark:hover:bg-secondaryContainer-dark

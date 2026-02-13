@@ -17,10 +17,10 @@ technologies: [
     "Xcode (Despliegue)",
 ]
 areas: ["app"]
-featured: true
 images: [
 ]
 previewLink: ""
 githubLink: "https://github.com/luis-gomez-91/ant-simulator"
+featured: false
 ---
 

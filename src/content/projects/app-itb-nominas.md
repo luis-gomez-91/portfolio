@@ -1,7 +1,7 @@
 ---
-title: "App Multiplataforma – ITB Nóminas"
+title: "ITB Nóminas"
 description: "
-    ITB Nóminas es la aplicación móvil oficial diseñada para el personal administrativo del Instituto Tecnológico Bolivariano de Tecnología (ITB), que permite gestionar de forma rápida, segura y eficiente la información relacionada con nómina y asistencia.
+    ITB Nóminas es la aplicación móvil multiplataforma oficial diseñada para el personal administrativo del Instituto Tecnológico Bolivariano de Tecnología (ITB), que permite gestionar de forma rápida, segura y eficiente la información relacionada con nómina y asistencia.
 "
 technologies: [
     "Kotlin", 
@@ -15,7 +15,6 @@ technologies: [
     "Xcode (Despliegue)",
 ]
 areas: ["app"]
-featured: true
 images: [
     
 ]
@@ -28,4 +27,5 @@ features: [
     "Visualizar el registro de asistencia con geolocalización del punto donde se realizó el marcaje.",
     "Personalizar la experiencia con modo claro y modo oscuro (Dark Mode) para mayor comodidad visual.",
 ]
+featured: true
 ---

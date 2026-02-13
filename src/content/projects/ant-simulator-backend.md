@@ -18,9 +18,10 @@ areas: ["backend"]
 featured: true
 images: [
     "/static/projects/ant-backend/1.webp", 
-    "/static/projects/ant-backend/2.png", 
-    "/static/projects/ant-backend/3.png", 
-    "/static/projects/ant-backend/4.png", 
+    "/static/projects/ant-backend/2.webp", 
+    "/static/projects/ant-backend/3.webp", 
+    "/static/projects/ant-backend/4.webp", 
+    "/static/projects/ant-backend/5.webp", 
 ]
 previewLink: "https://ant-simulator-back-production.up.railway.app/docs"
 githubLink: "https://github.com/luis-gomez-91/ant-simulator-back"

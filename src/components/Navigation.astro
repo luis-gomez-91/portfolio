@@ -32,11 +32,11 @@ import NavItem from './NavItem.astro';
         <div
             id="nav-links"
             class="hidden md:flex items-center gap-1 transition-all duration-300 ease-in-out">
-            <NavItem html="Inicio" href="/" />
-            <NavItem html="Proyectos" href="/projects" />
-            <NavItem html="Acerca de mí" href="/#about-me" />
-            <NavItem html="Habilidades" href="/#skills" />
-            <NavItem html="Contactos" href="#contacts" />
+            <NavItem html="Inicio" href="/" dataNav="inicio" />
+            <NavItem html="Proyectos" href="/projects" dataNav="projects" />
+            <NavItem html="Acerca de mí" href="/#about-me" dataNav="about" />
+            <NavItem html="Habilidades" href="/#skills" dataNav="skills" />
+            <NavItem html="Contactos" href="#contacts" dataNav="contacts" />
         </div>
 
         <!-- Tema + menú móvil -->
@@ -66,43 +66,43 @@ import NavItem from './NavItem.astro';
                         class="bg-surface-light/95 dark:bg-surface-dark/95
                                border border-outline-light/10 dark:border-outline-dark/20
                                shadow-xl rounded-2xl py-2 flex flex-col gap-1">
-                        <a href="/"
-                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                        <a href="/" data-nav="inicio"
+                           class="nav-link w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
                                   hover:text-onSurface-light hover:dark:text-onSurface-dark
                                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                                   text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
                             Inicio
                         </a>
-                        <a href="/projects"
-                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                        <a href="/projects" data-nav="projects"
+                           class="nav-link w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
                                   hover:text-onSurface-light hover:dark:text-onSurface-dark
                                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                                   text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
                             Proyectos
                         </a>
-                        <a href="/#about-me"
-                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                        <a href="/#about-me" data-nav="about"
+                           class="nav-link w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
                                   hover:text-onSurface-light hover:dark:text-onSurface-dark
                                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                                   text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
                             Acerca de mí
                         </a>
-                        <a href="/#skills"
-                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                        <a href="/#skills" data-nav="skills"
+                           class="nav-link w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
                                   hover:text-onSurface-light hover:dark:text-onSurface-dark
                                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                                   text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
                             Habilidades
                         </a>
-                        <a href="/#soft-skills"
-                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                        <a href="/#soft-skills" data-nav="skills"
+                           class="nav-link w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
                                   hover:text-onSurface-light hover:dark:text-onSurface-dark
                                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                                   text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
                             Soft skills
                         </a>
-                        <a href="#contacts"
-                           class="w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
+                        <a href="#contacts" data-nav="contacts"
+                           class="nav-link w-full py-2 px-5 text-sm text-secondary-light dark:text-secondary-dark
                                   hover:text-onSurface-light hover:dark:text-onSurface-dark
                                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
                                   text-right whitespace-nowrap transition-colors duration-200 ease-in-out">
@@ -166,6 +166,33 @@ import NavItem from './NavItem.astro';
 
         handleScroll();
         window.addEventListener('scroll', handleScroll, { passive: true });
+
+        function updateNavActive() {
+            const path = window.location.pathname;
+            const hash = window.location.hash || '';
+            let active = 'inicio';
+
+            if (path !== '/' && path !== '') {
+                active = 'projects';
+            } else if (hash === '#about-me') {
+                active = 'about';
+            } else if (hash === '#skills' || hash === '#soft-skills') {
+                active = 'skills';
+            } else if (hash === '#contacts') {
+                active = 'contacts';
+            } else if (hash === '#projects') {
+                active = 'projects';
+            }
+
+            document.querySelectorAll('.nav-link').forEach((link) => {
+                const isActive = link.getAttribute('data-nav') === active;
+                link.classList.toggle('nav-active', isActive);
+            });
+        }
+
+        updateNavActive();
+        window.addEventListener('hashchange', updateNavActive);
+        window.addEventListener('popstate', updateNavActive);
     });
 </script>
 
@@ -241,6 +268,15 @@ import NavItem from './NavItem.astro';
         background-color: rgba(17, 19, 24, 0.98);
         border-color: rgba(142, 144, 153, 0.4);
         box-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-link.nav-active {
+        background-color: rgba(218, 226, 249, 0.5);
+        color: #191c20;
+    }
+    html.dark .nav-link.nav-active {
+        background-color: rgba(62, 71, 89, 0.6);
+        color: #e2e2e9;
     }
 
 </style>

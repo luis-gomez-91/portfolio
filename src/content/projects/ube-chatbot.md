@@ -11,9 +11,14 @@ technologies: [
 ]
 areas: ["frontend"]
 images: [
-
+  "/static/projects/ube-chatbot/1.webp", 
+  "/static/projects/ube-chatbot/2.webp", 
+  "/static/projects/ube-chatbot/3.webp", 
+  "/static/projects/ube-chatbot/4.webp", 
+  "/static/projects/ube-chatbot/5.webp", 
+  "/static/projects/ube-chatbot/6.webp", 
 ]
-previewLink: ""
+previewLink: "https://ube-chatbot-p2dx0fadj-luis-gomez-91s-projects.vercel.app/"
 githubLink: "https://github.com/luis-gomez-91/ube-chatbot"
 features: [
     "Arquitectura moderna con Next.js",

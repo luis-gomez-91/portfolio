@@ -12,14 +12,21 @@ technologies: [
   "Pycharm",
   "Supabase",
   "OAuth",
-  "python-dotenv"
+  "python-dotenv",
+  "Swagger",
+  "Redoc"
 ]
 areas: ["backend"]
 images: [
-
+  "/static/projects/ube-assistant/1.webp", 
+  "/static/projects/ube-assistant/2.webp", 
+  "/static/projects/ube-assistant/3.webp", 
+  "/static/projects/ube-assistant/4.webp", 
+  "/static/projects/ube-assistant/5.webp", 
+  "/static/projects/ube-assistant/6.webp", 
 ]
-previewLink: ""
-githubLink: "https://github.com/luis-gomez-91/ube-assistant"
+previewLink: "https://ube-assistant-backend-production.up.railway.app/"
+githubLink: "https://github.com/luis-gomez-91/ube-assistant-backend"
 features: [
   "Chat Inteligente: Asistencia automatizada con respuestas precisas y contextuales.",
   "Información de Carreras: Detalle completo sobre las carreras de pregrado y postgrado de la UBE, incluyendo precios, modalidades y sesiones.",

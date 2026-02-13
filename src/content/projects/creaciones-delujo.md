@@ -10,7 +10,15 @@ technologies: [
     "Vercel (Despliegue)",
 ]
 areas: ["frontend"]
-images: []
+images: [
+    "/static/projects/creaciones-delujo/1.webp",
+    "/static/projects/creaciones-delujo/2.webp",
+    "/static/projects/creaciones-delujo/3.webp",
+    "/static/projects/creaciones-delujo/4.webp",
+    "/static/projects/creaciones-delujo/5.webp",
+    "/static/projects/creaciones-delujo/6.webp",
+]
 previewLink: "https://creaciones-delujo.vercel.app/"
 githubLink: "https://github.com/luis-gomez-91/creaciones-delujo"
+featured: true
 ---
