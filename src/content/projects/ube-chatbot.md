@@ -18,7 +18,7 @@ images: [
   "/static/projects/ube-chatbot/5.webp", 
   "/static/projects/ube-chatbot/6.webp", 
 ]
-previewLink: "https://ube-chatbot-p2dx0fadj-luis-gomez-91s-projects.vercel.app/"
+previewLink: "https://ube-chatbot.vercel.app/"
 githubLink: "https://github.com/luis-gomez-91/ube-chatbot"
 features: [
     "Arquitectura moderna con Next.js",

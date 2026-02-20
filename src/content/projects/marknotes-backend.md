@@ -1,12 +1,11 @@
 ---
-title: "MarkNotes"
+title: "API Rest - MarkNotes"
 description: "
     
 "
 technologies: [
     "Python", 
     "FastApi", 
-    "Cloudinary", 
     "PostgreSQL", 
     "SQLAlchemy (ORM)", 
     "Alembic (Migraciones)", 
