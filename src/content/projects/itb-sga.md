@@ -16,7 +16,7 @@ technologies: [
   "Play Console (Despliegue)",
   "Xcode (Despliegue)",
 ]
-areas: ["app"]
+areas: ["mobile"]
 images: [
 ]
 previewLink: "https://play.google.com/store/apps/details?id=org.itb.sga&hl=es_EC&pli=1"

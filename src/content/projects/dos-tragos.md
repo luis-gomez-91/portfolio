@@ -5,7 +5,7 @@ description: "
   Desarrollé una interfaz visualmente atractiva utilizando el formato WebP para todas las piezas gráficas. Esto permitió mantener una alta fidelidad visual en el catálogo de cócteles, reduciendo el peso de la página en un 60% y garantizando una carga instantánea, incluso en conexiones móviles.
 "
 technologies: ["Astro", "TailwindCSS", "JavaScript", "Html", "CSS", "Visual Studio Code", "Vercel (Despliegue)"]
-areas: ["frontend"]
+areas: ["frontend", "landing"]
 images: [
   "/static/projects/dos-tragos/1.webp", 
   "/static/projects/dos-tragos/2.webp", 

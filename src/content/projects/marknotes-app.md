@@ -13,7 +13,7 @@ technologies: [
     "Koin (Inyección de dependencias)",
     "React (Renderizado de Marknotes en tiempo real)"
 ]
-areas: ["app"]
+areas: ["mobile"]
 featured: false
 images: [
 

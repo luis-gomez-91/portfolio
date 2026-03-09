@@ -9,7 +9,7 @@ technologies: [
     "Git & GitHub",
     "Vercel (Despliegue)",
 ]
-areas: ["frontend"]
+areas: ["frontend", "landing"]
 images: [
     "/static/projects/creaciones-delujo/1.webp",
     "/static/projects/creaciones-delujo/2.webp",

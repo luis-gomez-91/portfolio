@@ -4,7 +4,7 @@ description: "
     Palabras, expresiones y el sabor costeño de Guayaquil. Significados, ejemplos de uso y la caleta del palabreo que nos define.
 "
 technologies: ["Astro", "TailwindCSS", "JavaScript", "Html", "CSS", "Cursor", "Vercel (Despliegue)"]
-areas: ["frontend"]
+areas: ["frontend", "admin"]
 images: [
     "/static/projects/arrechoteca-web/1.webp", 
     "/static/projects/arrechoteca-web/2.webp", 

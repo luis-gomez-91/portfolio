@@ -14,7 +14,7 @@ technologies: [
     "Play Console (Despliegue)",
     "Xcode (Despliegue)",
 ]
-areas: ["app"]
+areas: ["mobile"]
 images: [
     
 ]

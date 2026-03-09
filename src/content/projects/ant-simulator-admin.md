@@ -5,7 +5,7 @@ description: "
     Permite a un administrador gestionar el ciclo de vida completo de las preguntas, asegurando que el banco de datos esté siempre actualizado según las normativas vigentes del Ecuador.
 "
 technologies: ["HTML5", "CSS", "Javascript", "Github Pages (Despliegue)"]
-areas: ["frontend"]
+areas: ["frontend", "admin"]
 images: [
     "/static/projects/ant-admin/1.webp", 
     "/static/projects/ant-admin/2.webp", 

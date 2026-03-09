@@ -9,7 +9,7 @@ technologies: [
   "Vercel (Despliegue)", 
   "Shadcn (Componentes)"
 ]
-areas: ["frontend"]
+areas: ["frontend", "ia"]
 images: [
   "/static/projects/ube-chatbot/1.webp", 
   "/static/projects/ube-chatbot/2.webp", 
@@ -18,7 +18,7 @@ images: [
   "/static/projects/ube-chatbot/5.webp", 
   "/static/projects/ube-chatbot/6.webp", 
 ]
-previewLink: "https://ube-chatbot.vercel.app/"
+previewLink: "https://ube-chatbot.vercel.app/auth"
 githubLink: "https://github.com/luis-gomez-91/ube-chatbot"
 features: [
     "Arquitectura moderna con Next.js",

@@ -29,7 +29,7 @@ features: [
     "Autenticación de usuarios para comentarios y contenido adicional.",
     "Sección de insultos accesible solo para usuarios registrados.",
     "Sistema de comentarios en definiciones para enriquecer el diccionario.",
-    "Documentación API interactiva cde FastAPI.",
+    "Documentación API interactiva con FastAPI.",
     "Despliegue en Railway con base de datos PostgreSQL."
 ]
 ---

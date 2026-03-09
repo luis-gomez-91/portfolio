@@ -6,7 +6,7 @@ const projects = defineCollection({
     description: z.string(),
     technologies: z.array(z.string()),
     images: z.array(z.string()),
-    areas: z.array(z.enum(['backend', 'frontend', 'app', 'fullstack'])).optional(),
+    areas: z.array(z.enum(['backend', 'frontend', 'mobile', 'fullstack', 'ia', 'landing', 'admin'])).optional(),
     featured: z.boolean().default(false),
     previewLink: z.union([z.string().url(), z.literal('')]),
     githubLink: z.union([z.string().url(), z.literal('')]),

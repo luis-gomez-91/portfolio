@@ -16,7 +16,7 @@ technologies: [
   "Swagger",
   "Redoc"
 ]
-areas: ["backend"]
+areas: ["backend", "ia"]
 images: [
   "/static/projects/ube-assistant/1.webp", 
   "/static/projects/ube-assistant/2.webp", 
