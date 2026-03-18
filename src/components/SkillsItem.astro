@@ -2,9 +2,11 @@
 interface Props {
 	name: string;
     nivel: string;
+    icon?: string;
 }
 
-const { name, nivel } = Astro.props;
+const { name, nivel, icon } = Astro.props;
+const iconName = icon ?? name;
 
 const nivelColor = nivel === 'Avanzado' 
     ? 'text-onSurface-light dark:text-onSurface-dark' 
@@ -17,7 +19,12 @@ const nivelColor = nivel === 'Avanzado'
             bg-surface-light/60 dark:bg-surface-dark/30
             border border-outline-light/10 dark:border-outline-dark/20">
     <div class="shrink-0 w-9 h-9 rounded-lg overflow-hidden bg-surfaceContainer-light dark:bg-surfaceContainer-dark flex items-center justify-center">
-        <img src={`/static/technologies/${encodeURIComponent(name)}.png`} alt={name} class="w-6 h-6 object-contain" onerror="this.style.display='none'">
+        <img
+            src={`/static/technologies/${encodeURIComponent(iconName)}.svg`}
+            alt={name}
+            class="w-6 h-6 object-contain"
+            onerror="if (this.dataset.fallback !== '1') { this.dataset.fallback = '1'; this.src = this.src.replace('.svg','.png'); } else { this.style.display='none'; }"
+        >
     </div>
     <div class="flex flex-col min-w-0 flex-1">
         <p class="m-0 text-sm font-medium text-onSurface-light dark:text-onSurface-dark truncate">{name}</p>
