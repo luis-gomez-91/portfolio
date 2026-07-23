@@ -1,6 +1,8 @@
 ---
 import '../../public/icomoon/style.css'
 import Title from './Title.astro'
+
+const year = new Date().getFullYear();
 ---
 <footer id="contacts" class="seccion w-full flex flex-col items-center px-6 md:px-9 pt-20 pb-12">
     <div class="w-full max-w-5xl flex flex-col items-center gap-12">
@@ -76,7 +78,7 @@ import Title from './Title.astro'
         </div>
 
         <span class="text-xs text-outline-light dark:text-outline-dark text-center">
-            Copyright © 2024 Luis Gómez. Todos los derechos reservados.
+            Copyright © {year} Luis Gómez. Todos los derechos reservados.
         </span>
     </div>
 </footer>

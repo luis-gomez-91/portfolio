@@ -21,6 +21,7 @@ technologies: [
 ]
 areas: ["fullstack", "ia"]
 featured: true
+order: 2
 images: [
   "/static/projects/linkeate/1.webp",
   "/static/projects/linkeate/2.webp",

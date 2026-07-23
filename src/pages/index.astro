@@ -5,6 +5,7 @@ import About from '../components/About.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
 import SoftSkills from '../components/SoftSkills.astro';
+import Title from '../components/Title.astro';
 ---
 
 <Layout title="Luis Gómez - Portafolio web">
@@ -13,20 +14,20 @@ import SoftSkills from '../components/SoftSkills.astro';
 		<Projects />
 		<About />
 		<Skills />
-		<section id="soft-skills" class="seccion flex flex-col justify-center items-center w-full xl:w-[1280px] px-9 mt-8 mb-16 fade-in">
+		<section id="soft-skills" class="seccion flex flex-col justify-center items-center w-full max-w-5xl px-6 md:px-9 mt-4 mb-16 fade-in gap-8">
+			<div class="flex flex-col items-center gap-2 text-center">
+				<Title label="Cómo trabajo" dev={false} />
+				<p class="text-sm md:text-base text-outline-light dark:text-outline-dark max-w-lg">
+					Formas de trabajar que aplico en cada proyecto.
+				</p>
+			</div>
 			<div class="flex flex-row flex-wrap justify-center gap-3">
-				<SoftSkills name="Pensamiento analítico y resolución de problemas" ruta="" parrafo="" />
-				<SoftSkills name="Mentalidad de aprendizaje continuo" ruta="" parrafo="" />
-				<SoftSkills name="Capacidad de adaptación" ruta="" parrafo="" />
-				<SoftSkills name="Orientación a mejora continua" ruta="" parrafo="" />
-				<SoftSkills name="Comunicación técnica clara" ruta="" parrafo="" />
-				<SoftSkills name="Pensamiento estructurado" ruta="" parrafo="" />
-				<SoftSkills name="Trabajo colaborativo y liderazgo técnico" ruta="" parrafo="" />
-				<SoftSkills name="Gestión eficiente del tiempo y prioridades" ruta="" parrafo="" />
-				<SoftSkills name="Ownership" ruta="" parrafo="" />
-				<SoftSkills name="Orientación a resultados" ruta="" parrafo="" />
-				<SoftSkills name="Atención al detalle" ruta="" parrafo="" />
-				<SoftSkills name="Buenas prácticas" ruta="" parrafo="" />
+				<SoftSkills name="Resolución de problemas" />
+				<SoftSkills name="Aprendizaje continuo" />
+				<SoftSkills name="Comunicación técnica clara" />
+				<SoftSkills name="Ownership" />
+				<SoftSkills name="Orientación a resultados" />
+				<SoftSkills name="Atención al detalle" />
 			</div>
 		</section>
 	</main>

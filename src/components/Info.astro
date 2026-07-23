@@ -1,28 +1,46 @@
 ---
 import '../../public/icomoon/style.css'
 import IconItem from './IconItem.astro'
-import Title from './Title.astro'
 ---
 
 <section class="seccion min-h-screen w-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 md:px-9 pt-28 pb-16">
     <div class="flex justify-center order-2 lg:order-1">
-        <img src="./static/nerd.webp" alt="Foto de Luis Gómez" class="max-w-full w-[260px] sm:w-[300px] lg:w-[360px] h-auto text-center rounded-full shadow-3xl">
+        <img
+            src="./static/nerd.webp"
+            alt="Foto de Luis Gómez"
+            width="360"
+            height="360"
+            fetchpriority="high"
+            class="max-w-full w-[260px] sm:w-[300px] lg:w-[360px] h-auto text-center rounded-full shadow-3xl">
     </div>
     <div class="text-center flex flex-col gap-4 max-w-xl order-1 lg:order-2">
-        <Title label="Luis Gómez Veloz" dev={false} />
-        <p class="text-lg lg:text-2xl text-onSurface-light dark:text-onSurface-dark">
-            Desarrollador Full‑Stack
+        <p class="text-sm font-medium tracking-wide text-secondary-light dark:text-secondary-dark">
+            Full‑Stack · APIs · Mobile
+        </p>
+        <h1 class="text-3xl md:text-4xl lg:text-[2.75rem] text-tertiary-light dark:text-tertiary-dark font-suse font-bold">
+            Luis Gómez Veloz
+        </h1>
+        <p class="text-lg lg:text-xl text-onSurface-light dark:text-onSurface-dark">
+            Productos web y móviles, listos para producción
         </p>
         <p class="text-sm md:text-base text-outline-light dark:text-outline-dark">
-            Ingeniero de Sistemas y desarrollador Full Stack, con experiencia
-            profesional, freelance y en proyectos propios desarrollando
-            aplicaciones web, APIs y soluciones móviles. Enfocado en construir soluciones escalables, bien
-            estructuradas y que aporten valor real.
+            Ingeniero de Sistemas con experiencia profesional, freelance y proyectos propios.
+            Django, Laravel, Astro, Kotlin y APIs bien estructuradas que aportan valor real.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-2">
             <a
-                href="/static/cv.pdf"
-                download="Luis-Gomez-CV.pdf"
+                href="#projects"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full
+                    text-secondaryContainer-light dark:text-secondaryContainer-dark
+                    bg-secondary-light dark:bg-secondary-dark
+                    hover:bg-secondary-light/90 dark:hover:bg-secondary-dark/90
+                    transition-all duration-200 ease-out
+                    hover:scale-[1.03] active:scale-[0.98]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12v9" /><path d="M12 12l-8 -4.5" /></svg>
+                <span>Ver proyectos</span>
+            </a>
+            <a
+                href="#contacts"
                 class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full
                     text-secondary-light dark:text-secondary-dark
                     bg-transparent border-2 border-secondary-light dark:border-secondary-dark
@@ -30,18 +48,20 @@ import Title from './Title.astro'
                     hover:text-secondaryContainer-light dark:hover:text-secondaryContainer-dark
                     transition-all duration-200 ease-out
                     hover:scale-[1.03] active:scale-[0.98]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-download"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /><path d="M12 17v-6" /><path d="M9.5 14.5l2.5 2.5l2.5 -2.5" /></svg>                <span>Descargar CV</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2" /><path d="M10 16h6" /><path d="M11 11a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 8h3" /><path d="M4 12h3" /><path d="M4 16h3" /></svg>
+                <span>Contactar</span>
             </a>
             <a
-                href="#contacts"
+                href="/static/cv.pdf"
+                download="Luis-Gomez-CV.pdf"
                 class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full
-                    text-secondaryContainer-light dark:text-secondaryContainer-dark
-                    bg-secondary-light dark:bg-secondary-dark
-                    hover:bg-secondary-light/90 dark:hover:bg-secondary-dark/90
+                    text-outline-light dark:text-outline-dark
+                    hover:text-onSurface-light dark:hover:text-onSurface-dark
+                    hover:bg-surfaceContainer-light/70 dark:hover:bg-surfaceContainer-dark/50
                     transition-all duration-200 ease-out
-                    hover:scale-[1.03] active:scale-[0.98]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-address-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2" /><path d="M10 16h6" /><path d="M11 11a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 8h3" /><path d="M4 12h3" /><path d="M4 16h3" /></svg>
-                <span>Contactos</span>
+                    text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /><path d="M12 17v-6" /><path d="M9.5 14.5l2.5 2.5l2.5 -2.5" /></svg>
+                <span>CV</span>
             </a>
         </div>
         <div class="flex gap-6 w-full justify-center mt-2">
@@ -49,5 +69,4 @@ import Title from './Title.astro'
             <IconItem href='https://www.linkedin.com/in/luisgomez1991/' clase='icon-linkedin' />
         </div>
     </div>
-    
 </section>

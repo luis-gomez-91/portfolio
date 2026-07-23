@@ -28,4 +28,5 @@ features: [
     "Personalizar la experiencia con modo claro y modo oscuro (Dark Mode) para mayor comodidad visual.",
 ]
 featured: true
+order: 3
 ---

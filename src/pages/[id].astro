@@ -35,6 +35,8 @@ const { Content } = await render(project);
               <div class="col-span-2 row-span-2">
                 <div class="aspect-[3/2] w-full h-full overflow-hidden rounded-xl">
                   <img src={images[0]} alt={`${title} - Imagen principal`}
+                    width="800" height="534" loading="eager" decoding="async"
+                    transition:name={`project-image-${slug}`}
                     class="gallery-img object-cover w-full h-full cursor-zoom-in transition-transform duration-500 hover:scale-105" data-index="0" />
                 </div>
               </div>
@@ -42,6 +44,7 @@ const { Content } = await render(project);
                 <div class="col-span-1 row-span-1">
                   <div class="aspect-[3/2] w-full h-full overflow-hidden rounded-xl">
                     <img src={image} alt={`${title} - Imagen ${index + 2}`}
+                      width="400" height="267" loading="lazy" decoding="async"
                       class="gallery-img object-cover w-full h-full cursor-zoom-in transition-transform duration-500 hover:scale-105" data-index={index + 1} />
                   </div>
                 </div>
@@ -51,7 +54,7 @@ const { Content } = await render(project);
         )}
 
         <header>
-          <h1 class="text-2xl md:text-3xl font-bold text-onSurface-light dark:text-onSurface-dark">{title}</h1>
+          <h1 transition:name={`project-title-${slug}`} class="text-2xl md:text-3xl font-bold text-onSurface-light dark:text-onSurface-dark">{title}</h1>
           <div class="flex flex-wrap gap-1.5 mt-3">
             {technologies.map((tech) => (
               <span class="px-2 py-0.5 rounded-md text-xs bg-secondaryContainer-light dark:bg-secondaryContainer-dark text-secondary-light dark:text-secondary-dark">{tech}</span>
@@ -77,17 +80,20 @@ const { Content } = await render(project);
 
         <div class="flex flex-wrap gap-2 pt-4 border-t border-outline-light/10 dark:border-outline-dark/10">
           {previewLink !== "" && (
-            <a href={previewLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-10 h-10 rounded-full text-secondary-light dark:text-secondary-dark bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60 hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15 hover:border-secondary-light hover:dark:border-secondary-dark transition-all duration-200" aria-label="Ver demo">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <a href={previewLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 h-11 px-4 rounded-full text-sm font-medium text-secondary-light dark:text-secondary-dark bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60 hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15 hover:border-secondary-light hover:dark:border-secondary-dark transition-all duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+              <span>Demo en vivo</span>
             </a>
           )}
           {githubLink !== "" && (
-            <a href={githubLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-10 h-10 rounded-full text-secondary-light dark:text-secondary-dark bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60 hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15 hover:border-secondary-light hover:dark:border-secondary-dark transition-all duration-200" aria-label="GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+            <a href={githubLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 h-11 px-4 rounded-full text-sm font-medium text-secondary-light dark:text-secondary-dark bg-transparent border border-secondary-light/60 dark:border-secondary-dark/60 hover:bg-secondary-light/15 hover:dark:bg-secondary-dark/15 hover:border-secondary-light hover:dark:border-secondary-dark transition-all duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+              <span>Ver código</span>
             </a>
           )}
-          <a href="/projects" class="inline-flex items-center justify-center w-10 h-10 rounded-full text-secondaryContainer-light dark:text-secondaryContainer-dark bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-light/90 hover:dark:bg-secondary-dark/90 transition-all duration-200" aria-label="Ver proyectos">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
+          <a href="/projects" class="inline-flex items-center justify-center gap-2 h-11 px-4 rounded-full text-sm font-medium text-secondaryContainer-light dark:text-secondaryContainer-dark bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-light/90 hover:dark:bg-secondary-dark/90 transition-all duration-200">
+            <span>Más proyectos</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
           </a>
         </div>
 
@@ -112,59 +118,83 @@ const { Content } = await render(project);
 </Layout>
 
 {images.length > 0 && (
-  <script is:inline>
-    (function(){
-      document.addEventListener('DOMContentLoaded', function(){
-        var gallery = document.querySelector('.project-gallery');
-        if(!gallery) return;
-        var images = JSON.parse(gallery.getAttribute('data-images') || '[]');
-        var title = gallery.getAttribute('data-title') || '';
-        var lightbox = document.getElementById('project-lightbox');
-        var lightboxImg = document.getElementById('lightbox-image');
-        var caption = document.getElementById('lightbox-caption');
-        var btnClose = document.getElementById('lightbox-close');
-        var btnPrev = document.getElementById('lightbox-prev');
-        var btnNext = document.getElementById('lightbox-next');
-        var currentIndex = 0;
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const gallery = document.querySelector('.project-gallery');
+      if (!gallery || gallery instanceof HTMLElement === false) return;
+      if (gallery.dataset.lightboxBound) return;
+      gallery.dataset.lightboxBound = '1';
 
-        function open(index){
-          if(!images.length) return;
-          currentIndex = (index + images.length) % images.length;
-          lightboxImg.src = images[currentIndex];
-          lightboxImg.alt = title + ' - Imagen ' + (currentIndex + 1);
-          caption.textContent = title + ' (' + (currentIndex + 1) + '/' + images.length + ')';
-          lightbox.classList.remove('hidden');
-          lightbox.offsetHeight;
-          lightbox.classList.add('lightbox-visible');
-          document.body.classList.add('overflow-hidden');
-        }
-        function close(){
-          lightbox.classList.remove('lightbox-visible');
-          lightbox.addEventListener('transitionend', function h(e){
-            if(e.target !== lightbox) return;
-            lightbox.classList.add('hidden');
-            lightbox.removeEventListener('transitionend', h);
-          });
-          document.body.classList.remove('overflow-hidden');
-        }
-        document.querySelectorAll('.gallery-img').forEach(function(img, i){
-          img.addEventListener('click', function(){
-            var idx = parseInt(img.getAttribute('data-index'), 10);
-            open(isNaN(idx) ? i : idx);
-          });
+      const images = JSON.parse(gallery.getAttribute('data-images') || '[]');
+      const title = gallery.getAttribute('data-title') || '';
+      const lightbox = document.getElementById('project-lightbox');
+      const lightboxImg = document.getElementById('lightbox-image');
+      const caption = document.getElementById('lightbox-caption');
+      const btnClose = document.getElementById('lightbox-close');
+      const btnPrev = document.getElementById('lightbox-prev');
+      const btnNext = document.getElementById('lightbox-next');
+      if (!lightbox || !lightboxImg || !caption) return;
+
+      let currentIndex = 0;
+
+      function open(index) {
+        if (!images.length) return;
+        currentIndex = (index + images.length) % images.length;
+        lightboxImg.src = images[currentIndex];
+        lightboxImg.alt = `${title} - Imagen ${currentIndex + 1}`;
+        caption.textContent = `${title} (${currentIndex + 1}/${images.length})`;
+        lightbox.classList.remove('hidden');
+        lightbox.offsetHeight;
+        lightbox.classList.add('lightbox-visible');
+        document.body.classList.add('overflow-hidden');
+      }
+
+      function close() {
+        lightbox.classList.remove('lightbox-visible');
+        lightbox.addEventListener('transitionend', function h(e) {
+          if (e.target !== lightbox) return;
+          lightbox.classList.add('hidden');
+          lightbox.removeEventListener('transitionend', h);
         });
-        btnClose && btnClose.addEventListener('click', close);
-        lightbox && lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
-        btnPrev && btnPrev.addEventListener('click', function(e){ e.stopPropagation(); open(currentIndex - 1); });
-        btnNext && btnNext.addEventListener('click', function(e){ e.stopPropagation(); open(currentIndex + 1); });
-        document.addEventListener('keydown', function(e){
-          if(lightbox.classList.contains('hidden')) return;
-          if(e.key === 'Escape') close();
-          else if(e.key === 'ArrowLeft'){ e.preventDefault(); open(currentIndex - 1); }
-          else if(e.key === 'ArrowRight'){ e.preventDefault(); open(currentIndex + 1); }
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      document.querySelectorAll('.gallery-img').forEach((img, i) => {
+        img.addEventListener('click', () => {
+          const idx = parseInt(img.getAttribute('data-index') || '', 10);
+          open(Number.isNaN(idx) ? i : idx);
         });
       });
-    })();
+
+      btnClose?.addEventListener('click', close);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) close();
+      });
+      btnPrev?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        open(currentIndex - 1);
+      });
+      btnNext?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        open(currentIndex + 1);
+      });
+
+      if (!window.__projectLightboxKeys) {
+        window.__projectLightboxKeys = true;
+        document.addEventListener('keydown', (e) => {
+          const box = document.getElementById('project-lightbox');
+          if (!box || box.classList.contains('hidden')) return;
+          if (e.key === 'Escape') box.querySelector('#lightbox-close')?.dispatchEvent(new Event('click'));
+          else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            box.querySelector('#lightbox-prev')?.dispatchEvent(new Event('click'));
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            box.querySelector('#lightbox-next')?.dispatchEvent(new Event('click'));
+          }
+        });
+      }
+    });
   </script>
   <style is:global>
     #project-lightbox{ opacity:0; transform:scale(0.97); transition:opacity .25s ease, transform .25s ease; }

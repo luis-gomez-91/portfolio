@@ -16,6 +16,7 @@ technologies: [
 ]
 areas: ["backend"]
 featured: true
+order: 4
 images: [
     "/static/projects/ant-backend/1.webp", 
     "/static/projects/ant-backend/2.webp", 

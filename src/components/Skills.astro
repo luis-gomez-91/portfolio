@@ -6,8 +6,11 @@ import Title from './Title.astro'
 ---
 
 <section id="skills" class="seccion flex flex-col justify-center items-center w-full px-6 md:px-9 py-20 md:py-24">
-    <div class="flex flex-row justify-around items-center w-full max-w-5xl">
+    <div class="flex flex-col items-center gap-2 w-full max-w-5xl">
         <Title label="Habilidades" dev={true}/>
+        <p class="text-sm text-outline-light dark:text-outline-dark xl:hidden">
+            Desliza horizontalmente para ver todas las categorías
+        </p>
     </div>
 
     <div class="w-full max-w-6xl relative mt-10">
@@ -162,21 +165,6 @@ import Title from './Title.astro'
         </div>
         <div class="hidden xl:flex w-[24rem] h-full absolute end-[0] top-0 z-100 bg-gradient-to-l from-[rgb(249,249,255,1)] dark:from-[rgb(17,19,24,1)] to-transparent"></div>
     </div>
-
-    <details class="mt-6 w-full text-xs text-onSurface-light/80 dark:text-onSurface-dark/80">
-        <summary class="cursor-pointer font-medium">
-            Créditos de iconos (icon-icons.com)
-        </summary>
-        <p class="mt-2">
-            Atribución por autor según la licencia de icon-icons.com.
-        </p>
-        <p class="mt-2">
-            Ver listado completo de autores aquí:
-            <a class="underline hover:opacity-80" href="/static/technologies/ATTRIBUTION.md" target="_blank" rel="noopener noreferrer">
-                ATTRIBUTION.md
-            </a>
-        </p>
-    </details>
 </section>
 
 <style>
@@ -191,11 +179,13 @@ import Title from './Title.astro'
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('astro:page-load', () => {
         const scrollContainer = document.getElementById('scroll-container');
         const btnLeft = document.getElementById('scroll-left');
         const btnRight = document.getElementById('scroll-right');
         if (!scrollContainer || !btnLeft || !btnRight) return;
+        if (btnLeft.dataset.scrollBound) return;
+        btnLeft.dataset.scrollBound = '1';
 
         btnLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -320, behavior: 'smooth' }));
         btnRight.addEventListener('click', () => scrollContainer.scrollBy({ left: 320, behavior: 'smooth' }));

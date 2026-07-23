@@ -27,6 +27,7 @@ technologies: [
 ]
 areas: ["fullstack", "ia", "mobile"]
 featured: true
+order: 1
 images: [
   "/static/projects/snappli/1.webp",
   "/static/projects/snappli/2.webp",

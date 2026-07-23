@@ -4,7 +4,14 @@ import Title from '../components/Title.astro';
 import ProjectItem from '../components/ProjectItem.astro';
 
 import { getCollection } from 'astro:content';
-const projects = await getCollection('projects');
+
+const projects = (await getCollection('projects')).sort((a, b) => {
+	if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+	const orderA = a.data.order ?? Number.MAX_SAFE_INTEGER;
+	const orderB = b.data.order ?? Number.MAX_SAFE_INTEGER;
+	if (orderA !== orderB) return orderA - orderB;
+	return a.data.title.localeCompare(b.data.title, 'es');
+});
 ---
 
 <Layout title="Luis Gómez - Proyectos">
@@ -12,61 +19,82 @@ const projects = await getCollection('projects');
 		<section class="w-full max-w-6xl flex flex-col items-center gap-8">
 			<Title label="Proyectos" dev={true} />
 
-			<div class="flex flex-wrap justify-center gap-2">
+			<div
+				class="filter-tabs w-full flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2
+				       overflow-x-auto overscroll-x-contain touch-pan-x
+				       -mx-6 px-6 md:mx-0 md:px-0"
+				role="tablist"
+				aria-label="Filtrar proyectos">
 				<button
-					class="filter-tab filter-tab-active px-4 py-2 rounded-full text-sm font-medium
+					class="filter-tab filter-tab-active shrink-0 px-4 py-2 rounded-full text-sm font-medium
 					       text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 					       hover:text-onSurface-light hover:dark:text-onSurface-dark
 					       hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 					       transition-colors duration-200 cursor-pointer"
-					data-filter="all">
+					data-filter="all"
+					role="tab"
+					aria-selected="true">
 					Todos
 				</button>
-				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
 				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 				             hover:text-onSurface-light hover:dark:text-onSurface-dark
 				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 				             transition-colors duration-200 cursor-pointer"
-					data-filter="backend">Backend</button>
-				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+					data-filter="backend"
+					role="tab"
+					aria-selected="false">Backend</button>
+				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
 				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 				             hover:text-onSurface-light hover:dark:text-onSurface-dark
 				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 				             transition-colors duration-200 cursor-pointer"
-					data-filter="frontend">Frontend</button>
-				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+					data-filter="frontend"
+					role="tab"
+					aria-selected="false">Frontend</button>
+				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
 				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 				             hover:text-onSurface-light hover:dark:text-onSurface-dark
 				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 				             transition-colors duration-200 cursor-pointer"
-					data-filter="mobile">Mobile</button>
-				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+					data-filter="mobile"
+					role="tab"
+					aria-selected="false">Mobile</button>
+				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
 				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 				             hover:text-onSurface-light hover:dark:text-onSurface-dark
 				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 				             transition-colors duration-200 cursor-pointer"
-					data-filter="fullstack">Fullstack</button>
-				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+					data-filter="fullstack"
+					role="tab"
+					aria-selected="false">Fullstack</button>
+				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
 				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 				             hover:text-onSurface-light hover:dark:text-onSurface-dark
 				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 				             transition-colors duration-200 cursor-pointer"
-					data-filter="ia">IA</button>
-				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+					data-filter="ia"
+					role="tab"
+					aria-selected="false">IA</button>
+				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
 				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 				             hover:text-onSurface-light hover:dark:text-onSurface-dark
 				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 				             transition-colors duration-200 cursor-pointer"
-					data-filter="landing">Landing</button>
-				<button class="filter-tab px-4 py-2 rounded-full text-sm font-medium
+					data-filter="landing"
+					role="tab"
+					aria-selected="false">Landing</button>
+				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
 				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
 				             hover:text-onSurface-light hover:dark:text-onSurface-dark
 				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
 				             transition-colors duration-200 cursor-pointer"
-					data-filter="admin">Admin</button>
+					data-filter="admin"
+					role="tab"
+					aria-selected="false">Admin</button>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
+			<div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
 				{
 					projects.map((project) => {
 						const { slug, data } = project;
@@ -87,33 +115,94 @@ const projects = await getCollection('projects');
 					})
 				}
 			</div>
+			<p id="projects-empty" class="hidden text-center text-sm text-outline-light dark:text-outline-dark py-12" role="status">
+				No hay proyectos en esta categoría.
+			</p>
 		</section>
 	</main>
 </Layout>
 
 <script>
-	document.addEventListener('DOMContentLoaded', () => {
+	document.addEventListener('astro:page-load', () => {
+		const STORAGE_KEY = 'projects-filter';
+		const VALID = new Set(['all', 'backend', 'frontend', 'mobile', 'fullstack', 'ia', 'landing', 'admin']);
+
 		const tabs = document.querySelectorAll('.filter-tab');
 		const cards = document.querySelectorAll('.project-card');
+		const empty = document.getElementById('projects-empty');
+		if (!tabs.length) return;
+
+		const applyFilter = (filter) => {
+			const active = VALID.has(filter) ? filter : 'all';
+
+			tabs.forEach((tab) => {
+				const isActive = tab.getAttribute('data-filter') === active;
+				tab.classList.toggle('filter-tab-active', isActive);
+				tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+				if (isActive && window.matchMedia('(max-width: 767px)').matches) {
+					tab.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+				}
+			});
+
+			let visible = 0;
+			cards.forEach((card) => {
+				const areas = (card.getAttribute('data-areas') || '').split(' ').filter(Boolean);
+				const show = active === 'all' || areas.includes(active);
+				card.classList.toggle('hidden', !show);
+				if (show) visible++;
+			});
+
+			if (empty) {
+				empty.classList.toggle('hidden', visible > 0);
+			}
+
+			try {
+				sessionStorage.setItem(STORAGE_KEY, active);
+			} catch {}
+
+			const url = new URL(window.location.href);
+			if (active === 'all') {
+				url.searchParams.delete('filter');
+			} else {
+				url.searchParams.set('filter', active);
+			}
+			history.replaceState(null, '', url);
+		};
 
 		tabs.forEach((tab) => {
+			if (tab.dataset.filterBound) return;
+			tab.dataset.filterBound = '1';
+
 			tab.addEventListener('click', () => {
-				const filter = tab.getAttribute('data-filter');
-
-				tabs.forEach((t) => t.classList.remove('filter-tab-active'));
-				tab.classList.add('filter-tab-active');
-
-				cards.forEach((card) => {
-					const areas = (card.getAttribute('data-areas') || '').split(' ').filter(Boolean);
-					const show = filter === 'all' || areas.includes(filter);
-					card.classList.toggle('hidden', !show);
-				});
+				applyFilter(tab.getAttribute('data-filter'));
 			});
 		});
+
+		const fromUrl = new URLSearchParams(window.location.search).get('filter');
+		let fromStorage = null;
+		try {
+			fromStorage = sessionStorage.getItem(STORAGE_KEY);
+		} catch {}
+
+		applyFilter(fromUrl || fromStorage || 'all');
 	});
 </script>
 
 <style>
+	.filter-tabs {
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+	.filter-tabs::-webkit-scrollbar {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		.filter-tabs {
+			overflow-x: visible;
+		}
+	}
+
 	.filter-tab-active {
 		background-color: #565f71 !important;
 		color: #dae2f9 !important;

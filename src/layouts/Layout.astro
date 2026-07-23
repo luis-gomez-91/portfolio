@@ -26,7 +26,7 @@ const { title } = Astro.props;
 				}
 			})();
 		</script>
-		<meta name="description" content="Luis Gómez - Desarrollador Full-Stack. Portafolio con proyectos web, APIs y apps móviles. Django, Laravel, Astro, Kotlin, Kotlin Multiplatform." />
+		<meta name="description" content="Luis Gómez - Desarrollador Full-Stack. Portafolio con proyectos web, APIs y apps móviles. Django, Nestjs, Nextjs, Sveltkit, Astro, Kotlin, Kotlin Multiplatform." />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
@@ -36,7 +36,7 @@ const { title } = Astro.props;
 		<meta property="og:image" content="/static/nerd.webp" />
 		<meta property="og:locale" content="es_ES" />
 		<title>{title}</title>
-		<!-- <ViewTransitions /> -->
+		<ViewTransitions />
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=SUSE:wght@100..800&display=swap');
 		</style>
@@ -46,70 +46,51 @@ const { title } = Astro.props;
 				font-poppins font-normal w-screen
 				text-outline-light dark:text-outline-dark
 				bg-surface-light dark:bg-surface-dark bg-gradient-subtle">
-		<header id="inicio" class="relative flex flex-col items-center justify-center">
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-secondary-light focus:text-secondaryContainer-light dark:focus:bg-secondary-dark dark:focus:text-secondaryContainer-dark focus:outline-none">
+			Saltar al contenido
+		</a>
+		<header id="inicio" class="relative flex flex-col items-center justify-center" transition:persist="site-header">
 			<Navigation />
 		</header>
-		<slot />	
+		<div id="main-content" transition:animate="fade">
+			<slot />
+		</div>
 		<Footer />
 	</body>
 </html>
 
 <script>
-	// let isScrolling = false;
-	// window.addEventListener('wheel', (event) => {
-	// 	if (isScrolling) return;
+	document.addEventListener('astro:page-load', () => {
+		const sections = document.querySelectorAll('.fade-in');
 
-	// 	const sections = document.querySelectorAll('.seccion');
-	// 	const scrollDirection = event.deltaY > 0 ? 1 : -1;
-	// 	const currentSection = Math.round(window.scrollY / window.innerHeight);
-	// 	let nextSection = currentSection + scrollDirection;
+		const observer = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, { threshold: 0.2 });
 
-	// 	if (nextSection < 0) nextSection = 0;
-	// 	if (nextSection >= sections.length) nextSection = sections.length - 1;
+		sections.forEach(section => {
+			observer.observe(section);
+		});
 
-	// 	isScrolling = true;
-
-	// 	window.scrollTo({
-	// 		top: nextSection * window.innerHeight,
-	// 		behavior: 'smooth'
-	// 	});
-
-	// 	const scrollListener = () => {
-	// 		isScrolling = false;
-	// 		window.removeEventListener('scroll', scrollListener);
-	// 	};
-
-	// 	window.addEventListener('scroll', scrollListener);
-	// });
-
-
-	document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll('.fade-in');
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-
-    });
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			if (anchor.dataset.smoothBound) return;
+			anchor.dataset.smoothBound = '1';
+			anchor.addEventListener('click', function (e) {
+				const href = this.getAttribute('href');
+				if (!href || href === '#') return;
+				const target = document.querySelector(href);
+				if (!target) return;
+				e.preventDefault();
+				target.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
+			});
+		});
+	});
 </script>
 
 <style>
