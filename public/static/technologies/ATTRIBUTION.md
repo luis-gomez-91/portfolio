@@ -48,3 +48,13 @@ Lista generada automáticamente para los iconos usados en `Skills.astro`.
 - Claude Code: BomSymbols (https://icon-icons.com/icon/celebrate-christmas-holiday-mustache-santa-clause-star/85369)
 - Sentry: CoreUI (https://icon-icons.com/icon/sentry-logo/144898)
 - Render: Simpleicons (https://icon-icons.com/icon/render-logo/248664)
+- SvelteKit: Simple Icons (https://simpleicons.org/?q=svelte) — CC0-1.0
+- Docker: Simple Icons (https://simpleicons.org/?q=docker) — CC0-1.0
+- Dockploy: basado en el icono de Docker (Simple Icons) — CC0-1.0
+- Redis: Simple Icons (https://simpleicons.org/?q=redis) — CC0-1.0
+- GitHub Actions: Simple Icons (https://simpleicons.org/?q=githubactions) — CC0-1.0
+- Expo: Simple Icons (https://simpleicons.org/?q=expo) — CC0-1.0
+- React Native: Simple Icons / React (https://simpleicons.org/?q=react) — CC0-1.0
+- Paddle: Simple Icons (https://simpleicons.org/?q=paddle) — CC0-1.0
+- VTEX IO: Simple Icons (https://simpleicons.org/?q=vtex) — CC0-1.0
+- Pasarelas de pago: icono genérico (tarjeta) — uso interno del portafolio
