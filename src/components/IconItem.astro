@@ -8,12 +8,13 @@ const { href, clase } = Astro.props
 ---
 
 <a 
-    href=`${href}`
+    href={href}
     target="_blank"
+    rel="noopener noreferrer"
     class="
-        hover:text-secondary-light dark:hover:text-secondary-dark
+        hover:text-primary-light dark:hover:text-primary-dark
         focus:animate-jump
         transition-colors duration-300 ease-linear" 
 >
-    <span class=`${clase} text-4xl`></span>
+    <span class={`${clase} text-3xl md:text-[2rem]`}></span>
 </a>

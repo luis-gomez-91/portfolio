@@ -11,11 +11,10 @@ const { html, href, dataNav } = Astro.props;
 <a 
     href={href}
     data-nav={dataNav ?? undefined}
-    class="nav-link px-3 py-1 rounded-full text-sm font-medium
+    class="nav-link relative px-2.5 py-1.5 text-sm font-medium
         text-outline-light dark:text-outline-dark 
         hover:text-onSurface-light dark:hover:text-onSurface-dark
-        hover:bg-secondaryContainer-light dark:hover:bg-secondaryContainer-dark
-        transition-colors duration-300 ease-linear"
+        transition-colors duration-200 ease-out"
 >
     {html}
 </a>

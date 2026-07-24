@@ -1,6 +1,9 @@
 ---
 import '../../public/icomoon/style.css'
 import Title from './Title.astro'
+import { getCollection } from 'astro:content'
+
+const projectCount = (await getCollection('projects')).length
 ---
 
 <section
@@ -9,64 +12,78 @@ import Title from './Title.astro'
     <div class="w-full max-w-5xl flex flex-col gap-8 md:gap-10">
         <Title label="Acerca de mí" dev={true} />
 
-        <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center lg:items-start">
-            <div class="shrink-0 overflow-hidden rounded-2xl w-36 sm:w-48 lg:w-[280px] aspect-square shadow-sm">
-                <img
-                    src="./static/foto3.jpeg"
-                    alt="Foto de perfil de Luis Gómez"
-                    width="300"
-                    height="300"
-                    loading="lazy"
-                    decoding="async"
-                    class="w-full h-full object-cover"
-                />
-            </div>
-
-            <div class="flex flex-col gap-5 md:gap-6 w-full min-w-0">
-                <div class="grid grid-cols-2 gap-3 md:gap-4">
-                    <div
-                        class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3
-                               text-center sm:text-left items-center
-                               p-3.5 sm:p-5 rounded-2xl
-                               bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                               border border-outline-light/20 dark:border-outline-dark/30">
-                        <span class="icon-database text-xl sm:text-2xl text-secondary-light dark:text-secondary-dark shrink-0" aria-hidden="true"></span>
-                        <div class="min-w-0">
-                            <h3 class="text-sm sm:text-base font-semibold text-onSurface-light dark:text-onSurface-dark">
-                                Experiencia
-                            </h3>
-                            <p class="text-sm font-medium text-onSurface-light dark:text-onSurface-dark">+8 años</p>
-                            <p class="text-[11px] sm:text-xs text-outline-light dark:text-outline-dark leading-snug">
-                                Full‑Stack
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3
-                               text-center sm:text-left items-center
-                               p-3.5 sm:p-5 rounded-2xl
-                               bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                               border border-outline-light/20 dark:border-outline-dark/30">
-                        <span class="icon-books text-xl sm:text-2xl text-secondary-light dark:text-secondary-dark shrink-0" aria-hidden="true"></span>
-                        <div class="min-w-0">
-                            <h3 class="text-sm sm:text-base font-semibold text-onSurface-light dark:text-onSurface-dark">
-                                Educación
-                            </h3>
-                            <p class="text-sm font-medium text-onSurface-light dark:text-onSurface-dark">Ing. Sistemas</p>
-                            <p class="text-[11px] sm:text-xs text-outline-light dark:text-outline-dark leading-snug">
-                                UPS · 2019
-                            </p>
-                        </div>
+        <div class="flex flex-col gap-5 md:gap-6 w-full">
+            <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3
+                           text-center sm:text-left items-center
+                           p-3 sm:p-5 rounded-2xl
+                           bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                           border border-outline-light/20 dark:border-outline-dark/30">
+                    <span class="icon-database text-xl sm:text-2xl text-secondary-light dark:text-secondary-dark shrink-0" aria-hidden="true"></span>
+                    <div class="min-w-0">
+                        <h3 class="text-sm sm:text-base font-semibold text-onSurface-light dark:text-onSurface-dark">
+                            Experiencia
+                        </h3>
+                        <p class="text-sm font-medium text-onSurface-light dark:text-onSurface-dark">+8 años</p>
+                        <p class="text-[11px] sm:text-xs text-outline-light dark:text-outline-dark leading-snug">
+                            Full‑Stack
+                        </p>
                     </div>
                 </div>
-
-                <p class="text-sm md:text-base leading-relaxed text-onSurface-light dark:text-onSurface-dark text-center lg:text-left px-1">
-                    Autodidacta y proactivo: he trabajado en productos web, APIs y apps móviles,
-                    tanto en equipo como de forma independiente. Me enfoco en código mantenible,
-                    entregas claras y soluciones que resuelven un problema real.
-                    Fuera del trabajo disfruto la fotografía, el básquet y la carpintería.
-                </p>
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3
+                           text-center sm:text-left items-center
+                           p-3 sm:p-5 rounded-2xl
+                           bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                           border border-outline-light/20 dark:border-outline-dark/30">
+                    <span class="icon-stack text-xl sm:text-2xl text-secondary-light dark:text-secondary-dark shrink-0" aria-hidden="true"></span>
+                    <div class="min-w-0">
+                        <h3 class="text-sm sm:text-base font-semibold text-onSurface-light dark:text-onSurface-dark">
+                            Proyectos
+                        </h3>
+                        <p class="text-sm font-medium text-onSurface-light dark:text-onSurface-dark">+{projectCount}</p>
+                        <p class="text-[11px] sm:text-xs text-outline-light dark:text-outline-dark leading-snug">
+                            Web · Móvil · IA
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3
+                           text-center sm:text-left items-center
+                           p-3 sm:p-5 rounded-2xl
+                           bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                           border border-outline-light/20 dark:border-outline-dark/30">
+                    <span class="icon-books text-xl sm:text-2xl text-secondary-light dark:text-secondary-dark shrink-0" aria-hidden="true"></span>
+                    <div class="min-w-0">
+                        <h3 class="text-sm sm:text-base font-semibold text-onSurface-light dark:text-onSurface-dark">
+                            Educación
+                        </h3>
+                        <p class="text-sm font-medium text-onSurface-light dark:text-onSurface-dark">Ing. Sistemas</p>
+                        <p class="text-[11px] sm:text-xs text-outline-light dark:text-outline-dark leading-snug">
+                            UPS · 2019
+                        </p>
+                    </div>
+                </div>
             </div>
+
+                <div class="flex flex-col gap-4 text-sm md:text-base leading-relaxed text-onSurface-light dark:text-onSurface-dark text-center lg:text-left px-1">
+                    <p>
+                        Diseño y construyo productos de punta a punta: APIs, dashboards y apps móviles
+                        en producción. En retail participé en Retail Suite, un sistema multi‑tenant
+                        con integraciones a SAP, VTEX, marcaciones y vacantes, y trabajé con VTEX IO.
+                        También colaboré en Vipper, una plataforma tipo Uber Eats con React Native,
+                        NestJS y SvelteKit; desarrollé chatbots con IA para la Universidad Bolivariana
+                        del Ecuador (UBE); y apps multiplataforma con Kotlin Multiplatform para el
+                        ITB — Nóminas y el sistema académico SGA.
+                    </p>
+                    <p>
+                        En paralelo construyo productos propios: los SaaS Snappli y Linkeate, y apps
+                        como MarkNotes y el Simulador ANT. Me importa el código claro, el despliegue
+                        estable y que cada pieza resuelva un problema concreto. Fuera del teclado,
+                        fotografía, básquet y carpintería.
+                    </p>
+                </div>
         </div>
     </div>
 </section>

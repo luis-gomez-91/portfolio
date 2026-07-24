@@ -1,72 +1,246 @@
 ---
 import '../../public/icomoon/style.css'
 import IconItem from './IconItem.astro'
+
+const heroTechs = [
+	{ name: 'Python', file: 'Python.svg' },
+	{ name: 'Django', file: 'Django.svg' },
+	{ name: 'Flask', file: 'Flask.svg' },
+	{ name: 'FastAPI', file: 'FastApi.svg' },
+	{ name: 'React', file: 'React.svg' },
+	{ name: 'Next.js', file: 'NextJS.svg' },
+	{ name: 'Svelte', file: 'Svelte.svg' },
+	{ name: 'NestJS', file: 'NestJS.svg' },
+	{ name: 'SvelteKit', file: 'SvelteKit.svg' },
+	{ name: 'PostgreSQL', file: 'PostgreSQL.svg' },
+	{ name: 'Redis', file: 'Redis.svg' },
+	{ name: 'TypeScript', file: 'TypeScript.svg' },
+	{ name: 'JavaScript', file: 'JavaScript.svg' },
+	{ name: 'Kotlin', file: 'Kotlin.svg' },
+	{ name: 'Docker', file: 'Docker.svg' },
+	{ name: 'Astro', file: 'Astro.svg' },
+	{ name: 'Tailwind', file: 'Tailwind.svg' },
+]
 ---
 
-<section class="seccion min-h-screen w-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 md:px-9 pt-28 pb-16">
-    <div class="flex justify-center order-2 lg:order-1">
-        <img
-            src="./static/nerd.webp"
-            alt="Foto de Luis Gómez"
-            width="360"
-            height="360"
-            fetchpriority="high"
-            class="max-w-full w-[260px] sm:w-[300px] lg:w-[360px] h-auto text-center rounded-full shadow-3xl">
-    </div>
-    <div class="text-center flex flex-col gap-4 max-w-xl order-1 lg:order-2">
-        <p class="text-sm font-medium tracking-wide text-secondary-light dark:text-secondary-dark">
-            Full‑Stack · APIs · Mobile
-        </p>
-        <h1 class="text-3xl md:text-4xl lg:text-[2.75rem] text-tertiary-light dark:text-tertiary-dark font-suse font-bold">
-            Luis Gómez Veloz
-        </h1>
-        <p class="text-lg lg:text-xl text-onSurface-light dark:text-onSurface-dark">
-            Productos web y móviles, listos para producción
-        </p>
-        <p class="text-sm md:text-base text-outline-light dark:text-outline-dark">
-            Ingeniero de Sistemas con experiencia profesional, freelance y proyectos propios.
-            Django, Laravel, Astro, Kotlin y APIs bien estructuradas que aportan valor real.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-2">
-            <a
-                href="#projects"
-                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full
-                    text-secondaryContainer-light dark:text-secondaryContainer-dark
-                    bg-secondary-light dark:bg-secondary-dark
-                    hover:bg-secondary-light/90 dark:hover:bg-secondary-dark/90
-                    transition-all duration-200 ease-out
-                    hover:scale-[1.03] active:scale-[0.98]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12v9" /><path d="M12 12l-8 -4.5" /></svg>
-                <span>Ver proyectos</span>
-            </a>
-            <a
-                href="#contacts"
-                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full
-                    text-secondary-light dark:text-secondary-dark
-                    bg-transparent border-2 border-secondary-light dark:border-secondary-dark
-                    hover:bg-secondary-light dark:hover:bg-secondary-dark
-                    hover:text-secondaryContainer-light dark:hover:text-secondaryContainer-dark
-                    transition-all duration-200 ease-out
-                    hover:scale-[1.03] active:scale-[0.98]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2" /><path d="M10 16h6" /><path d="M11 11a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 8h3" /><path d="M4 12h3" /><path d="M4 16h3" /></svg>
-                <span>Contactar</span>
-            </a>
-            <a
-                href="/static/cv.pdf"
-                download="Luis-Gomez-CV.pdf"
-                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full
-                    text-outline-light dark:text-outline-dark
-                    hover:text-onSurface-light dark:hover:text-onSurface-dark
-                    hover:bg-surfaceContainer-light/70 dark:hover:bg-surfaceContainer-dark/50
-                    transition-all duration-200 ease-out
-                    text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /><path d="M12 17v-6" /><path d="M9.5 14.5l2.5 2.5l2.5 -2.5" /></svg>
-                <span>CV</span>
-            </a>
-        </div>
-        <div class="flex gap-6 w-full justify-center mt-2">
-            <IconItem href='https://github.com/luis-gomez-91' clase='icon-github' />
-            <IconItem href='https://www.linkedin.com/in/luisgomez1991/' clase='icon-linkedin' />
-        </div>
-    </div>
+<section class="hero relative w-full min-h-[100svh] flex items-center overflow-hidden">
+	<div id="hero-techs" class="hero-techs absolute inset-0 z-0 pointer-events-none select-none" aria-hidden="true">
+		{
+			heroTechs.map((tech) => (
+				<span class="hero-tech" data-tech={tech.name}>
+					<img
+						src={`/static/technologies/${tech.file}`}
+						alt=""
+						width="48"
+						height="48"
+						decoding="async"
+						loading="eager"
+					/>
+				</span>
+			))
+		}
+	</div>
+
+	<div class="hero-layout relative z-10 w-full max-w-3xl mx-auto px-6 md:px-9 pt-24 md:pt-28 pb-16 md:pb-24
+				flex flex-col items-center text-center">
+		<p class="hero-kicker text-sm font-medium tracking-[0.14em] uppercase
+				  text-primary-light dark:text-primary-dark">
+			Desarrollador Full‑Stack
+		</p>
+
+		<h1 class="hero-name font-suse font-bold leading-[0.95] tracking-tight
+				   text-onSurface-light dark:text-onSurface-dark
+				   text-[clamp(2.75rem,10vw,5.5rem)] mt-3">
+			Luis Gómez
+		</h1>
+
+		<p class="hero-headline font-suse font-semibold text-lg md:text-xl
+				  text-tertiary-light dark:text-tertiary-dark max-w-md leading-snug mt-4">
+			Productos web y móviles, listos para producción
+		</p>
+
+		<p class="hero-sub text-sm md:text-lg text-outline-light dark:text-outline-dark max-w-lg
+				  leading-relaxed mt-4">
+			Diseño y construyo APIs, dashboards y apps con foco en claridad, rendimiento y valor real.
+		</p>
+
+		<div class="hero-cta flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto justify-center mt-8">
+			<a
+				href="#projects"
+				class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full
+					   text-white dark:text-[#0c1a33]
+					   bg-primary-light dark:bg-primary-dark
+					   hover:brightness-110
+					   transition-all duration-200 ease-out
+					   hover:scale-[1.03] active:scale-[0.98]
+					   shadow-md shadow-primary-light/25 dark:shadow-primary-dark/20">
+				<span>Ver proyectos</span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6l-6 6"/></svg>
+			</a>
+			<a
+				href="#contacts"
+				class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full
+					   text-primary-light dark:text-primary-dark
+					   bg-transparent border-2 border-primary-light/50 dark:border-primary-dark/50
+					   hover:bg-primary-light/10 dark:hover:bg-primary-dark/10
+					   hover:border-primary-light dark:hover:border-primary-dark
+					   transition-all duration-200 ease-out
+					   hover:scale-[1.03] active:scale-[0.98]">
+				Contactar
+			</a>
+		</div>
+
+		<div class="hero-meta flex flex-wrap items-center justify-center gap-x-5 gap-y-3 mt-8">
+			<a
+				href="/static/cv.pdf"
+				download="Luis-Gomez-CV.pdf"
+				class="text-sm text-outline-light dark:text-outline-dark
+					   hover:text-onSurface-light dark:hover:text-onSurface-dark
+					   underline underline-offset-4 decoration-outline-light/40 dark:decoration-outline-dark/40
+					   hover:decoration-onSurface-light dark:hover:decoration-onSurface-dark
+					   transition-colors duration-200">
+				Descargar CV
+			</a>
+			<div class="flex gap-5">
+				<IconItem href="https://github.com/luis-gomez-91" clase="icon-github" />
+				<IconItem href="https://www.linkedin.com/in/luisgomez1991/" clase="icon-linkedin" />
+			</div>
+		</div>
+	</div>
 </section>
+
+<script>
+	function initHeroTechs() {
+		const container = document.getElementById('hero-techs');
+		if (!container || container.dataset.bound === '1') return;
+		container.dataset.bound = '1';
+
+		const icons = Array.from(container.querySelectorAll('.hero-tech'));
+		if (!icons.length) return;
+
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const timers = [];
+
+		const MOVE_MS = 10000;
+		const SIZE = '2.2rem';
+		const OPACITY = '0.1';
+
+		const rand = (min, max) => min + Math.random() * (max - min);
+
+		/** Posiciones que priorizan bordes para no tapar el texto central. */
+		function randomEdgePosition() {
+			const band = Math.random();
+			if (band < 0.25) return { x: rand(2, 96), y: rand(4, 22) }; // top
+			if (band < 0.5) return { x: rand(2, 96), y: rand(78, 94) }; // bottom
+			if (band < 0.75) return { x: rand(2, 16), y: rand(18, 82) }; // left
+			return { x: rand(84, 96), y: rand(18, 82) }; // right
+		}
+
+		function place(el, animate) {
+			const { x, y } = randomEdgePosition();
+			el.style.transition = (!animate || reduceMotion)
+				? 'none'
+				: `left ${MOVE_MS}ms linear, top ${MOVE_MS}ms linear`;
+			el.style.width = SIZE;
+			el.style.height = SIZE;
+			el.style.left = `${x}%`;
+			el.style.top = `${y}%`;
+			el.style.opacity = OPACITY;
+		}
+
+		function scheduleMove(el) {
+			if (reduceMotion) return;
+			const id = window.setTimeout(() => {
+				place(el, true);
+				scheduleMove(el);
+			}, MOVE_MS);
+			timers.push(id);
+		}
+
+		icons.forEach((el) => {
+			place(el, false);
+			scheduleMove(el);
+		});
+
+		document.addEventListener(
+			'astro:before-swap',
+			() => {
+				timers.forEach((id) => clearTimeout(id));
+				container.dataset.bound = '0';
+			},
+			{ once: true }
+		);
+	}
+
+	document.addEventListener('astro:page-load', initHeroTechs);
+	initHeroTechs();
+</script>
+
+<style>
+	.hero-tech {
+		position: absolute;
+		display: block;
+		width: 2.2rem;
+		height: 2.2rem;
+		opacity: 0;
+		transform: translate(-50%, -50%);
+		will-change: left, top;
+	}
+
+	.hero-tech img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		filter: grayscale(1);
+	}
+
+	:global(html.dark) .hero-tech img {
+		filter: grayscale(1) brightness(1.65);
+	}
+
+	@media (max-width: 767px) {
+		.hero-tech {
+			width: 2.2rem;
+			height: 2.2rem;
+		}
+	}
+
+	.hero-kicker,
+	.hero-name,
+	.hero-headline,
+	.hero-sub,
+	.hero-cta,
+	.hero-meta {
+		animation: hero-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.hero-kicker { animation-delay: 0.05s; }
+	.hero-name { animation-delay: 0.12s; }
+	.hero-headline { animation-delay: 0.2s; }
+	.hero-sub { animation-delay: 0.28s; }
+	.hero-cta { animation-delay: 0.36s; }
+	.hero-meta { animation-delay: 0.44s; }
+
+	@keyframes hero-rise {
+		from {
+			opacity: 0;
+			transform: translateY(18px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-kicker,
+		.hero-name,
+		.hero-headline,
+		.hero-sub,
+		.hero-cta,
+		.hero-meta {
+			animation: none !important;
+		}
+	}
+</style>

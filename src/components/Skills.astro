@@ -38,9 +38,7 @@ import Title from './Title.astro'
             aria-label="Siguiente">
             <span class="icon-arrow-right2 text-xl"></span>
         </button>
-        <div class="hidden xl:flex w-[24rem] h-full absolute start-[-12px] top-0 z-10 bg-gradient-to-r from-[rgb(249,249,255,1)] dark:from-[rgb(17,19,24,1)] to-transparent"></div>
-        
-        <div id="scroll-container" class="w-full flex flex-row gap-5 justify-start overflow-x-auto overflow-y-hidden mt-10 scroll-smooth snap-x snap-mandatory scrollbar-hide pb-2">
+        <div id="scroll-container" class="skills-scroll w-full flex flex-row gap-5 justify-start overflow-x-auto overflow-y-hidden mt-10 scroll-smooth snap-x snap-mandatory scrollbar-hide pb-2">
             <div class="hidden xl:flex min-w-[12rem] max-w-[28rem] min-h-[20rem]"></div>
             <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
                        bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
@@ -163,7 +161,6 @@ import Title from './Title.astro'
 
             <div class="hidden xl:flex min-w-[12rem] max-w-[28rem] min-h-[22rem]"></div>
         </div>
-        <div class="hidden xl:flex w-[24rem] h-full absolute end-[0] top-0 z-100 bg-gradient-to-l from-[rgb(249,249,255,1)] dark:from-[rgb(17,19,24,1)] to-transparent"></div>
     </div>
 </section>
 
@@ -175,6 +172,26 @@ import Title from './Title.astro'
 
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
+}
+
+/* Fade en los bordes sin hardcodear el color del fondo */
+@media (min-width: 1280px) {
+    .skills-scroll {
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            #000 8%,
+            #000 92%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            #000 8%,
+            #000 92%,
+            transparent 100%
+        );
+    }
 }
 </style>
 

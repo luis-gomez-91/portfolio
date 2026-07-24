@@ -152,15 +152,61 @@ const mobileLinks = [
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function updateNavActive() {
+        const path = window.location.pathname;
+        const hash = window.location.hash || '';
+        let active = 'inicio';
+
+        if (path !== '/' && path !== '') {
+            active = 'projects';
+        } else if (hash === '#about-me') {
+            active = 'about';
+        } else if (hash === '#skills' || hash === '#soft-skills') {
+            active = 'skills';
+        } else if (hash === '#contacts') {
+            active = 'contacts';
+        } else if (hash === '#projects') {
+            active = 'projects';
+        }
+
+        document.querySelectorAll('.nav-link').forEach((link) => {
+            const isActive = link.getAttribute('data-nav') === active;
+            link.classList.toggle('nav-active', isActive);
+        });
+    }
+
+    function setNavActiveByKey(key) {
+        if (!key) return;
+        document.querySelectorAll('.nav-link').forEach((link) => {
+            link.classList.toggle('nav-active', link.getAttribute('data-nav') === key);
+        });
+    }
+
+    // Feedback inmediato al clic (View Transitions / smooth-scroll no siempre actualizan a tiempo)
+    document.addEventListener('click', (e) => {
+        const el = e.target instanceof Element ? e.target : null;
+        const link = el?.closest('.nav-link');
+        if (!link) return;
+        setNavActiveByKey(link.getAttribute('data-nav'));
+    });
+
+    // Con View Transitions hay que re-sincronizar en cada navegación, no solo en DOMContentLoaded
+    document.addEventListener('astro:page-load', updateNavActive);
+    document.addEventListener('astro:after-swap', updateNavActive);
+    window.addEventListener('hashchange', updateNavActive);
+    window.addEventListener('popstate', updateNavActive);
+
+    document.addEventListener('astro:page-load', () => {
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const backdrop = document.getElementById('menu-backdrop');
 
+        if (menuToggle?.dataset.navBound === '1') return;
+        if (menuToggle) menuToggle.dataset.navBound = '1';
+
         function openMenu() {
             if (!mobileMenu || !menuToggle) return;
             mobileMenu.hidden = false;
-            // Force reflow so transition runs
             void mobileMenu.offsetWidth;
             mobileMenu.classList.add('is-open');
             mobileMenu.setAttribute('aria-hidden', 'false');
@@ -186,7 +232,6 @@ const mobileLinks = [
                 panel?.removeEventListener('transitionend', onEnd);
             };
             panel?.addEventListener('transitionend', onEnd);
-            // Fallback if transitionend doesn't fire
             setTimeout(() => {
                 if (!mobileMenu.classList.contains('is-open')) {
                     mobileMenu.hidden = true;
@@ -215,59 +260,17 @@ const mobileLinks = [
             if (e.key === 'Escape') closeMenu();
         });
 
-        // Efecto al hacer scroll: navbar más pegada al top y ligeramente más compacta
         const nav = document.querySelector('.site-nav');
         const shell = document.querySelector('.nav-shell');
 
         const handleScroll = () => {
             const scrolled = window.scrollY > 8;
-
-            if (shell) {
-                if (scrolled) {
-                    shell.classList.add('nav-scrolled');
-                } else {
-                    shell.classList.remove('nav-scrolled');
-                }
-            }
-
-            if (nav) {
-                if (scrolled) {
-                    nav.classList.add('site-nav-scrolled');
-                } else {
-                    nav.classList.remove('site-nav-scrolled');
-                }
-            }
+            shell?.classList.toggle('nav-scrolled', scrolled);
+            nav?.classList.toggle('site-nav-scrolled', scrolled);
         };
 
         handleScroll();
         window.addEventListener('scroll', handleScroll, { passive: true });
-
-        function updateNavActive() {
-            const path = window.location.pathname;
-            const hash = window.location.hash || '';
-            let active = 'inicio';
-
-            if (path !== '/' && path !== '') {
-                active = 'projects';
-            } else if (hash === '#about-me') {
-                active = 'about';
-            } else if (hash === '#skills' || hash === '#soft-skills') {
-                active = 'skills';
-            } else if (hash === '#contacts') {
-                active = 'contacts';
-            } else if (hash === '#projects') {
-                active = 'projects';
-            }
-
-            document.querySelectorAll('.nav-link').forEach((link) => {
-                const isActive = link.getAttribute('data-nav') === active;
-                link.classList.toggle('nav-active', isActive);
-            });
-        }
-
-        updateNavActive();
-        window.addEventListener('hashchange', updateNavActive);
-        window.addEventListener('popstate', updateNavActive);
     });
 </script>
 
@@ -335,7 +338,7 @@ const mobileLinks = [
         padding: 0;
         margin: 0;
         cursor: pointer;
-        background: rgba(17, 19, 24, 0.45);
+        background: rgba(26, 29, 36, 0.45);
         backdrop-filter: blur(4px);
         opacity: 0;
         transition: opacity 0.3s ease;
@@ -375,12 +378,12 @@ const mobileLinks = [
         background:
             linear-gradient(
                 165deg,
-                rgba(17, 19, 24, 0.98) 0%,
-                rgba(20, 22, 28, 0.98) 55%,
-                rgba(24, 26, 34, 0.98) 100%
+                rgba(26, 29, 36, 0.98) 0%,
+                rgba(30, 33, 41, 0.98) 55%,
+                rgba(34, 38, 46, 0.98) 100%
             );
         border-bottom-color: rgba(142, 144, 153, 0.2);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
     }
 
     .mobile-menu.is-open .mobile-panel {
@@ -522,18 +525,33 @@ const mobileLinks = [
     }
 
     :global(html.dark) .nav-shell.nav-scrolled {
-        background-color: rgba(17, 19, 24, 0.98);
+        background-color: rgba(26, 29, 36, 0.98);
         border-color: rgba(142, 144, 153, 0.4);
-        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
     }
 
-    :global(.nav-link.nav-active) {
-        background-color: rgba(218, 226, 249, 0.5);
+    /* Desktop: activo con peso + subrayado, sin pastilla tipo select */
+    :global(#nav-links .nav-link.nav-active) {
         color: #191c20;
+        font-weight: 600;
     }
 
-    :global(html.dark .nav-link.nav-active) {
-        background-color: rgba(62, 71, 89, 0.6);
+    :global(html.dark #nav-links .nav-link.nav-active) {
         color: #e2e2e9;
+    }
+
+    :global(#nav-links .nav-link.nav-active)::after {
+        content: '';
+        position: absolute;
+        left: 0.55rem;
+        right: 0.55rem;
+        bottom: 0.15rem;
+        height: 1.5px;
+        border-radius: 1px;
+        background-color: #415f91;
+    }
+
+    :global(html.dark #nav-links .nav-link.nav-active)::after {
+        background-color: #aac7ff;
     }
 </style>

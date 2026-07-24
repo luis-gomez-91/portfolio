@@ -43,11 +43,11 @@ export default {
 				},
 				surface: {
 					light: '#f9f9ff',
-					dark: '#111318',
+					dark: '#1a1d24',
 				},
 				surfaceContainer: {
 					light: '#ededf4',
-					dark: '#1d2024',
+					dark: '#282c35',
 				},
 				onSurface: {
 					light: '#191c20',
