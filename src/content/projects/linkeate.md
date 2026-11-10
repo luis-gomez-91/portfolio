@@ -19,6 +19,7 @@ technologies: [
   "VPS",
   "Dockploy",
 ]
+kind: "propio"
 areas: ["fullstack", "ia"]
 featured: true
 order: 2

@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components'
 import Theme from './Theme.astro';
 import NavItem from './NavItem.astro';
 
@@ -7,36 +8,31 @@ const mobileLinks = [
         href: '/',
         label: 'Inicio',
         dataNav: 'inicio',
-        // Phosphor House
-        icon: 'M218.83,103.77l-80-75.48a1.14,1.14,0,0,0-.11-.11,16,16,0,0,0-21.53,0l-.11.11L37.17,103.77A16,16,0,0,0,32,115.55V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V160h32v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V115.55A16,16,0,0,0,218.83,103.77ZM208,208H160V160a16,16,0,0,0-16-16H112a16,16,0,0,0-16,16v48H48V115.55l.11-.1L128,40l79.9,75.43.11.1Z',
+                icon: 'ph:house',
     },
     {
         href: '/projects',
         label: 'Proyectos',
         dataNav: 'projects',
-        // Phosphor SquaresFour
-        icon: 'M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z',
+                icon: 'ph:squares-four',
     },
     {
         href: '/#about-me',
         label: 'Acerca de mí',
         dataNav: 'about',
-        // Phosphor User
-        icon: 'M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z',
+                icon: 'ph:user',
     },
     {
         href: '/#skills',
         label: 'Habilidades',
         dataNav: 'skills',
-        // Phosphor Lightning
-        icon: 'M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.23,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z',
+                icon: 'ph:lightning',
     },
     {
         href: '#contacts',
         label: 'Contactos',
         dataNav: 'contacts',
-        // Phosphor EnvelopeSimple
-        icon: 'M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-8,144H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z',
+                icon: 'ph:envelope-simple',
     },
 ];
 ---
@@ -50,19 +46,20 @@ const mobileLinks = [
 
         <!-- Marca -->
         <a href="/" class="flex items-center gap-3 relative z-[60]">
-            <div
-                class="flex h-10 w-10 items-center justify-center rounded-full
-                       bg-secondaryContainer-light dark:bg-secondaryContainer-dark
-                       text-secondary-light dark:text-secondary-dark font-semibold text-base"
-                aria-hidden="true">
-                LG
-            </div>
+            <img
+                src="/static/luis-gomez.webp"
+                alt=""
+                width="40"
+                height="40"
+                decoding="async"
+                class="h-10 w-10 shrink-0 rounded-full object-cover
+                       ring-2 ring-primary-light/25 dark:ring-primary-dark/30" />
             <div class="hidden sm:flex flex-col leading-tight">
                 <span class="text-sm font-semibold text-onSurface-light dark:text-onSurface-dark">
                     Luis Gómez
                 </span>
                 <span class="text-xs text-outline-light dark:text-outline-dark">
-                    Desarrollador Full‑Stack
+                    Full‑Stack &amp; AI Engineer
                 </span>
             </div>
         </a>
@@ -133,15 +130,11 @@ const mobileLinks = [
                             data-nav={link.dataNav}
                             class="nav-link mobile-link">
                             <span class="mobile-link-icon" aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" width="20" height="20">
-                                    <path d={link.icon}></path>
-                                </svg>
+                                <Icon name={link.icon} width="20" height="20" />
                             </span>
                             <span class="mobile-link-label">{link.label}</span>
                             <span class="mobile-link-chevron" aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
-                                    <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
-                                </svg>
+                                <Icon name="ph:caret-right" width="16" height="16" />
                             </span>
                         </a>
                     </li>

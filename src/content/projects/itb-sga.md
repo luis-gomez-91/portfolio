@@ -10,12 +10,12 @@ technologies: [
   "Kotlin Multiplatform", 
   "Jetpack Compose", 
   "Material3", 
-  "Android Studio (IDE)", 
   "Ktor (Client HTTP)", 
   "Koin (Inyección de dependencias)",
   "Play Console (Despliegue)",
   "Xcode (Despliegue)",
 ]
+kind: "laboral"
 areas: ["mobile"]
 images: [
 ]

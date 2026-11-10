@@ -1,4 +1,5 @@
 ---
+product: "ube"
 title: "API REST + IA - UBE Assistant"
 description: "
   Asistente virtual inteligente diseñado para la Universidad Bolivariana del Ecuador (UBE), construido para optimizar el proceso de matrícula y brindar información detallada a estudiantes y prospectos. El chatbot utiliza modelos de lenguaje avanzados y herramientas específicas para responder a consultas sobre carreras, mallas curriculares, precios, cupos disponibles y procesos de admisión.
@@ -9,13 +10,14 @@ technologies: [
   "Langchain", 
   "Django Rest Framework", 
   "JWT", 
-  "Pycharm",
   "Supabase",
   "OAuth",
   "python-dotenv",
   "Swagger",
   "Redoc"
 ]
+part: "Backend + IA"
+kind: "laboral"
 areas: ["backend", "ia"]
 images: [
   "/static/projects/ube-assistant/1.webp", 

@@ -1,4 +1,5 @@
 ---
+product: "ant-simulator"
 title: "Simulador ANT Ecuador"
 description: "
     Ant Simulator es una aplicación móvil multiplataforma, desarrollada con Kotlin Multiplatform (KMM) y Compose Multiplatform, diseñada para ayudar a los usuarios a prepararse para los exámenes teóricos de diferentes tipos de licencias de conducir.
@@ -10,12 +11,13 @@ technologies: [
     "Kotlin Multiplatform", 
     "Jetpack Compose", 
     "Material3", 
-    "Android Studio (IDE)", 
     "Ktor (Client HTTP)", 
     "Koin (Inyección de dependencias)",
     "Play Console (Despliegue)",
     "Xcode (Despliegue)",
 ]
+part: "App"
+kind: "propio"
 areas: ["mobile"]
 images: [
 ]

@@ -1,4 +1,5 @@
 ---
+product: "ant-simulator"
 title: "API REST – Banco de Preguntas ANT Ecuador"
 description: "
     Desarrollo de un backend con API REST para la gestión de preguntas y respuestas oficiales de la Agencia Nacional de Tránsito (ANT) del Ecuador, orientado a la práctica para el examen teórico de conducción.
@@ -14,9 +15,11 @@ technologies: [
     "python-dotenv (Gestión de variables de entorno)", 
     "Railway (Despliegue)"
 ]
+part: "Backend"
+kind: "propio"
 areas: ["backend"]
 featured: true
-order: 4
+order: 8
 images: [
     "/static/projects/ant-backend/1.webp", 
     "/static/projects/ant-backend/2.webp", 

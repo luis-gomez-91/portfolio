@@ -1,9 +1,12 @@
 ---
+product: "arrechoteca"
 title: "Web/Admin - La Caleta del Verbo"
 description: "
     Palabras, expresiones y el sabor costeño de Guayaquil. Significados, ejemplos de uso y la caleta del palabreo que nos define.
 "
-technologies: ["Astro", "TailwindCSS", "JavaScript", "Html", "CSS", "Cursor", "Vercel (Despliegue)"]
+technologies: ["Astro", "TailwindCSS", "JavaScript", "Html", "CSS", "Vercel (Despliegue)"]
+part: "Web / Admin"
+kind: "freelance"
 areas: ["frontend", "admin"]
 images: [
     "/static/projects/arrechoteca-web/1.webp", 

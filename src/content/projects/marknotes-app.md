@@ -1,4 +1,5 @@
 ---
+product: "marknotes"
 title: "MarkNotes"
 description: "
     
@@ -8,11 +9,12 @@ technologies: [
     "Kotlin Multiplatform", 
     "Jetpack Compose", 
     "Material3", 
-    "Android Studio (IDE)", 
     "Ktor (Client HTTP)", 
     "Koin (Inyección de dependencias)",
     "React (Renderizado de Marknotes en tiempo real)"
 ]
+part: "App"
+kind: "propio"
 areas: ["mobile"]
 featured: false
 images: [

@@ -1,11 +1,12 @@
 ---
-title: "Landing - Inti Fotografía"
+title: "Inti Fotografía"
 description: "
   Sitio web para un estudio de fotografía en Guayaquil, Ecuador. Presenta servicios de bodas, retratos y eventos con un estilo visual natural y atemporal. Incluye planes de precios, galería filtrable y canales de contacto listos para conversión.
 
   Desarrollé una landing estática con Astro y Tailwind CSS, contenido gestionado con Content Collections (Markdown) y despliegue en Vercel. La galería usa un grid tipo masonry con filtros por categoría y lightbox; el hero destaca fotos seleccionadas en un carrusel.
 "
-technologies: ["Astro", "TailwindCSS", "Markdown", "Html", "CSS", "Visual Studio Code", "Vercel (Despliegue)"]
+technologies: ["Astro", "TailwindCSS", "Markdown", "Html", "CSS", "Vercel (Despliegue)"]
+kind: "freelance"
 areas: ["frontend", "landing"]
 images: [
   "/static/projects/inti-fotografia/1.webp",

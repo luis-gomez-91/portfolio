@@ -1,121 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Title from '../components/Title.astro';
 import ProjectItem from '../components/ProjectItem.astro';
+import { FILTERS, LEGACY_FILTERS, getProjectGroups, groupFilters } from '../lib/projects';
 
-import { getCollection } from 'astro:content';
+const groups = await getProjectGroups();
+const cards = groups.map((group) => ({ group, filters: groupFilters(group) }));
 
-const projects = (await getCollection('projects')).sort((a, b) => {
-	if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-	const orderA = a.data.order ?? Number.MAX_SAFE_INTEGER;
-	const orderB = b.data.order ?? Number.MAX_SAFE_INTEGER;
-	if (orderA !== orderB) return orderA - orderB;
-	return a.data.title.localeCompare(b.data.title, 'es');
-});
+// Solo se muestran filtros con al menos un proyecto.
+const tabs = [
+	{ id: 'all', label: 'Todos', count: groups.length },
+	...FILTERS.map((f) => ({ id: f.id, label: f.label, count: cards.filter((c) => c.filters.includes(f.id)).length })),
+].filter((t) => t.count > 0);
+
+const filterConfig = { valid: tabs.map((t) => t.id), legacy: LEGACY_FILTERS };
 ---
 
 <Layout title="Luis Gómez - Proyectos">
 	<main class="flex flex-col items-center w-full px-6 md:px-9 pt-28 pb-20">
 		<section class="w-full max-w-6xl flex flex-col items-center gap-8">
-			<Title label="Proyectos" dev={true} />
+			<h1 class="sr-only">Proyectos</h1>
 
 			<div
 				class="filter-tabs w-full flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2
 				       overflow-x-auto overscroll-x-contain touch-pan-x
 				       -mx-6 px-6 md:mx-0 md:px-0"
-				role="tablist"
-				aria-label="Filtrar proyectos">
-				<button
-					class="filter-tab filter-tab-active shrink-0 px-4 py-2 rounded-full text-sm font-medium
-					       text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-					       hover:text-onSurface-light hover:dark:text-onSurface-dark
-					       hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-					       transition-colors duration-200 cursor-pointer"
-					data-filter="all"
-					role="tab"
-					aria-selected="true">
-					Todos
-				</button>
-				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
-				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-				             hover:text-onSurface-light hover:dark:text-onSurface-dark
-				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-				             transition-colors duration-200 cursor-pointer"
-					data-filter="backend"
-					role="tab"
-					aria-selected="false">Backend</button>
-				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
-				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-				             hover:text-onSurface-light hover:dark:text-onSurface-dark
-				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-				             transition-colors duration-200 cursor-pointer"
-					data-filter="frontend"
-					role="tab"
-					aria-selected="false">Frontend</button>
-				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
-				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-				             hover:text-onSurface-light hover:dark:text-onSurface-dark
-				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-				             transition-colors duration-200 cursor-pointer"
-					data-filter="mobile"
-					role="tab"
-					aria-selected="false">Mobile</button>
-				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
-				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-				             hover:text-onSurface-light hover:dark:text-onSurface-dark
-				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-				             transition-colors duration-200 cursor-pointer"
-					data-filter="fullstack"
-					role="tab"
-					aria-selected="false">Fullstack</button>
-				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
-				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-				             hover:text-onSurface-light hover:dark:text-onSurface-dark
-				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-				             transition-colors duration-200 cursor-pointer"
-					data-filter="ia"
-					role="tab"
-					aria-selected="false">IA</button>
-				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
-				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-				             hover:text-onSurface-light hover:dark:text-onSurface-dark
-				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-				             transition-colors duration-200 cursor-pointer"
-					data-filter="landing"
-					role="tab"
-					aria-selected="false">Landing</button>
-				<button class="filter-tab shrink-0 px-4 py-2 rounded-full text-sm font-medium
-				             text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40
-				             hover:text-onSurface-light hover:dark:text-onSurface-dark
-				             hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark
-				             transition-colors duration-200 cursor-pointer"
-					data-filter="admin"
-					role="tab"
-					aria-selected="false">Admin</button>
+				role="group"
+				aria-label="Filtrar proyectos"
+				data-config={JSON.stringify(filterConfig)}>
+				{tabs.map((tab, i) => (
+					<button
+						type="button"
+						class:list={[
+							'filter-tab shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium',
+							'text-outline-light dark:text-outline-dark border border-outline-light/40 dark:border-outline-dark/40',
+							'hover:text-onSurface-light hover:dark:text-onSurface-dark',
+							'hover:bg-secondary-light/20 hover:dark:bg-secondary-dark/20 hover:border-secondary-light hover:dark:border-secondary-dark',
+							'transition-colors duration-200 cursor-pointer',
+							i === 0 && 'filter-tab-active',
+						]}
+						data-filter={tab.id}
+						aria-pressed={i === 0 ? 'true' : 'false'}>
+						<span>{tab.label}</span>
+						<span class="filter-count text-xs tabular-nums opacity-70">{tab.count}</span>
+					</button>
+				))}
 			</div>
+
+			<p id="projects-status" class="sr-only" role="status" aria-live="polite"></p>
 
 			<div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
-				{
-					projects.map((project) => {
-						const { slug, data } = project;
-						const { title, description, images, previewLink, githubLink, technologies = [], areas } = data;
-
-						return (
-							<article class="project-card" data-areas={areas ? areas.join(' ') : ''}>
-								<ProjectItem
-									slug={slug}
-									title={title}
-									description={description}
-									img={images[0]}
-									url_demo={previewLink ?? ''}
-									url_github={githubLink ?? ''}
-									technologies={technologies} />
-							</article>
-						);
-					})
-				}
+				{cards.map(({ group, filters }) => (
+					<article class="project-card" data-filters={filters.join(' ')}>
+						<ProjectItem group={group} />
+					</article>
+				))}
 			</div>
-			<p id="projects-empty" class="hidden text-center text-sm text-outline-light dark:text-outline-dark py-12" role="status">
+			<p id="projects-empty" class="hidden text-center text-sm text-outline-light dark:text-outline-dark py-12">
 				No hay proyectos en esta categoría.
 			</p>
 		</section>
@@ -125,66 +65,78 @@ const projects = (await getCollection('projects')).sort((a, b) => {
 <script>
 	document.addEventListener('astro:page-load', () => {
 		const STORAGE_KEY = 'projects-filter';
-		const VALID = new Set(['all', 'backend', 'frontend', 'mobile', 'fullstack', 'ia', 'landing', 'admin']);
+		const bar = document.querySelector<HTMLElement>('.filter-tabs');
+		if (!bar) return;
 
-		const tabs = document.querySelectorAll('.filter-tab');
-		const cards = document.querySelectorAll('.project-card');
+		const { valid, legacy } = JSON.parse(bar.dataset.config || '{}') as { valid: string[]; legacy: Record<string, string> };
+		const tabs = bar.querySelectorAll<HTMLButtonElement>('.filter-tab');
+		const cards = document.querySelectorAll<HTMLElement>('.project-card');
 		const empty = document.getElementById('projects-empty');
-		if (!tabs.length) return;
+		const status = document.getElementById('projects-status');
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-		const applyFilter = (filter) => {
-			const active = VALID.has(filter) ? filter : 'all';
+		const normalize = (f: string | null) => {
+			const id = f ? legacy[f] ?? f : 'all';
+			return valid.includes(id) ? id : 'all';
+		};
+
+		const applyFilter = (filter: string | null, animate = true) => {
+			const active = normalize(filter);
+			let label = '';
 
 			tabs.forEach((tab) => {
-				const isActive = tab.getAttribute('data-filter') === active;
+				const isActive = tab.dataset.filter === active;
 				tab.classList.toggle('filter-tab-active', isActive);
-				tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-				if (isActive && window.matchMedia('(max-width: 767px)').matches) {
-					tab.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+				tab.setAttribute('aria-pressed', String(isActive));
+				if (isActive) {
+					label = tab.querySelector('span')?.textContent ?? '';
+					if (animate && window.matchMedia('(max-width: 767px)').matches) {
+						tab.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+					}
 				}
 			});
 
 			let visible = 0;
 			cards.forEach((card) => {
-				const areas = (card.getAttribute('data-areas') || '').split(' ').filter(Boolean);
-				const show = active === 'all' || areas.includes(active);
+				const show = active === 'all' || (card.dataset.filters || '').split(' ').includes(active);
 				card.classList.toggle('hidden', !show);
-				if (show) visible++;
+				if (show) {
+					visible++;
+					if (animate && !reduceMotion) {
+						card.classList.remove('card-enter');
+						void card.offsetWidth;
+						card.style.setProperty('--enter-i', String(visible - 1));
+						card.classList.add('card-enter');
+					}
+				}
 			});
 
-			if (empty) {
-				empty.classList.toggle('hidden', visible > 0);
-			}
+			empty?.classList.toggle('hidden', visible > 0);
+			if (status) status.textContent = `${visible} proyectos en ${label}`;
 
 			try {
 				sessionStorage.setItem(STORAGE_KEY, active);
 			} catch {}
 
 			const url = new URL(window.location.href);
-			if (active === 'all') {
-				url.searchParams.delete('filter');
-			} else {
-				url.searchParams.set('filter', active);
-			}
-			history.replaceState(null, '', url);
+			if (active === 'all') url.searchParams.delete('filter');
+			else url.searchParams.set('filter', active);
+			history.replaceState(history.state, '', url);
 		};
 
 		tabs.forEach((tab) => {
 			if (tab.dataset.filterBound) return;
 			tab.dataset.filterBound = '1';
-
-			tab.addEventListener('click', () => {
-				applyFilter(tab.getAttribute('data-filter'));
-			});
+			tab.addEventListener('click', () => applyFilter(tab.dataset.filter ?? 'all'));
 		});
 
 		const fromUrl = new URLSearchParams(window.location.search).get('filter');
-		let fromStorage = null;
+		let fromStorage: string | null = null;
 		try {
 			fromStorage = sessionStorage.getItem(STORAGE_KEY);
 		} catch {}
 
-		applyFilter(fromUrl || fromStorage || 'all');
+		applyFilter(fromUrl || fromStorage, false);
 	});
 </script>
 
@@ -208,9 +160,24 @@ const projects = (await getCollection('projects')).sort((a, b) => {
 		color: #dae2f9 !important;
 		border-color: transparent !important;
 	}
-	html.dark .filter-tab-active {
+	:global(html.dark) .filter-tab-active {
 		background-color: #bec6dc !important;
 		color: #3e4759 !important;
 		border-color: transparent !important;
+	}
+
+	.card-enter {
+		animation: card-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+		animation-delay: calc(min(var(--enter-i, 0), 8) * 40ms);
+	}
+	@keyframes card-enter {
+		from {
+			opacity: 0;
+			transform: translateY(12px) scale(0.98);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
 	}
 </style>

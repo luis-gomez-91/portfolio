@@ -1,4 +1,5 @@
 ---
+product: "arrechoteca"
 title: "API REST – La Caleta del Verbo"
 description: "
     API REST desarrollada para Arrechoteca, un diccionario digital de jerga guayaca (palabras y expresiones coloquiales de la costa ecuatoriana). Permite consultar significados, ejemplos de uso y contexto cultural de cada término. Incluye autenticación para que usuarios registrados puedan comentar definiciones y acceder a contenido adicional como la sección de insultos de la jerga, manteniendo un catálogo estructurado y escalable del vocabulario costeño.
@@ -12,6 +13,8 @@ technologies: [
     "python-dotenv (Gestión de variables de entorno)", 
     "Railway (Despliegue)"
 ]
+part: "Backend"
+kind: "freelance"
 areas: ["backend"]
 images: [
     "/static/projects/arrechoteca-backend/1.webp", 

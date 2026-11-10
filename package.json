@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
+    "@iconify-json/ph": "^1.2.2",
+    "@iconify-json/simple-icons": "^1.2.101",
     "astro": "^4.3.7",
+    "astro-icon": "^1.2.0",
     "flowbite": "^2.5.1",
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
+    "simple-icons": "^16.37.0",
     "tailwindcss-animated": "^1.0.1"
   }
 }

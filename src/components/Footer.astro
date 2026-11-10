@@ -1,84 +1,164 @@
 ---
-import '../../public/icomoon/style.css'
+import { Icon } from 'astro-icon/components'
 import Title from './Title.astro'
 
 const year = new Date().getFullYear();
----
-<footer id="contacts" class="seccion w-full flex flex-col items-center px-6 md:px-9 pt-20 pb-12">
-    <div class="w-full max-w-5xl flex flex-col items-center gap-12">
-        <Title label="Contactos" dev={true} />
+const email = 'luis.gomez.veloz@gmail.com';
+const whatsapp = 'https://wa.me/593991718739?text=' + encodeURIComponent(
+    'Hola Luis, vi tu portafolio y me gustaría conversar sobre un proyecto.'
+);
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="mailto:luis.gomez.veloz@gmail.com"
-                class="flex items-center gap-4 p-5 rounded-2xl overflow-hidden
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30
-                       hover:border-secondary-light/50 hover:dark:border-secondary-dark/50
-                       hover:bg-surfaceContainer-light/70 dark:hover:bg-surfaceContainer-dark/50
-                       transition-all duration-200 ease-out group">
-                <span class="flex shrink-0 w-12 h-12 rounded-full items-center justify-center
-                             bg-secondaryContainer-light dark:bg-secondaryContainer-dark
-                             text-secondary-light dark:text-secondary-dark">
-                    <span class="icon-mail3 text-xl"></span>
-                </span>
-                <div class="min-w-0 flex-1">
-                    <span class="text-xs font-medium text-outline-light dark:text-outline-dark block">Email</span>
-                    <span class="text-sm text-onSurface-light dark:text-onSurface-dark truncate block group-hover:text-secondary-light group-hover:dark:text-secondary-dark transition-colors">
-                        luis.gomez.veloz@gmail.com
-                    </span>
-                </div>
-            </a>
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.linkedin.com/in/luisgomez1991/"
-                class="flex items-center gap-4 p-5 rounded-2xl overflow-hidden
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30
-                       hover:border-secondary-light/50 hover:dark:border-secondary-dark/50
-                       hover:bg-surfaceContainer-light/70 dark:hover:bg-surfaceContainer-dark/50
-                       transition-all duration-200 ease-out group">
-                <span class="flex shrink-0 w-12 h-12 rounded-full items-center justify-center
-                             bg-secondaryContainer-light dark:bg-secondaryContainer-dark
-                             text-secondary-light dark:text-secondary-dark">
-                    <span class="icon-linkedin text-xl"></span>
-                </span>
-                <div class="min-w-0 flex-1">
-                    <span class="text-xs font-medium text-outline-light dark:text-outline-dark block">LinkedIn</span>
-                    <span class="text-sm text-onSurface-light dark:text-onSurface-dark block group-hover:text-secondary-light group-hover:dark:text-secondary-dark transition-colors">
-                        /luisgomez1991
-                    </span>
-                </div>
-            </a>
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://wa.me/+593991718739?text=Hola%20Luis,%20he%20visto%20tu%20portafolio%20y%20me%20gustaría%20hablar%20contigo%20sobre%20una%20oportunidad%20de%20trabajo."
-                class="flex items-center gap-4 p-5 rounded-2xl overflow-hidden
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30
-                       hover:border-secondary-light/50 hover:dark:border-secondary-dark/50
-                       hover:bg-surfaceContainer-light/70 dark:hover:bg-surfaceContainer-dark/50
-                       transition-all duration-200 ease-out group">
-                <span class="flex shrink-0 w-12 h-12 rounded-full items-center justify-center
-                             bg-secondaryContainer-light dark:bg-secondaryContainer-dark
-                             text-secondary-light dark:text-secondary-dark">
-                    <span class="icon-whatsapp text-xl"></span>
-                </span>
-                <div class="min-w-0 flex-1">
-                    <span class="text-xs font-medium text-outline-light dark:text-outline-dark block">WhatsApp</span>
-                    <span class="text-sm text-onSurface-light dark:text-onSurface-dark block group-hover:text-secondary-light group-hover:dark:text-secondary-dark transition-colors">
-                        +593 99 171 8739
-                    </span>
-                </div>
-            </a>
+const links = [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/luisgomez1991/', icon: 'simple-icons:linkedin', external: true },
+    { label: 'GitHub', href: 'https://github.com/luis-gomez-91', icon: 'simple-icons:github', external: true },
+    { label: 'Descargar CV', href: '/static/Luis_Gomez_Veloz_CV.pdf', icon: 'ph:file-arrow-down', download: 'Luis-Gomez-CV.pdf' },
+];
+---
+<footer id="contacts" class="seccion w-full flex flex-col items-center px-6 md:px-9 pt-16 md:pt-24 pb-10">
+    <div class="w-full max-w-5xl flex flex-col items-center gap-10">
+        <Title label="Contacto" subtitle="Hablemos de tu proyecto." />
+
+        <div class="w-full max-w-3xl flex flex-col items-center gap-6 text-center p-8 md:p-12 rounded-3xl
+                    bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                    border border-outline-light/20 dark:border-outline-dark/30">
+            <p class="inline-flex items-center gap-2 text-xs font-medium text-onSurface-light dark:text-onSurface-dark">
+                <span class="contact-dot" aria-hidden="true"></span>
+                Disponible para proyectos · Respondo en menos de 24 h
+            </p>
+
+            <h3 class="font-suse font-bold text-2xl md:text-3xl leading-tight text-onSurface-light dark:text-onSurface-dark max-w-xl">
+                ¿Tienes un proceso manual que quieras convertir en software?
+            </h3>
+            <p class="text-sm md:text-base text-outline-light dark:text-outline-dark max-w-lg leading-relaxed">
+                Cuéntame qué necesitas. Si encaja, te propongo un camino concreto: alcance, tecnología y tiempos.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center mt-2">
+                <a
+                    href={whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full
+                           text-white dark:text-[#0c1a33]
+                           bg-primary-light dark:bg-primary-dark
+                           hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]
+                           transition-all duration-200 ease-out
+                           shadow-md shadow-primary-light/25 dark:shadow-primary-dark/20">
+                    <Icon name="simple-icons:whatsapp" class="w-[18px] h-[18px]" aria-hidden="true" />
+                    <span>Escribir por WhatsApp</span>
+                </a>
+                <a
+                    href={`mailto:${email}`}
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full
+                           text-primary-light dark:text-primary-dark
+                           border-2 border-primary-light/50 dark:border-primary-dark/50
+                           hover:bg-primary-light/10 dark:hover:bg-primary-dark/10
+                           hover:border-primary-light dark:hover:border-primary-dark
+                           hover:scale-[1.03] active:scale-[0.98]
+                           transition-all duration-200 ease-out">
+                    <Icon name="ph:envelope-simple" class="w-[18px] h-[18px]" aria-hidden="true" />
+                    <span>Enviar email</span>
+                </a>
+            </div>
+
+            <button
+                type="button"
+                id="copy-email"
+                data-email={email}
+                class="group inline-flex items-center gap-2 text-sm text-outline-light dark:text-outline-dark
+                       hover:text-onSurface-light dark:hover:text-onSurface-dark transition-colors duration-200">
+                <span class="tabular-nums">{email}</span>
+                <Icon name="ph:copy" class="w-4 h-4 copy-icon" aria-hidden="true" />
+                <Icon name="ph:check-bold" class="w-4 h-4 hidden check-icon text-green-600 dark:text-green-400" aria-hidden="true" />
+                <span class="sr-only copy-label">Copiar email</span>
+            </button>
         </div>
 
-        <span class="text-xs text-outline-light dark:text-outline-dark text-center">
-            Copyright © {year} Luis Gómez. Todos los derechos reservados.
-        </span>
+        <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            {links.map((l) => (
+                <li>
+                    <a
+                        href={l.href}
+                        target={l.external ? '_blank' : undefined}
+                        rel={l.external ? 'noopener noreferrer' : undefined}
+                        download={l.download}
+                        class="inline-flex items-center gap-2 text-sm text-outline-light dark:text-outline-dark
+                               hover:text-primary-light dark:hover:text-primary-dark transition-colors duration-200">
+                        <Icon name={l.icon} class="w-4 h-4" aria-hidden="true" />
+                        {l.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+
+        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-6
+                    border-t border-outline-light/15 dark:border-outline-dark/20">
+            <span class="text-xs text-outline-light dark:text-outline-dark">
+                © {year} Luis Gómez · Guayaquil, Ecuador
+            </span>
+            <a
+                href="#"
+                class="inline-flex items-center gap-1.5 text-xs text-outline-light dark:text-outline-dark
+                       hover:text-primary-light dark:hover:text-primary-dark transition-colors duration-200">
+                Volver arriba
+                <Icon name="ph:arrow-up" class="w-3.5 h-3.5" aria-hidden="true" />
+            </a>
+        </div>
     </div>
 </footer>
+
+<style>
+    .contact-dot {
+        position: relative;
+        width: 8px;
+        height: 8px;
+        border-radius: 9999px;
+        background: #22c55e;
+    }
+    .contact-dot::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: inherit;
+        animation: contact-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes contact-ping {
+        75%, 100% { transform: scale(2.4); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .contact-dot::after { animation: none; }
+    }
+</style>
+
+<script>
+    function initCopyEmail() {
+        const btn = document.getElementById('copy-email');
+        if (!btn || btn.dataset.bound === '1') return;
+        btn.dataset.bound = '1';
+
+        const copyIcon = btn.querySelector('.copy-icon');
+        const checkIcon = btn.querySelector('.check-icon');
+        const label = btn.querySelector('.copy-label');
+        let timer = 0;
+
+        btn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(btn.dataset.email || '');
+            } catch {
+                return;
+            }
+            copyIcon?.classList.add('hidden');
+            checkIcon?.classList.remove('hidden');
+            if (label) label.textContent = 'Email copiado';
+            clearTimeout(timer);
+            timer = window.setTimeout(() => {
+                copyIcon?.classList.remove('hidden');
+                checkIcon?.classList.add('hidden');
+                if (label) label.textContent = 'Copiar email';
+            }, 1800);
+        });
+    }
+
+    document.addEventListener('astro:page-load', initCopyEmail);
+</script>

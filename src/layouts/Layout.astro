@@ -5,9 +5,18 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
+	description?: string;
+	/** Imagen para la vista previa al compartir (ruta dentro de /public). */
+	image?: string;
+	type?: 'website' | 'article';
 }
 
-const { title } = Astro.props;
+const DEFAULT_DESCRIPTION = 'Luis Gómez - Full-Stack & AI Engineer. Portafolio con proyectos web, APIs y apps móviles. Django, Nestjs, Nextjs, Sveltkit, Astro, Kotlin, Kotlin Multiplatform.';
+const { title, description = DEFAULT_DESCRIPTION, image = '/static/nerd.webp', type = 'website' } = Astro.props;
+// Las redes necesitan URLs absolutas: solo se pueden armar si `site` está en astro.config.mjs.
+const absolute = (path: string) => (Astro.site ? new URL(path, Astro.site).href : path);
+const ogImage = absolute(image);
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 ---
 
 <!doctype html>
@@ -32,14 +41,22 @@ const { title } = Astro.props;
 				});
 			})();
 		</script>
-		<meta name="description" content="Luis Gómez - Desarrollador Full-Stack. Portafolio con proyectos web, APIs y apps móviles. Django, Nestjs, Nextjs, Sveltkit, Astro, Kotlin, Kotlin Multiplatform." />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" sizes="48x48" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={type} />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content="Luis Gómez - Desarrollador Full-Stack. Portafolio con proyectos web, APIs y apps móviles." />
-		<meta property="og:image" content="/static/nerd.webp" />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		{canonical && <link rel="canonical" href={canonical} />}
+		{canonical && <meta property="og:url" content={canonical} />}
 		<meta property="og:locale" content="es_ES" />
 		<title>{title}</title>
 		<ViewTransitions />
@@ -67,19 +84,49 @@ const { title } = Astro.props;
 
 <script>
 	document.addEventListener('astro:page-load', () => {
-		const sections = document.querySelectorAll('.fade-in');
+		const sections = document.querySelectorAll('.fade-in, .stagger');
+
+		// Escalonado: cada hijo de .stagger entra un poco después que el anterior.
+		document.querySelectorAll('.stagger').forEach(group => {
+			Array.from(group.children).forEach((child, i) => {
+				child.style.setProperty('--stagger-i', String(i));
+			});
+		});
 
 		const observer = new IntersectionObserver(entries => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
 					entry.target.classList.add('visible');
+					observer.unobserve(entry.target);
 				}
 			});
-		}, { threshold: 0.2 });
+		}, { threshold: 0.15 });
 
 		sections.forEach(section => {
 			observer.observe(section);
 		});
+
+		// Inclinación 3D + brillo que sigue al cursor en tarjetas [data-tilt].
+		const canTilt = window.matchMedia('(pointer: fine)').matches
+			&& !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (canTilt) {
+			document.querySelectorAll('[data-tilt]').forEach(card => {
+				if (card.dataset.tiltBound) return;
+				card.dataset.tiltBound = '1';
+				const MAX = 5;
+				card.addEventListener('pointermove', e => {
+					const r = card.getBoundingClientRect();
+					const x = (e.clientX - r.left) / r.width;
+					const y = (e.clientY - r.top) / r.height;
+					card.style.setProperty('--glow-x', `${x * 100}%`);
+					card.style.setProperty('--glow-y', `${y * 100}%`);
+					card.style.transform = `perspective(900px) rotateX(${(0.5 - y) * MAX}deg) rotateY(${(x - 0.5) * MAX}deg) translateY(-2px)`;
+				});
+				card.addEventListener('pointerleave', () => {
+					card.style.transform = '';
+				});
+			});
+		}
 
 		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 			if (anchor.dataset.smoothBound) return;
@@ -102,6 +149,66 @@ const { title } = Astro.props;
 		});
 	});
 </script>
+
+<style is:global>
+	.fade-in {
+		opacity: 0;
+		transform: translateY(24px);
+		transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.fade-in.visible {
+		opacity: 1;
+		transform: none;
+	}
+
+	.stagger > * {
+		opacity: 0;
+		transform: translateY(18px);
+		transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		transition-delay: calc(var(--stagger-i, 0) * 90ms + 100ms);
+	}
+	.stagger.visible > * {
+		opacity: 1;
+		transform: none;
+	}
+
+	.tilt-card {
+		transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+		transform-style: preserve-3d;
+	}
+	.tilt-glow {
+		background: radial-gradient(420px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgb(255 255 255 / 0.12), transparent 45%);
+	}
+	html:not(.dark) .tilt-glow {
+		background: radial-gradient(420px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgb(80 110 200 / 0.10), transparent 45%);
+	}
+	.tilt-card:hover .tilt-glow {
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.fade-in,
+		.stagger > * {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+	}
+
+	/* Origen del proyecto: personal, freelance o laboral. */
+	.kind-dot {
+		display: inline-block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 9999px;
+		flex-shrink: 0;
+	}
+	.kind-dot-propio { background: #415f91; }
+	.kind-dot-freelance { background: #2e7d5b; }
+	.kind-dot-laboral { background: #8e9099; }
+	html.dark .kind-dot-propio { background: #aac7ff; }
+	html.dark .kind-dot-freelance { background: #7fd3a8; }
+</style>
 
 <style>
 	html {

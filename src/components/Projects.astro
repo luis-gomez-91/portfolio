@@ -1,28 +1,16 @@
 ---
-import '../../public/icomoon/style.css';
 import ProjectItem from './ProjectItem.astro';
 import Title from './Title.astro';
+import { getProjectGroups } from '../lib/projects';
 
-import { getCollection } from 'astro:content';
-
-const allProjects = await getCollection('projects');
-const byPriority = (a: (typeof allProjects)[number], b: (typeof allProjects)[number]) => {
-	if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-	const orderA = a.data.order ?? Number.MAX_SAFE_INTEGER;
-	const orderB = b.data.order ?? Number.MAX_SAFE_INTEGER;
-	if (orderA !== orderB) return orderA - orderB;
-	return a.data.title.localeCompare(b.data.title, 'es');
-};
-const featuredProjects = allProjects.filter((project) => project.data.featured).sort(byPriority);
-const projects = (featuredProjects.length > 0 ? featuredProjects : [...allProjects].sort(byPriority)).slice(0, 2);
+const groups = await getProjectGroups();
+const featured = groups.filter((g) => g.featured);
+const projects = (featured.length > 0 ? featured : groups).slice(0, 3);
 ---
 
 <section id="projects" class="seccion flex flex-col justify-center items-center w-full px-6 md:px-9 py-16 md:py-24">
 	<div class="flex flex-col justify-around items-center w-full max-w-5xl gap-2 text-center">
-		<Title label="Proyectos destacados" dev={false} />
-		<p class="text-sm md:text-base text-outline-light dark:text-outline-dark max-w-lg">
-			Productos que diseñé y construí de punta a punta.
-		</p>
+		<Title label="Proyectos destacados" subtitle="Productos que diseñé y construí de punta a punta." />
 		<a
 			href="/projects"
 			class="projects-all-link group mt-1 inline-flex items-center gap-1.5
@@ -35,21 +23,14 @@ const projects = (featuredProjects.length > 0 ? featuredProjects : [...allProjec
 		</a>
 	</div>
 
-	<div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl">
+	<div class="stagger mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-6xl">
 		{
-			projects.map((project) => {
-				const { slug, data } = project;
-				const { title, description, images, previewLink, githubLink, technologies = [] } = data;
-
+			projects.map((group, index) => {
+				const large = index === 0;
 				return (
-					<ProjectItem
-						slug={slug}
-						title={title}
-						description={description}
-						img={images[0]}
-						url_demo={previewLink}
-						url_github={githubLink}
-						technologies={technologies} />
+					<div class={large ? 'md:col-span-2 lg:row-span-2' : ''}>
+						<ProjectItem large={large} group={group} />
+					</div>
 				);
 			})
 		}
@@ -57,53 +38,13 @@ const projects = (featuredProjects.length > 0 ? featuredProjects : [...allProjec
 </section>
 
 <style>
-	.projects-all-link {
-		animation: projects-link-pulse 2.4s ease-in-out infinite;
-	}
-
 	.projects-all-arrow {
 		display: inline-block;
-		animation: projects-arrow-nudge 2.4s ease-in-out infinite;
-	}
-
-	.projects-all-link:hover,
-	.projects-all-link:focus-visible {
-		animation: none;
+		transition: transform 0.25s ease-out;
 	}
 
 	.projects-all-link:hover .projects-all-arrow,
 	.projects-all-link:focus-visible .projects-all-arrow {
-		animation: none;
 		transform: translateX(4px);
-		transition: transform 0.25s ease-out;
-	}
-
-	@keyframes projects-link-pulse {
-		0%,
-		100% {
-			opacity: 1;
-			transform: scale(1);
-		}
-		50% {
-			opacity: 0.72;
-			transform: scale(1.03);
-		}
-	}
-
-	@keyframes projects-arrow-nudge {
-		0%,
-		100% {
-			transform: translateX(0);
-		}
-		50% {
-			transform: translateX(5px);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.projects-all-link,
-		.projects-all-arrow {
-			animation: none !important;
-		}
 	}
 </style>

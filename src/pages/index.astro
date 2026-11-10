@@ -4,31 +4,56 @@ import Info from '../components/Info.astro';
 import About from '../components/About.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
-import SoftSkills from '../components/SoftSkills.astro';
 import Title from '../components/Title.astro';
+
+const principles = [
+	{
+		title: 'De punta a punta',
+		text: 'Me hago cargo del modelo de datos, la API, la interfaz y el despliegue.',
+		example: 'Snappli y Linkeate: diseñados, construidos y operados por mí.',
+	},
+	{
+		title: 'Integraciones que no se rompen',
+		text: 'Conecto sistemas existentes sin frenar la operación del negocio.',
+		example: 'Retail Suite: SAP, VTEX y marcaciones en un sistema multi‑tenant.',
+	},
+	{
+		title: 'Un código, varias plataformas',
+		text: 'Elijo la herramienta que reduce mantenimiento a largo plazo.',
+		example: 'ITB Nóminas y SGA: Android e iOS con Kotlin Multiplatform.',
+	},
+];
+
 ---
 
 <Layout title="Luis Gómez - Portafolio web">
 	<main class="flex flex-col items-center justify-center">
 		<Info />
-		<Projects />
 		<About />
+		<Projects />
 		<Skills />
-		<section id="soft-skills" class="seccion flex flex-col justify-center items-center w-full max-w-5xl px-6 md:px-9 mt-4 mb-16 fade-in gap-8">
-			<div class="flex flex-col items-center gap-2 text-center">
-				<Title label="Cómo trabajo" dev={false} />
-				<p class="text-sm md:text-base text-outline-light dark:text-outline-dark max-w-lg">
-					Formas de trabajar que aplico en cada proyecto.
-				</p>
-			</div>
-			<div class="flex flex-row flex-wrap justify-center gap-3">
-				<SoftSkills name="Resolución de problemas" />
-				<SoftSkills name="Aprendizaje continuo" />
-				<SoftSkills name="Comunicación técnica clara" />
-				<SoftSkills name="Responsabilidad de extremo a extremo" />
-				<SoftSkills name="Orientación a resultados" />
-				<SoftSkills name="Atención al detalle" />
+
+		<section id="soft-skills" class="seccion flex flex-col justify-center items-center w-full max-w-5xl px-6 md:px-9 py-16 md:py-24 gap-10">
+			<Title label="Cómo trabajo" subtitle="Tres principios que aplico en cada proyecto, con un ejemplo de cada uno." />
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 w-full">
+				{principles.map((p, i) => (
+					<article
+						class="flex flex-col gap-3 p-6 rounded-2xl
+							   bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+							   border border-outline-light/20 dark:border-outline-dark/30">
+						<span class="font-suse text-sm font-bold text-primary-light dark:text-primary-dark tabular-nums">
+							0{i + 1}
+						</span>
+						<h3 class="font-semibold text-lg text-onSurface-light dark:text-onSurface-dark">{p.title}</h3>
+						<p class="text-sm leading-relaxed text-outline-light dark:text-outline-dark">{p.text}</p>
+						<p class="mt-auto pt-3 border-t border-outline-light/15 dark:border-outline-dark/20
+								  text-sm text-onSurface-light dark:text-onSurface-dark">
+							{p.example}
+						</p>
+					</article>
+				))}
 			</div>
 		</section>
 	</main>
 </Layout>
+

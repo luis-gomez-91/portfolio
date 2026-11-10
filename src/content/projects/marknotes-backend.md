@@ -1,4 +1,5 @@
 ---
+product: "marknotes"
 title: "API Rest - MarkNotes"
 description: "
     
@@ -12,6 +13,8 @@ technologies: [
     "python-dotenv (Gestión de variables de entorno)", 
     "Railway (Despliegue)"
 ]
+part: "Backend"
+kind: "propio"
 areas: ["backend"]
 featured: false
 images: [

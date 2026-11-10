@@ -1,4 +1,5 @@
 ---
+product: "ube"
 title: "UBE Chatbot"
 description: "
   Desarrollo de un chatbot inteligente utilizando Next.js como frontend, integrado con un backend basado en modelos de lenguaje avanzados (LLM), diseñado para optimizar el proceso de matrícula y atención informativa de la Universidad Bolivariana del Ecuador (UBE).
@@ -9,6 +10,8 @@ technologies: [
   "Vercel (Despliegue)", 
   "Shadcn (Componentes)"
 ]
+part: "Chatbot web"
+kind: "laboral"
 areas: ["frontend", "ia"]
 images: [
   "/static/projects/ube-chatbot/1.webp", 

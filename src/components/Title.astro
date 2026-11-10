@@ -1,17 +1,20 @@
 ---
 interface Props {
 	label: string;
-	dev: boolean;
+	subtitle?: string;
 	as?: 'h1' | 'h2';
 }
 
-const { label, dev, as = 'h2' } = Astro.props;
+const { label, subtitle, as = 'h2' } = Astro.props;
 const Tag = as;
 ---
 
-<Tag class="text-3xl md:text-4xl lg:text-[2.75rem] text-tertiary-light dark:text-tertiary-dark font-suse font-bold flex flex-col items-center gap-2 md:gap-3">
-	{label}
-	{dev && (
+<div class="flex flex-col items-center gap-2 text-center w-full">
+	<Tag class="text-3xl md:text-4xl lg:text-[2.75rem] text-tertiary-light dark:text-tertiary-dark font-suse font-bold flex flex-col items-center gap-2 md:gap-3">
+		{label}
 		<span class="text-2xl md:text-3xl lg:text-[2.1rem] text-outline-light dark:text-outline-dark font-thin" aria-hidden="true">&lt;/&gt;</span>
+	</Tag>
+	{subtitle && (
+		<p class="text-sm md:text-base text-outline-light dark:text-outline-dark max-w-lg">{subtitle}</p>
 	)}
-</Tag>
+</div>

@@ -1,210 +1,158 @@
 ---
-import '../../public/icomoon/style.css'
-import IconItem from './IconItem.astro'
+import { Icon } from 'astro-icon/components'
 import SkillItem from './SkillsItem.astro'
 import Title from './Title.astro'
+import { brandColor } from '../lib/brand'
+
+// Lo que uso a diario y defiendo en una entrevista.
+const core = [
+    { name: 'Python', icon: 'simple-icons:python', detail: 'Django · FastAPI · Flask' },
+    { name: 'PostgreSQL', icon: 'simple-icons:postgresql', detail: 'Modelado, SQLAlchemy, Redis' },
+    { name: 'React · Astro', icon: 'simple-icons:react', detail: 'Next.js · SvelteKit · Tailwind' },
+    { name: 'TypeScript', icon: 'simple-icons:typescript', detail: 'NestJS · Frontend tipado' },
+    { name: 'Kotlin Multiplatform', icon: 'simple-icons:kotlin', detail: 'Android e iOS · Compose' },
+    { name: 'LangChain', icon: 'simple-icons:langchain', detail: 'LangGraph · RAG · Agentes' },
+    { name: 'Docker', icon: 'simple-icons:docker', detail: 'Dokploy · Railway · Vercel' },
+    { name: 'VTEX IO', icon: 'simple-icons:vtex', detail: 'Integraciones SAP · e‑commerce' },
+]
+
+// Todo lo demás, sin niveles: chips agrupados por área.
+const groups = [
+    {
+        title: 'Backend',
+        icon: 'ph:database',
+        items: [
+            { name: 'Django REST Framework', icon: 'simple-icons:django' },
+            { name: 'NestJS', icon: 'simple-icons:nestjs' },
+            { name: 'Prisma', icon: 'simple-icons:prisma' },
+            { name: 'PHP', icon: 'simple-icons:php' },
+            { name: 'MySQL', icon: 'simple-icons:mysql' },
+            { name: 'Redis', icon: 'simple-icons:redis' },
+            { name: 'JWT / OAuth', icon: 'simple-icons:jsonwebtokens' },
+            { name: 'OpenAPI / Swagger', icon: 'simple-icons:swagger' },
+        ],
+    },
+    {
+        title: 'Frontend',
+        icon: 'ph:browser',
+        items: [
+            { name: 'Next.js', icon: 'simple-icons:nextdotjs' },
+            { name: 'Svelte', icon: 'simple-icons:svelte' },
+            { name: 'SvelteKit', icon: 'simple-icons:svelte' },
+            { name: 'Tailwind', icon: 'simple-icons:tailwindcss' },
+            { name: 'shadcn/ui', icon: 'simple-icons:shadcnui' },
+            { name: 'Bootstrap', icon: 'simple-icons:bootstrap' },
+            { name: 'jQuery', icon: 'simple-icons:jquery' },
+        ],
+    },
+    {
+        title: 'Móvil',
+        icon: 'ph:device-mobile',
+        items: [
+            { name: 'Jetpack Compose', icon: 'simple-icons:jetpackcompose' },
+            { name: 'Ktor', icon: 'simple-icons:ktor' },
+            { name: 'Koin', icon: 'simple-icons:kotlin' },
+            { name: 'React Native', icon: 'simple-icons:react' },
+            { name: 'Expo', icon: 'simple-icons:expo' },
+            { name: 'Play Console', icon: 'simple-icons:googleplay' },
+            { name: 'Xcode', icon: 'simple-icons:xcode' },
+        ],
+    },
+    {
+        title: 'IA',
+        icon: 'ph:sparkle',
+        items: [
+            { name: 'LangGraph', icon: 'simple-icons:langgraph' },
+            { name: 'RAG', icon: 'ph:files' },
+            { name: 'OpenAI', icon: 'simple-icons:openai' },
+            { name: 'Gemini', icon: 'simple-icons:googlegemini' },
+            { name: 'Claude', icon: 'simple-icons:claude' },
+            { name: 'Kimi', icon: 'simple-icons:kimi' },
+            { name: 'MiniMax', icon: 'simple-icons:minimax' },
+        ],
+    },
+    {
+        title: 'Infra y monitoreo',
+        icon: 'ph:hard-drives',
+        items: [
+            { name: 'VPS Linux', icon: 'simple-icons:linux' },
+            { name: 'Dokploy', icon: 'ph:rocket-launch' },
+            { name: 'GitHub Actions', icon: 'simple-icons:githubactions' },
+            { name: 'Grafana', icon: 'simple-icons:grafana' },
+            { name: 'VictoriaMetrics', icon: 'simple-icons:victoriametrics' },
+            { name: 'Uptime Kuma', icon: 'simple-icons:uptimekuma' },
+            { name: 'Cloudflare DNS', icon: 'simple-icons:cloudflare' },
+            { name: 'Cloudflare R2', icon: 'simple-icons:cloudflare' },
+            { name: 'Railway', icon: 'simple-icons:railway' },
+            { name: 'Vercel', icon: 'simple-icons:vercel' },
+            { name: 'Render', icon: 'simple-icons:render' },
+        ],
+    },
+    {
+        title: 'Servicios y pagos',
+        icon: 'ph:credit-card',
+        items: [
+            { name: 'Paddle', icon: 'simple-icons:paddle' },
+            { name: 'PayPhone', icon: 'ph:credit-card' },
+            { name: 'Nuvei', icon: 'ph:credit-card' },
+            { name: 'Supabase', icon: 'simple-icons:supabase' },
+            { name: 'Cloudinary', icon: 'simple-icons:cloudinary' },
+            { name: 'iReport', icon: 'ph:file-pdf' },
+        ],
+    },
+]
 ---
 
-<section id="skills" class="seccion flex flex-col justify-center items-center w-full px-6 md:px-9 py-20 md:py-24">
-    <div class="flex flex-col items-center gap-2 w-full max-w-5xl">
-        <Title label="Habilidades" dev={true}/>
-        <p class="text-sm text-outline-light dark:text-outline-dark xl:hidden">
-            Desliza horizontalmente para ver todas las categorías
-        </p>
-    </div>
+<section id="skills" class="seccion flex flex-col items-center w-full px-6 md:px-9 py-16 md:py-24">
+    <div class="w-full max-w-5xl flex flex-col gap-10 md:gap-12">
+        <Title label="Habilidades" subtitle="El stack con el que construyo a diario y lo que sumo según el proyecto." />
 
-    <div class="w-full max-w-6xl relative mt-10">
-        <button type="button"
-            id="scroll-left"
-            class="absolute top-1/2 -translate-y-1/2 -left-4 xl:-left-6 z-50 hidden xl:flex items-center justify-center
-                   w-11 h-11 rounded-full
-                   bg-surfaceContainer-light/80 dark:bg-surfaceContainer-dark/60
-                   border border-outline-light/20 dark:border-outline-dark/30
-                   text-onSurface-light dark:text-onSurface-dark
-                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
-                   transition-colors duration-200 ease-out"
-            aria-label="Anterior">
-            <span class="icon-arrow-left2 text-xl"></span>
-        </button>
-        <button type="button"
-            id="scroll-right"
-            class="absolute top-1/2 -translate-y-1/2 -right-4 xl:-right-6 z-50 hidden xl:flex items-center justify-center
-                   w-11 h-11 rounded-full
-                   bg-surfaceContainer-light/80 dark:bg-surfaceContainer-dark/60
-                   border border-outline-light/20 dark:border-outline-dark/30
-                   text-onSurface-light dark:text-onSurface-dark
-                   hover:bg-secondaryContainer-light hover:dark:bg-secondaryContainer-dark
-                   transition-colors duration-200 ease-out"
-            aria-label="Siguiente">
-            <span class="icon-arrow-right2 text-xl"></span>
-        </button>
-        <div id="scroll-container" class="skills-scroll w-full flex flex-row gap-5 justify-start overflow-x-auto overflow-y-hidden mt-10 scroll-smooth snap-x snap-mandatory scrollbar-hide pb-2">
-            <div class="hidden xl:flex min-w-[12rem] max-w-[28rem] min-h-[20rem]"></div>
-            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
-                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Desarrollo Backend</h3>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <SkillItem name="Python" nivel="Avanzado" />
-                    <SkillItem name="PHP" nivel="Intermedio" />
-                    <SkillItem name="Django" nivel="Avanzado" />
-                    <SkillItem name="Django Rest Framework" nivel="Intermedio" />
-                    <SkillItem name="FastApi" nivel="Avanzado" />
-                    <SkillItem name="Flask" nivel="Avanzado" />
-                    <SkillItem name="Laravel" nivel="Básico" />
-                    <SkillItem name="PostgreSQL" nivel="Avanzado" />
-                    <SkillItem name="MySQL" nivel="Avanzado" />
-                    <SkillItem name="Oracle" nivel="Básico" />
-                    <SkillItem name="SQLAlchemy" icon="SQL" nivel="Intermedio" />
-                    <SkillItem name="JWT" nivel="Avanzado" />
-                    <SkillItem name="OAuth" icon="Authentication" nivel="Intermedio" />
-                    <SkillItem name="Swagger" nivel="Avanzado" />
-                    <SkillItem name="Redoc" nivel="Intermedio" />
-                    <SkillItem name="NestJS" nivel="Intermedio" />
-                    <SkillItem name="Prisma" nivel="Básico" />
-                    <SkillItem name="Redis" nivel="Intermedio" />
-                </div>
-            </div>
-    
-            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
-                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Desarrollo Frontend</h3>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <SkillItem name="Astro" nivel="Avanzado" />
-                    <SkillItem name="React" nivel="Avanzado" />
-                    <SkillItem name="NextJS" nivel="Intermedio" />
-                    <SkillItem name="SvelteKit" nivel="Intermedio" />
-                    <SkillItem name="Shadcn" icon="UI" nivel="Intermedio" />
-                    <SkillItem name="TypeScript" nivel="Intermedio" />
-                    <SkillItem name="Tailwind" nivel="Avanzado" />
-                    <SkillItem name="Bootstrap" nivel="Avanzado" />
-                    <SkillItem name="JavaScript" nivel="Avanzado" />
-                    <SkillItem name="JQuery" nivel="Avanzado" />
-                    <SkillItem name="HTML5" nivel="Avanzado" />
-                    <SkillItem name="CSS" nivel="Avanzado" />
-                    <SkillItem name="VTEX IO" nivel="Intermedio" />
-                </div>
-            </div>
-    
-            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
-                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Desarrollo Móvil</h3>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <SkillItem name="Kotlin" nivel="Avanzado" />
-                    <SkillItem name="Java" nivel="Básico" />
-                    <SkillItem name="Jetpack Compose" nivel="Avanzado" />
-                    <SkillItem name="Kotlin Multiplatform" nivel="Avanzado" />
-                    <SkillItem name="React Native" nivel="Intermedio" />
-                    <SkillItem name="Expo" nivel="Intermedio" />
-                    <SkillItem name="Material3" nivel="Avanzado" />
-                    <SkillItem name="Ktor" nivel="Intermedio" />
-                    <SkillItem name="Koin" icon="Kotlin" nivel="Intermedio" />
-                    <SkillItem name="Android Studio (IDE)" nivel="Avanzado" />
-                </div>
-            </div>
-    
-            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
-                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Herramientas</h3>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <SkillItem name="Git" nivel="Avanzado" />
-                    <SkillItem name="GitHub" nivel="Avanzado" />
-                    <SkillItem name="GitHub Actions" nivel="Intermedio" />
-                    <SkillItem name="Visual Studio Code" nivel="Avanzado" />
-                    <SkillItem name="Pycharm" nivel="Avanzado" />
-                    <SkillItem name="Cursor" nivel="Avanzado" />
-                    <SkillItem name="Bash" nivel="Intermedio" />
-                    <SkillItem name="Ireport" icon="PDF" nivel="Avanzado" />
-                    <SkillItem name="Cloudinary" icon="Cloud" nivel="Intermedio" />
-                    <SkillItem name="Supabase" nivel="Avanzado" />
-                    <SkillItem name="Claude Code" nivel="Intermedio" />
-                    <SkillItem name="Sentry" nivel="Básico" />
-                    <SkillItem name="Paddle" nivel="Intermedio" />
-                    <SkillItem name="Pasarelas de pago" nivel="Intermedio" />
-                </div>
-            </div>
+        <div class="flex flex-col gap-4">
+            <h3 class="text-xs font-medium tracking-[0.12em] uppercase text-primary-light dark:text-primary-dark">
+                Stack principal
+            </h3>
+            <ul class="stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                {core.map((s) => {
+                    const color = brandColor(s.icon)
+                    return (
+                        <li class="flex items-center gap-3 p-4 rounded-2xl
+                                   bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
+                                   border border-outline-light/20 dark:border-outline-dark/30">
+                            <span class="shrink-0 w-10 h-10 rounded-xl
+                                         bg-surfaceContainer-light dark:bg-[#e8eaf0] text-[#1d2433]
+                                         flex items-center justify-center">
+                                <Icon name={s.icon} class="w-5 h-5" style={color ? `color:${color}` : undefined} aria-hidden="true" />
+                            </span>
+                            <div class="min-w-0">
+                                <p class="text-sm font-semibold text-onSurface-light dark:text-onSurface-dark">{s.name}</p>
+                                <p class="text-xs text-outline-light dark:text-outline-dark leading-snug">{s.detail}</p>
+                            </div>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
 
-            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
-                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">Despliegue</h3>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <SkillItem name="Vercel" nivel="Avanzado" />
-                    <SkillItem name="Railway" nivel="Avanzado" />
-                    <SkillItem name="Github Pages" icon="GitHub" nivel="Avanzado" />
-                    <SkillItem name="Play Console" nivel="Avanzado" />
-                    <SkillItem name="Render" nivel="Intermedio" />
-                    <SkillItem name="Docker" nivel="Intermedio" />
-                    <SkillItem name="Dockploy" nivel="Intermedio" />
-                    <SkillItem name="Xcode" nivel="Intermedio" />
-                </div>
+        <div class="flex flex-col gap-4">
+            <h3 class="text-xs font-medium tracking-[0.12em] uppercase text-primary-light dark:text-primary-dark">
+                También trabajo con
+            </h3>
+            <div class="stagger grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                {groups.map((g, i) => (
+                    <div class={`flex flex-col gap-3 p-5 rounded-2xl
+                                bg-surfaceContainer-light/30 dark:bg-surfaceContainer-dark/20
+                                border border-outline-light/15 dark:border-outline-dark/25
+                                ${i === groups.length - 1 && groups.length % 2 === 1 ? 'md:col-span-2' : ''}`}>
+                        <h4 class="flex items-center gap-2 text-sm font-semibold text-onSurface-light dark:text-onSurface-dark">
+                            <Icon name={g.icon} class="w-4 h-4 text-secondary-light dark:text-secondary-dark" aria-hidden="true" />
+                            {g.title}
+                        </h4>
+                        <ul class="flex flex-wrap gap-2">
+                            {g.items.map((item) => <SkillItem name={item.name} icon={item.icon} />)}
+                        </ul>
+                    </div>
+                ))}
             </div>
-
-            <div class="min-w-[16rem] md:min-w-[22rem] max-w-[28rem] min-h-[20rem] p-5 rounded-2xl overflow-hidden flex flex-col items-center snap-center
-                       bg-surfaceContainer-light/50 dark:bg-surfaceContainer-dark/30
-                       border border-outline-light/20 dark:border-outline-dark/30 shadow-sm">
-                <h3 class="text-base font-semibold text-onSurface-light dark:text-onSurface-dark">IA / LLM</h3>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <SkillItem name="LangChain" nivel="Avanzado" />
-                    <SkillItem name="LangGraph" icon="LangGraph" nivel="Intermedio" />
-                    <SkillItem name="RAG" icon="RAG" nivel="Intermedio" />
-                    <SkillItem name="Agents" icon="Bot" nivel="Intermedio" />
-                    <SkillItem name="Tools" icon="Tools" nivel="Intermedio" />
-                    <SkillItem name="Gemini" icon="Gemini" nivel="Intermedio" />
-                    <SkillItem name="OpenAI" icon="OpenAI" nivel="Intermedio" />
-                    <SkillItem name="Claude" nivel="Intermedio" />
-                </div>
-            </div>
-
-            <div class="hidden xl:flex min-w-[12rem] max-w-[28rem] min-h-[22rem]"></div>
         </div>
     </div>
 </section>
-
-<style>
-.scrollbar-hide {
-    scrollbar-width: none;
-    -ms-overflow-style: none; 
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-
-/* Fade en los bordes sin hardcodear el color del fondo */
-@media (min-width: 1280px) {
-    .skills-scroll {
-        -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            #000 8%,
-            #000 92%,
-            transparent 100%
-        );
-        mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            #000 8%,
-            #000 92%,
-            transparent 100%
-        );
-    }
-}
-</style>
-
-<script>
-    document.addEventListener('astro:page-load', () => {
-        const scrollContainer = document.getElementById('scroll-container');
-        const btnLeft = document.getElementById('scroll-left');
-        const btnRight = document.getElementById('scroll-right');
-        if (!scrollContainer || !btnLeft || !btnRight) return;
-        if (btnLeft.dataset.scrollBound) return;
-        btnLeft.dataset.scrollBound = '1';
-
-        btnLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -320, behavior: 'smooth' }));
-        btnRight.addEventListener('click', () => scrollContainer.scrollBy({ left: 320, behavior: 'smooth' }));
-    });
-</script>

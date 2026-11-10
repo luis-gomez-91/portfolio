@@ -8,12 +8,12 @@ technologies: [
     "Kotlin Multiplatform", 
     "Jetpack Compose", 
     "Material3", 
-    "Android Studio (IDE)", 
     "Ktor (Client HTTP)", 
     "Koin (Inyección de dependencias)",
     "Play Console (Despliegue)",
     "Xcode (Despliegue)",
 ]
+kind: "laboral"
 areas: ["mobile"]
 images: [
     
@@ -28,5 +28,5 @@ features: [
     "Personalizar la experiencia con modo claro y modo oscuro (Dark Mode) para mayor comodidad visual.",
 ]
 featured: true
-order: 3
+order: 7
 ---
